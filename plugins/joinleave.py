@@ -93,19 +93,13 @@ async def _(c, m, _):
             return
 
     except ChatAdminRequired:
-        await m.reply(
-            f"{em.gagal} <b>Saya tidak memiliki izin untuk meninggalkan obrolan ini!</b>"
-        )
+        await ceger.edit(_("join_7").format(em.gagal, namagece))
         return
     except UserNotParticipant:
-        await m.reply(
-            f"{em.gagal} <b>Anda bukan lagi anggota atau member di <code>{namagece}</code></b>"
-        )
+        await m.delete()
         return
     except ChannelPrivate:
-        await m.reply(
-            f"{em.gagal} <b>Anda bukan lagi anggota atau member di <code>{namagece}</code></b>"
-        )
+        await m.delete()
         return
     except Exception as e:
         await ceger.edit(_("err").format(em.gagal, e))
@@ -128,7 +122,7 @@ async def _(c: nlx, m, _):
     ]
     command = m.text.split(None, 1)[1]
     if command not in ["grup", "ch"]:
-        await xenn.edit(f"{em.gagal} **Please give query [`grup` or `ch`]** ")
+        await xenn.edit(_("join_8").format(em.gagal, m.text.split()[0]))
         return
     luci = 0
     nan = 0
@@ -154,9 +148,7 @@ async def _(c: nlx, m, _):
         except Exception as e:
             print(f"An error occurred while fetching dialogs: {e}")
     await xenn.delete()
-    await m.reply(
-        f"{em.sukses} **Success to leave : `{luci}`\n{em.gagal} Failed to leave : `{nan}`**"
-    )
+    await m.reply(_("join_6").format(em.sukses, luci, command, em.gagal, nan, command))
     return
 
 
@@ -187,9 +179,7 @@ async def _(c, m, _):
                 luci += 1
         except Exception as e:
             print(f"An error occurred while fetching dialogs: {e}")
-
+    gc = "grup"
     await xenn.delete()
-    await m.reply(
-        f"{em.sukses} **Success to leave : `{nan}`\n{em.gagal} Failed to leave : `{luci}`**"
-    )
+    await m.reply(_("join_6").format(em.sukses, nan, gc, em.gagal, luci, gc))
     return
