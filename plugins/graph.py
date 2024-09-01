@@ -76,7 +76,7 @@ async def _(client: nlx, message, _):
     emo.initialize()
     XD = await message.reply(_("proses").format(emo.proses))
     if not message.reply_to_message:
-        return await XD.edit(_("grp_1").format(emo.gagal)
+        return await XD.edit(_("grp_1").format(emo.gagal))
     telegraph = TelegraphAPI()
     if message.reply_to_message.media:
         try:
