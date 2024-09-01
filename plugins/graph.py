@@ -116,7 +116,8 @@ async def _(client: nlx, message, _):
                 )
             page_title = f"{message.from_user.first_name} {message.from_user.last_name or ''}'s Media"
             media_page = telegraph.create_page(title=page_title, content=page_content)
-            await XD.edit(_("grp_3").format(emo.sukses, media_page),
+            await XD.edit(
+                _("grp_3").format(emo.sukses, media_page),
                 disable_web_page_preview=True,
             )
         except Exception as exc:
@@ -128,6 +129,7 @@ async def _(client: nlx, message, _):
             response = telegraph.create_page_md(title=page_title, content=page_text)
         except Exception as exc:
             return await XD.edit(_("err_1").format(em.gagal, exc))
-        await XD.edit(_("grp_3").format(emo.sukses, response),
+        await XD.edit(
+            _("grp_3").format(emo.sukses, response),
             disable_web_page_preview=True,
         )

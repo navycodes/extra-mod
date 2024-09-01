@@ -1,4 +1,3 @@
-import base64
 import os
 
 import google.generativeai as genai
