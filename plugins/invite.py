@@ -34,7 +34,7 @@ async def _(c, m, _):
         await mg.edit(_("peer").format(em.gagal))
         return
     except KeyError:
-        await mg.edit(_("peer").format(em.gagal))
+        await mg.edit(_("keyeror").format(em.gagal))
         return
     mention = (await c.get_users(user_id)).mention
     await mg.edit(_("inv_3").format(em.sukses, mention, m.chat.title))
