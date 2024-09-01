@@ -49,7 +49,7 @@ async def ckdm_cmd(client: nlx, message, _):
         deskripsi_khodam = gen_kdm(client, nama, _)
         url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
         payload = {"model": "flux", "prompt": deskripsi_khodam}
-        response = await fetch.post(url, json=payload)
+        response = requests.post(url, json=payload)
         if response.status_code == 200:
             with open("genai.jpg", "wb") as f:
                 f.write(response.content)
