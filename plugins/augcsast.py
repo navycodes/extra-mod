@@ -5,7 +5,7 @@ from pyrogram.enums import ChatType
 from pyrogram.errors import FloodWait
 from Userbot import *
 
-from .limit import spam_bot
+from .plugins.limit import spam_bot
 
 __MODULES__ = "AutoGcast"
 
