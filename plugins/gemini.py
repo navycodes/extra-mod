@@ -138,23 +138,15 @@ async def _(c: nlx, m, _):
     pros = await m.reply(_("proses").format(em.proses))
     text = c.get_arg(m)
     if not text:
-        return pros.edit("{} Kasih query or balas text lah dongok!!".format(em.gagal))
-    url = "https://akeno.randydev.my.id/api/v1/akeno/fluxai"
-    # headers = {"Content-Type": "application/json"}
-    data = {
-        "user_id": owner_id,
-        "api_key": "d9a575b7f8ce61cb6997debd1c96ec7e8baad8d4c4f9c0bd42cec456503564b2",
-        "args": text,
-        # "auto_enhancer": "false",
-    }
-    response = requests.post(url, json=data)
+        return pros.edit(_("enc_5").format(em.gagal))
+    url = "https://next-nolimit-api-app.vercel.app/api/image-gen"
+    payload = {"model": "flux", "prompt": text}
+    response = await fetch.post(url, json=payload)
     if response.status_code == 200:
         with open("genai.jpg", "wb") as f:
             f.write(response.content)
         await m.reply_photo("genai.jpg")
         os.remove("genai.jpg")
     else:
-        await m.reply(
-            f"{em.gagal} <b>Error:</b> {response.status_code}, {response.text}"
-        )
+        await m.reply(_("err_1").format(em.gagal, response.text))
     return await pros.delete()
