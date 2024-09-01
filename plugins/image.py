@@ -81,9 +81,8 @@ async def _(c: nlx, m, _):
             if len(m.command) == 2:
                 max_results = int(m.command[1])
         else:
-            return await m.reply(_("img_1").format(
-                    em.gagal, m.text.split()[0], m.text.split()[0]
-                )
+            return await m.reply(
+                _("img_1").format(em.gagal, m.text.split()[0], m.text.split()[0])
             )
         pros = await m.reply(_("proses").format(em.proses))
         await search_images(query, m, max_results, pros)
