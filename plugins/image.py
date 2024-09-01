@@ -81,8 +81,7 @@ async def _(c: nlx, m, _):
             if len(m.command) == 2:
                 max_results = int(m.command[1])
         else:
-            return await m.reply(
-                "{} Contoh penggunaan : `{} 5 kucing lucu` atau `{} kucing lucu`".format(
+            return await m.reply(_("img_1").format(
                     em.gagal, m.text.split()[0], m.text.split()[0]
                 )
             )
