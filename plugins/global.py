@@ -28,9 +28,6 @@ def help_string(org):
 
 
 @ky.ubot("gban")
-# @ky.devs("cgban")
-
-
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
@@ -84,9 +81,6 @@ async def _(c: nlx, m, _):
 
 
 @ky.ubot("ungban")
-# @ky.devs("cungban")
-
-
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
@@ -122,9 +116,6 @@ async def _(c: nlx, m, _):
 
 
 @ky.ubot("gmute")
-# @ky.devs("cgmute")
-
-
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
@@ -171,9 +162,6 @@ async def _(c: nlx, m, _):
 
 
 @ky.ubot("ungmute")
-# @ky.devs("cungmute")
-
-
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
