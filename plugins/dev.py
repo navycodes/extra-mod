@@ -103,7 +103,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("eval")
 @ky.thecegers
-async def _(c: nlx, message):
+async def _(c: nlx, message, _):
     TM = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
     if not cmd:
@@ -140,7 +140,7 @@ async def _(c: nlx, message):
 
 
 @ky.cegers("ceval")
-async def _(c: nlx, message):
+async def _(c: nlx, message, _):
     TM = await message.reply_text("Processing ...")
     cmd = message.text.split(" ", maxsplit=1)[1]
     if not cmd:
