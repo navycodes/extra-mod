@@ -61,9 +61,7 @@ async def _(c: nlx, m, _):
             )
             done += 1
         except (PeerFlood, UserRestricted, UserBannedInChannel):
-            return await m.reply(
-                f"**{em.gagal} Akun lo limit bego, maksa amat gcast!!**"
-            )
+            return await msg.edit(_("lim_er").format(em.gagal))
         except SlowmodeWait:
             continue
         except ChatWriteForbidden:
@@ -114,9 +112,7 @@ async def _(c: nlx, m, _):
             )
             done += 1
         except (PeerFlood, UserRestricted, UserBannedInChannel):
-            return await m.reply(
-                f"**{em.gagal} Akun lo limit bego, maksa amat gcast!!**"
-            )
+            return await msg.edit(_("lim_er").format(em.gagal))
         except SlowmodeWait:
             continue
         except ChatWriteForbidden:
@@ -165,9 +161,7 @@ async def _(c: nlx, m, _):
             )
             done += 1
         except (PeerFlood, UserRestricted, UserBannedInChannel):
-            return await m.reply(
-                f"**{em.gagal} Akun lo limit bego, maksa amat gcast!!**"
-            )
+            return await msg.edit(_("lim_er").format(em.gagal))
         except SlowmodeWait:
             continue
         except ChatWriteForbidden:
