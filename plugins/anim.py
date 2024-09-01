@@ -240,10 +240,9 @@ async def _(c: nlx, m, _):
         "(￣ー￣) DEAD",
         "<b>Mrr Gya Matherchod lala la 😈.😈.😈.😈.😈.😈.😈......</b>\n '#Sad_Reacts_Online'\n",
     ]
-    await xi.delete()
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 12])
+        await xi.edit(animation_chars[i % 12])
 
 
 @ky.ubot("wtf")
