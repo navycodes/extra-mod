@@ -74,9 +74,9 @@ async def dl_pic(client, media):
 async def _(client: nlx, message, _):
     emo = Emojik(client)
     emo.initialize()
-    XD = await message.reply(f"{emo.proses} <b>Proses unggah ke telegraph ..</b>")
+    XD = await message.reply(_("proses").format(emo.proses))
     if not message.reply_to_message:
-        return await XD.edit(f"{emo.gagal} <b>Silakan balas ke pesan atau media.</b>")
+        return await XD.edit(_("grp_1").format(emo.gagal)
     telegraph = TelegraphAPI()
     if message.reply_to_message.media:
         try:
@@ -94,9 +94,8 @@ async def _(client: nlx, message, _):
                 media_data, mime_type = await dl_pic(client, message.reply_to_message)
 
             if media_data is None:
-                return await XD.edit(
-                    f"{emo.gagal} <b>Media tidak ditemukan atau tidak dapat diunduh.</b>"
-                )
+                await message.delete()
+                return await XD.delete()
 
             media_data.seek(0)
             response = requests.post(
@@ -117,23 +116,18 @@ async def _(client: nlx, message, _):
                 )
             page_title = f"{message.from_user.first_name} {message.from_user.last_name or ''}'s Media"
             media_page = telegraph.create_page(title=page_title, content=page_content)
-            U_done = f"{emo.sukses} <b> Berhasil Diunggah: </b> <a href='{media_page}'>Klik Disini</a>"
-            await XD.edit(
-                f"{U_done}",
+            await XD.edit(_("grp_3").format(emo.sukses, media_page),
                 disable_web_page_preview=True,
             )
         except Exception as exc:
-            return await XD.edit(f"{emo.gagal} <b>Error:</b>\n<code>{exc}</code>")
+            return await XD.edit(_("err_1").format(em.gagal, exc))
     elif message.reply_to_message.text:
         page_title = f"{client.me.first_name} {client.me.last_name or ''}"
         page_text = message.reply_to_message.text.replace("\n", "<br>")
         try:
             response = telegraph.create_page_md(title=page_title, content=page_text)
-            mek = f"<u><a href='{response}'>Klik Disini</a></u>"
         except Exception as exc:
-            return await XD.edit(f"{emo.gagal} <b>Error:</b>\n<code>{exc}</code>")
-        wow_graph = f"{emo.sukses} <b>Berhasil Diunggah:</b> <a href='{response}'>Klik Disini</a>"
-        await XD.edit(
-            f"{wow_graph}",
+            return await XD.edit(_("err_1").format(em.gagal, exc))
+        await XD.edit(_("grp_3").format(emo.sukses, response),
             disable_web_page_preview=True,
         )
