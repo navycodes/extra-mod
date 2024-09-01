@@ -21,20 +21,6 @@ def help_string(org):
     return h_s(org, "help_gcast")
 
 
-def extract_type_and_text(message):
-    args = message.text.split(None, 2)
-    if len(args) < 2:
-        return None, None
-
-    type = args[1]
-    msg = (
-        message.reply_to_message.text
-        if message.reply_to_message
-        else args[2] if len(args) > 2 else None
-    )
-    return type, msg
-
-
 @ky.ubot("bc")
 async def _(c: nlx, m, _):
     em = Emojik(c)
