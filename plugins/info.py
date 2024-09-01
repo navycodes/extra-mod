@@ -11,7 +11,6 @@ from datetime import datetime
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
-
 from Userbot import *
 
 gban_db = GBan()

@@ -3,7 +3,6 @@ from io import BytesIO
 
 import requests
 from telegraph import upload_file
-
 from Userbot import *
 
 __MODULES__ = "Ocr"

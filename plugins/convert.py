@@ -7,7 +7,6 @@ import assemblyai as aai
 from pyrogram import enums
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import InputMediaPhoto
-
 from Userbot import *
 
 from .ocr import dl_pic

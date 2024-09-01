@@ -13,9 +13,8 @@ from io import BytesIO
 import requests
 from PIL import Image
 from pyrogram.enums import MessageMediaType
-from ytelegraph import TelegraphAPI
-
 from Userbot import Emojik, h_s, ky, nlx
+from ytelegraph import TelegraphAPI
 
 __MODULES__ = "Telegraph"
 

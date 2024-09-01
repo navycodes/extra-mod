@@ -9,9 +9,8 @@
 import os
 
 import gtts
-from gpytranslate import Translator
-
 from config import *
+from gpytranslate import Translator
 from Userbot import *
 from Userbot.helper.database import *
 from Userbot.helper.langs import *

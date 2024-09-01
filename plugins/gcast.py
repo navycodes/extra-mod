@@ -10,7 +10,6 @@
 import asyncio
 
 from pyrogram.errors import *
-
 from Userbot import *
 
 from .gcspam import extract_type_and_msg

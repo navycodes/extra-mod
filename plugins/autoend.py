@@ -2,7 +2,6 @@ import asyncio
 
 from pyrogram.errors import *
 from pyrogram.raw.functions.messages import DeleteHistory
-
 from Userbot import *
 
 __MODULES__ = "ClearChat"

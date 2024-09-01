@@ -12,7 +12,6 @@ from pyrogram import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
-
 from Userbot import *
 
 __MODULES__ = "SangMata"

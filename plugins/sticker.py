@@ -6,7 +6,6 @@ from pyrogram.file_id import *
 from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
-
 from Userbot import *
 
 __MODULES__ = "Sticker"

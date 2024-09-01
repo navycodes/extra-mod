@@ -17,7 +17,6 @@ import random
 from io import BytesIO
 
 from pyrogram.types import *
-
 from Userbot import *
 
 __MODULES__ = "Quotly"

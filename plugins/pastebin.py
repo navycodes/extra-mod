@@ -10,7 +10,6 @@ import re
 import aiofiles
 from pyrogram.errors import *
 from pyrogram.types import *
-
 from Userbot import *
 
 __MODULES__ = "Pastebin"

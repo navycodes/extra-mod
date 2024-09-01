@@ -5,7 +5,6 @@ import google.generativeai as genai
 import requests
 from pyrogram.enums import ChatAction
 from pyrogram.errors import *
-
 from Userbot import *
 
 __MODULES__ = "ChatGpt"

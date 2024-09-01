@@ -3,7 +3,6 @@ import os
 
 import requests
 from bs4 import BeautifulSoup
-
 from Userbot import *
 
 __MODULES__ = "QrCode"

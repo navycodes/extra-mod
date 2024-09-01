@@ -10,7 +10,6 @@ from io import BytesIO
 
 import requests
 from pyrogram.types import InputMediaPhoto
-
 from Userbot import *
 
 __MODULES__ = "Image"

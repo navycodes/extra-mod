@@ -12,7 +12,6 @@ import os
 
 import cv2
 from PIL import Image
-
 from Userbot import *
 
 __MODULES__ = "Tiny"
