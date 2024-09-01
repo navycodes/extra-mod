@@ -72,17 +72,11 @@ async def _(c: nlx, m, _):
     try:
         user = await c.get_users(sus)
     except KeyError:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok {} !!</b>".format(em.gagal, sus)
-        )
+        return await m.reply_text(_("keyeror").format(em.gagal))
     except UsernameInvalid:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok {} !!</b>".format(em.gagal, sus)
-        )
+        return await m.reply_text(_("keyeror").format(em.gagal))
     except PeerIdInvalid:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok {} !!</b>".format(em.gagal, sus)
-        )
+        return await m.reply_text(_("peer").format(em.gagal))
     full = (
         f"<a href=tg://user?id={user.id}>{user.first_name} {user.last_name or ''}</a>"
     )
@@ -131,21 +125,13 @@ async def _(c: nlx, m, _):
     try:
         gc = await c.get_chat(chat)
     except UsernameInvalid:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok {} !!</b>".format(em.gagal, chat)
-        )
+        return await m.reply_text(_("keyeror").format(em.gagal))
     except KeyError:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok!!</b>".format(em.gagal)
-        )
+        return await m.reply_text(_("keyeror").format(em.gagal))
     except ChannelInvalid:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok!!</b>".format(em.gagal)
-        )
+        return await m.reply_text(_("keyeror").format(em.gagal))
     except PeerIdInvalid:
-        return await m.reply_text(
-            "<b>{} Lo belom ketemuan ama dia begok!!</b>".format(em.gagal)
-        )
+        return await m.reply_text(_("peer").format(em.gagal))
     total_bot, total_admin, total_bot_admin, total_banned = await count(c, gc.id)
     i = await c.resolve_peer(gc.id)
     o = await c.invoke(GetFullChannel(channel=i))
