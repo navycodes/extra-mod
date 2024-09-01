@@ -95,18 +95,14 @@ async def _(client, message, _):
     r = await message.reply(_("proses").format(em.proses))
     count, msg = extract_type_and_msg(message)
     if not msg:
-        return await r.edit(
-            "{} Silahkan gunakan format `{}` jumlah - text/reply message".format(
-                em.gagal, message.command[0]
-            )
-        )
+        return await r.edit(_("spm_1").format(em.gagal, message.text.split()[0]))
     try:
         count = int(count)
     except Exception as error:
         return await r.edit(_("err").format(em.gagal, error))
     for x in range(int(count)):
         await SpamMsg(client, message, msg)
-    return await r.edit("{} Spam gcast telah dilakukan.".format(em.sukses))
+    return await r.edit("{} Done.".format(em.sukses))
 
 
 @ky.ubot("spamg")
@@ -116,11 +112,7 @@ async def _(client, message, _):
     r = await message.reply(_("proses").format(em.proses))
     count, msg = extract_type_and_msg(message)
     if not msg:
-        return await r.edit(
-            "{} Silahkan gunakan format `{}` jumlah - text/reply message".format(
-                em.gagal, message.command[0]
-            )
-        )
+        return await r.edit(_("spm_1").format(em.gagal, message.text.split()[0]))
     try:
         count = int(count)
     except Exception as error:
@@ -131,7 +123,7 @@ async def _(client, message, _):
         await asyncio.gather(*spam_gcast)
 
     await run_spam()
-    await r.edit("{} SpamG telah dilakukan.".format(em.sukses))
+    await r.edit("{} Done.".format(em.sukses))
     del total_spam_gcast[client.me.id]
     return
 
