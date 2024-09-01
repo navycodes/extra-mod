@@ -43,8 +43,8 @@ async def ckdm_cmd(client: nlx, message, _):
     emo.initialize()
     nama = get_name(message)
     if not nama:
-        return await message.reply(_("kdm_1").format(em.gagal))
-    pros = await message.reply(_("proses").format(em.proses))
+        return await message.reply(_("kdm_1").format(emo.gagal))
+    pros = await message.reply(_("proses").format(emo.proses))
     try:
         deskripsi_khodam = gen_kdm(client, nama, _)
         url = "https://next-nolimit-api-app.vercel.app/api/image-gen"
@@ -68,7 +68,7 @@ async def ckdm_cmd(client: nlx, message, _):
                     reply_to_message_id=message.id,
                 )
             except Exception as e:
-                return await pros.edit(_("err_1").format(em.gagal, e))
+                return await pros.edit(_("err_1").format(emo.gagal, e))
             finally:
                 if os.path.exists("genai.jpg"):
                     os.remove("genai.jpg")
@@ -79,4 +79,4 @@ async def ckdm_cmd(client: nlx, message, _):
             )
             return await pros.edit(teks)
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, e))
+        return await pros.edit(_("err_1").format(emo.gagal, e))
