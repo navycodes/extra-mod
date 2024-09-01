@@ -10,7 +10,7 @@ import asyncio
 
 from pyrogram.enums import ChatType
 from pyrogram.errors import (ChatForwardsRestricted, FloodWait,
-                             MessageIdInvalid, UserRestricted)
+                             MessageIdInvalid, UserRestricted, PeerFlood)
 from Userbot import *
 
 __MODULES__ = "Gruplog"
@@ -30,13 +30,11 @@ async def _(c: nlx, m, _):
         if not udB.get_var(c.me.id, "TAG_LOG"):
             try:
                 pr = await check_logger(c)
-            except (UserRestricted, UserBannedInChannel):
-                return await xx.edit(
-                    f"<b>{em.gagal} Maaf akun anda sedang dibatasi, anda tidak bisa membuat grup log hingga akun anda bebas!!</b>"
-                )
+            except (PeerFlood, UserRestricted, UserBannedInChannel):
+                return await xx.edit(_("lim_er").format(em.gagal))
             babi = await c.export_chat_invite_link(int(pr))
             c.set_logger(c.me.id, int(pr))
-            return await xx.edit(f"<b>{em.sukses} Grup Log Anda\n\n{babi}</b>")
+            return await xx.edit(_("grplog_1") format(em.sukses, babi))
         else:
             return await xx.edit(_("grplog_2").format(em.sukses))
     if cek.lower() == "off":
@@ -84,9 +82,9 @@ async def _(client, message, _):
 
 • <b>Name Group: {message.chat.title}</b>
 • <b>ID Group:</b> <code>{message.chat.id}</code>
-• <b>Dari: {user_link}</b>
-• <b>Pesan:</b> <blockquote>{message.text}</blockquote>
-• <b>Tautan Grup: [Disini]({message_link}) </blockquote>
+• <b>From: {user_link}</b>
+• <b>Message:</b> <blockquote>{message.text}</blockquote>
+• <b>Link Message: [Here]({message_link}) </blockquote>
 """
         try:
             await client.send_message(int(log), text, disable_web_page_preview=True)
@@ -105,9 +103,9 @@ async def _(client, message, _):
         text = f"""
 📨 <b><u>Private Notifications</u></b>
 
-• <b>Dari: {user_link}</b>
-• <b>Pesan:</b> <blockquote>{message.text}</blockquote>
-• <b>Tautan Pesan: [Disini]({message_link}) </b>
+• <b>From: {user_link}</b>
+• <b>Message:</b> <blockquote>{message.text}</blockquote>
+• <b>Link Message: [Here]({message_link}) </b>
 """
         try:
             await client.send_message(int(log), text, disable_web_page_preview=True)
