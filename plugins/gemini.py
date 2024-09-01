@@ -1,5 +1,6 @@
 import os
-
+import io
+import aiohttp
 import google.generativeai as genai
 import requests
 from pyrogram.enums import ChatAction
@@ -130,12 +131,13 @@ async def _(c: nlx, m, _):
         return pros.edit(_("enc_5").format(em.gagal))
     url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
     payload = {"model": "flux", "prompt": text}
-    response = requests.post(url, json=payload)
-    if response.status_code == 200:
-        with open("genai.jpg", "wb") as f:
-            f.write(response.content)
-        await m.reply_photo("genai.jpg")
-        os.remove("genai.jpg")
+    async with aiohttp.ClientSession() as session:
+      async with session.post(url, json=payload) as resp:
+          image = io.BytesIO(await resp.read())
+      image.name = "mm.jpg"
+      await m.reply_photo(image)
+      if os.path.exists("mm.jpg"):
+          os.remove("mm.jpg")
     else:
         await m.reply(_("err_1").format(em.gagal, response.text))
     return await pros.delete()
