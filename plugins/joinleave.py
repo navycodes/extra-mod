@@ -120,10 +120,10 @@ async def _(c: nlx, m, _):
         -1001812143750,
         -1002058863067,
     ]
-    command = m.text.split(None, 1)[1]
-    if command not in ["grup", "ch"]:
+    if len(m.command) < 2:
         await xenn.edit(_("join_8").format(em.gagal, m.text.split()[0]))
         return
+    command = m.text.split(None, 1)[1]
     luci = 0
     nan = 0
     chats = await c.get_chats_dialog(command)
