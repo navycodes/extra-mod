@@ -90,7 +90,7 @@ async def _(c: nlx, m, _):
     pros = await m.reply(_("proses").format(em.proses))
     reply_text = c.get_text(m)
     if not reply_text:
-        return pros.edit("{} Kasih query or balas text lah dongok!!".format(em.gagal))
+        return pros.edit(_("enc_5").format(em.gagal))
     await mari_kirim(c, m, reply_text)
     await pros.delete()
 
@@ -114,21 +114,11 @@ async def _(client: nlx, message, _):
                 )
                 return await prs.delete()
             else:
-                return await prs.edit(
-                    "{} Respon to ChatGpt error!! Silahkan coba lagi nanti.".format(
-                        em.gagal
-                    )
-                )
+                return await prs.edit(_("err_1").format(em.gagal, response.text))
         except Exception as e:
             return await prs.edit(_("err").format(em.gagal, e))
     except Exception as e:
         return await prs.edit(_("err").format(em.gagal, e))
-
-
-def decode_image(image_data, filename="gen.jpg"):
-    with open(filename, "wb") as f:
-        f.write(base64.b64decode(image_data))
-    return filename
 
 
 @ky.ubot("fluxai")
