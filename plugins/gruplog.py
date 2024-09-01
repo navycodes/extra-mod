@@ -34,7 +34,7 @@ async def _(c: nlx, m, _):
                 return await xx.edit(_("lim_er").format(em.gagal))
             babi = await c.export_chat_invite_link(int(pr))
             c.set_logger(c.me.id, int(pr))
-            return await xx.edit(_("grplog_1") format(em.sukses, babi))
+            return await xx.edit(_("grplog_1").format(em.sukses, babi))
         else:
             return await xx.edit(_("grplog_2").format(em.sukses))
     if cek.lower() == "off":
