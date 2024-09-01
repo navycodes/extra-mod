@@ -129,7 +129,7 @@ async def _(c: nlx, m, _):
     if not text:
         return pros.edit(_("enc_5").format(em.gagal))
     url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
-    payload = {"prompt": text}
+    payload = {"model": "flux", "prompt": text}
     response = requests.post(url, json=payload)
     if response.status_code == 200:
         with open("genai.jpg", "wb") as f:
