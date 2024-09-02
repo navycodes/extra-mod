@@ -135,9 +135,11 @@ async def _(c: nlx, m, _):
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as resp:
             image = io.BytesIO(await resp.read())
-        image.name = "mm.jpg"
-        await m.reply_photo(image)
-        if os.path.exists("mm.jpg"):
-            os.remove("mm.jpg")
-        # await m.reply(_("err_1").format(em.gagal, response.text))
+        image.name = f"{c.me.id}.jpg"
+        if image:
+            await m.reply_photo(image)
+            if os.path.exists(f"{c.me.id}.jpg"):
+                os.remove(f"{c.me.id}.jpg")
+        else:
+            await m.reply(_("err_1").format(em.gagal, em.gagal))
     return await pros.delete()
