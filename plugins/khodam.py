@@ -61,7 +61,7 @@ async def ckdm_cmd(client: nlx, message, _):
         return await message.reply(_("kdm_1").format(emo.gagal))
     pros = await message.reply(_("proses").format(emo.proses))
     try:
-        deskripsi_khodam = gen_kdm(client, nama)
+        deskripsi_khodam = gen_kdm(nama)
         imeg = await gen_img(deskripsi_khodam)
         caption = _("kdm_2").format(
             emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
