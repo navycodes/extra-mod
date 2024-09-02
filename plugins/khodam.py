@@ -71,7 +71,7 @@ async def ckdm_cmd(client: nlx, message, _):
         )
         if len(caption) > MAX_CAPTION_LENGTH:
             caption = caption[:MAX_CAPTION_LENGTH] + "..."
-        try:
+        if imeg:
             await asyncio.sleep(2)
             await pros.delete()
             await client.send_photo(
@@ -80,7 +80,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 caption=caption,
                 reply_to_message_id=message.id,
             )
-        except:
+        else:
             await asyncio.sleep(2)
             teks = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
