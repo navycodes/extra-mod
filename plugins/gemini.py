@@ -1,5 +1,6 @@
-import os
 import io
+import os
+
 import aiohttp
 import google.generativeai as genai
 import requests
@@ -138,5 +139,5 @@ async def _(c: nlx, m, _):
         await m.reply_photo(image)
         if os.path.exists("mm.jpg"):
             os.remove("mm.jpg")
-        #await m.reply(_("err_1").format(em.gagal, response.text))
+        # await m.reply(_("err_1").format(em.gagal, response.text))
     return await pros.delete()
