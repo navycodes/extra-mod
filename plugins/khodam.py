@@ -14,6 +14,7 @@ __MODULES__ = "Khodam"
 def help_string(org):
     return h_s(org, "help_kodam")
 
+MAX_CAPTION_LENGTH = 1024
 
 def gen_kdm(text):
     model = genai.GenerativeModel(
