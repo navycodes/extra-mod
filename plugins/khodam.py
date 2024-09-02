@@ -69,15 +69,15 @@ async def ckdm_cmd(client: nlx, message, _):
                 await pros.delete()
                 await client.send_photo(
                     message.chat.id,
-                    photo=f"{c.me.id}.jpg",
+                    photo=imeg,
                     caption=caption,
                     reply_to_message_id=message.id,
                 )
         except Exception as e:
                 return await pros.edit(_("err_1").format(emo.gagal, str(e)))
             finally:
-                if os.path.exists("genai.jpg"):
-                    os.remove("genai.jpg")
+                if os.path.exists(f"{c.me.id}.jpg"):
+                    os.remove(f"{c.me.id}.jpg")
         else:
             await asyncio.sleep(2)
             teks = _("kdm_2").format(
