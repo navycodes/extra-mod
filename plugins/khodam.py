@@ -54,10 +54,10 @@ async def ckdm_cmd(client: nlx, message, _):
         deskripsi_khodam = gen_kdm(nama)
         url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
         payload = {"prompt": deskripsi_khodam}
-        async with aiohttp.ClientSession() as session:
-            async with session.post(url, json=payload) as resp:
-                image = io.BytesIO(await resp.read())
-            image.name = "genai.jpg"
+        response = requests.post(url, json=payload)
+        if response.status_code == 200:
+            with open("genai.jpg", "wb") as f:
+                f.write(response.content)
             caption = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
             )
@@ -68,7 +68,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 await pros.delete()
                 await client.send_photo(
                     message.chat.id,
-                    photo=image,
+                    photo="genai.jpg",
                     caption=caption,
                     reply_to_message_id=message.id,
                 )
@@ -77,11 +77,9 @@ async def ckdm_cmd(client: nlx, message, _):
             finally:
                 if os.path.exists("genai.jpg"):
                     os.remove("genai.jpg")
-                # except:
-                # await asyncio.sleep(2)
-                # teks = _("kdm_2").format(
-                # emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
-            # )
-            # return await pros.edit(teks)
+        else:
+                await asyncio.sleep(2)
+                teks = _("kdm_2").format(emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention)
+            return await pros.edit(teks)
     except Exception as e:
         return await pros.edit(_("err_1").format(emo.gagal, str(e)))
