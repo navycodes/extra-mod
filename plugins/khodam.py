@@ -17,8 +17,7 @@ def help_string(org):
 
 def gen_kdm(c, text, _):
     model = genai.GenerativeModel(
-        "models/gemini-1.5-flash", system_instruction=(_("intruk_khodam"))
-    )
+        "models/gemini-1.5-flash", system_instruction=_("intruk_khodam"))
     try:
         response = model.generate_content(text)
         return response.text.strip()
