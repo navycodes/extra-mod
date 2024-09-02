@@ -1,5 +1,7 @@
 import asyncio
 import os
+import aiohttp
+import io
 
 import google.generativeai as genai
 from Userbot import *
@@ -39,6 +41,14 @@ def get_name(message):
         input_text = message.text.split(None, 1)
         return input_text[1].strip() if len(input_text) > 1 else None
 
+async def gen_img(c, text):
+    url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
+    payload = {"model": "flux", "prompt": text}
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, json=payload) as resp:
+            image = io.BytesIO(await resp.read())
+        image.name = f"{c.me.id}.jpg"
+    return image
 
 @ky.ubot("khodam|kodam")
 async def ckdm_cmd(client: nlx, message, _):
@@ -49,28 +59,21 @@ async def ckdm_cmd(client: nlx, message, _):
         return await message.reply(_("kdm_1").format(emo.gagal))
     pros = await message.reply(_("proses").format(emo.proses))
     try:
-        deskripsi_khodam = gen_kdm(nama)
-        url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
-        payload = {"prompt": deskripsi_khodam}
-        response = requests.post(url, json=payload)
-        if response.status_code == 200:
-            with open("genai.jpg", "wb") as f:
-                f.write(response.content)
-            caption = _("kdm_2").format(
-                emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
-            )
-            if len(caption) > MAX_CAPTION_LENGTH:
-                caption = caption[:MAX_CAPTION_LENGTH] + "..."
-            try:
+        deskripsi_khodam = gen_kdm(client, nama)
+        imeg = await gen_img(deskripsi_khodam)
+        caption = _("kdm_2").format(emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention)
+        if len(caption) > MAX_CAPTION_LENGTH:
+            caption = caption[:MAX_CAPTION_LENGTH] + "..."
+        try:
                 await asyncio.sleep(2)
                 await pros.delete()
                 await client.send_photo(
                     message.chat.id,
-                    photo="genai.jpg",
+                    photo=f"{c.me.id}.jpg",
                     caption=caption,
                     reply_to_message_id=message.id,
                 )
-            except Exception as e:
+        except Exception as e:
                 return await pros.edit(_("err_1").format(emo.gagal, str(e)))
             finally:
                 if os.path.exists("genai.jpg"):
