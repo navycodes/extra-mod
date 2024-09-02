@@ -1,8 +1,6 @@
 import asyncio
-import io
 import os
 
-import aiohttp
 import google.generativeai as genai
 from Userbot import *
 
@@ -78,8 +76,10 @@ async def ckdm_cmd(client: nlx, message, _):
                 if os.path.exists("genai.jpg"):
                     os.remove("genai.jpg")
         else:
-                await asyncio.sleep(2)
-                teks = _("kdm_2").format(emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention)
-                return await pros.edit(teks)
+            await asyncio.sleep(2)
+            teks = _("kdm_2").format(
+                emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
+            )
+            return await pros.edit(teks)
     except Exception as e:
         return await pros.edit(_("err_1").format(emo.gagal, str(e)))
