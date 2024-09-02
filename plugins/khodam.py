@@ -1,8 +1,8 @@
 import asyncio
-import os
-import aiohttp
 import io
+import os
 
+import aiohttp
 import google.generativeai as genai
 from Userbot import *
 
@@ -41,6 +41,7 @@ def get_name(message):
         input_text = message.text.split(None, 1)
         return input_text[1].strip() if len(input_text) > 1 else None
 
+
 async def gen_img(c, text):
     url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
     payload = {"model": "flux", "prompt": text}
@@ -49,6 +50,7 @@ async def gen_img(c, text):
             image = io.BytesIO(await resp.read())
         image.name = f"{c.me.id}.jpg"
     return image
+
 
 @ky.ubot("khodam|kodam")
 async def ckdm_cmd(client: nlx, message, _):
@@ -61,25 +63,29 @@ async def ckdm_cmd(client: nlx, message, _):
     try:
         deskripsi_khodam = gen_kdm(client, nama)
         imeg = await gen_img(deskripsi_khodam)
-        caption = _("kdm_2").format(emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention)
+        caption = _("kdm_2").format(
+            emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
+        )
         if len(caption) > MAX_CAPTION_LENGTH:
             caption = caption[:MAX_CAPTION_LENGTH] + "..."
         try:
-                await asyncio.sleep(2)
-                await pros.delete()
-                await client.send_photo(
-                    message.chat.id,
-                    photo=imeg,
-                    caption=caption,
-                    reply_to_message_id=message.id,
-                )
+            await asyncio.sleep(2)
+            await pros.delete()
+            await client.send_photo(
+                message.chat.id,
+                photo=imeg,
+                caption=caption,
+                reply_to_message_id=message.id,
+            )
         except:
-              await asyncio.sleep(2)
-              teks = _("kdm_2").format(emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention)
-              return await pros.edit(teks)
+            await asyncio.sleep(2)
+            teks = _("kdm_2").format(
+                emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
+            )
+            return await pros.edit(teks)
         finally:
-                if os.path.exists(f"{client.me.id}.jpg"):
-                    os.remove(f"{client.me.id}.jpg")
-            
+            if os.path.exists(f"{client.me.id}.jpg"):
+                os.remove(f"{client.me.id}.jpg")
+
     except Exception as e:
         return await pros.edit(_("err_1").format(emo.gagal, str(e)))
