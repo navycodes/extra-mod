@@ -73,7 +73,7 @@ async def ckdm_cmd(client: nlx, message, _):
                     reply_to_message_id=message.id,
                 )
             except Exception as e:
-                return await pros.edit(_("err_1").format(emo.gagal, e))
+                return await pros.edit(_("err_1").format(emo.gagal, str(e)))
             finally:
                 if os.path.exists("genai.jpg"):
                     os.remove("genai.jpg")
