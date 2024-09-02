@@ -77,7 +77,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 # except:
                 # await asyncio.sleep(2)
                 # teks = _("kdm_2").format(
-                emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
+                #emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
             # )
             # return await pros.edit(teks)
     except Exception as e:
