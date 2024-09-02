@@ -75,7 +75,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 )
         except Exception as e:
                 return await pros.edit(_("err_1").format(emo.gagal, str(e)))
-            finally:
+        finally:
                 if os.path.exists(f"{client.me.id}.jpg"):
                     os.remove(f"{client.me.id}.jpg")
         else:
