@@ -73,11 +73,11 @@ async def ckdm_cmd(client: nlx, message, _):
             finally:
                 if os.path.exists("genai.jpg"):
                     os.remove("genai.jpg")
-        else:
-            await asyncio.sleep(2)
-            teks = _("kdm_2").format(
+        #except:
+            #await asyncio.sleep(2)
+            #teks = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
-            )
-            return await pros.edit(teks)
+            #)
+            #return await pros.edit(teks)
     except Exception as e:
         return await pros.edit(_("err_1").format(emo.gagal, e))
