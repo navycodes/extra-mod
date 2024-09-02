@@ -1,6 +1,7 @@
 import asyncio
 import os
-
+import aiohttp
+import io
 import google.generativeai as genai
 from Userbot import *
 
@@ -49,10 +50,10 @@ async def ckdm_cmd(client: nlx, message, _):
         deskripsi_khodam = gen_kdm(client, nama, _)
         url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
         payload = {"model": "flux", "prompt": deskripsi_khodam}
-        response = requests.post(url, json=payload)
-        if response.status_code == 200:
-            with open("genai.jpg", "wb") as f:
-                f.write(response.content)
+        async with aiohttp.ClientSession() as session:
+            async with session.post(url, json=payload) as resp:
+                image = io.BytesIO(await resp.read())
+            image.name = "genai.jpg"
             caption = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
             )
@@ -63,7 +64,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 await pros.delete()
                 await client.send_photo(
                     message.chat.id,
-                    photo="genai.jpg",
+                    photo=image,
                     caption=caption,
                     reply_to_message_id=message.id,
                 )
