@@ -88,6 +88,5 @@ async def ckdm_cmd(client: nlx, message, _):
                 os.remove(f"{client.me.id}.jpg")
 
     except Exception as e:
-        #return await pros.edit(_("err_1").format(emo.gagal, str(e)))
+        # return await pros.edit(_("err_1").format(emo.gagal, str(e)))
         return await pros.edit(f"{e}")
-        
