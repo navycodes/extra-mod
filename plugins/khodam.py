@@ -15,7 +15,7 @@ def help_string(org):
     return h_s(org, "help_kodam")
 
 
-def gen_kdm(c, text, _):
+def gen_kdm(text):
     model = genai.GenerativeModel(
         "models/gemini-1.5-flash",
         system_instruction=(
@@ -51,7 +51,7 @@ async def ckdm_cmd(client: nlx, message, _):
         return await message.reply(_("kdm_1").format(emo.gagal))
     pros = await message.reply(_("proses").format(emo.proses))
     try:
-        deskripsi_khodam = gen_kdm(client, nama, _)
+        deskripsi_khodam = gen_kdm(nama)
         url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
         payload = {"prompt": deskripsi_khodam}
         async with aiohttp.ClientSession() as session:
@@ -84,4 +84,4 @@ async def ckdm_cmd(client: nlx, message, _):
             # )
             # return await pros.edit(teks)
     except Exception as e:
-        return await pros.edit(_("err_1").format(emo.gagal, e))
+        return await pros.edit(_("err_1").format(emo.gagal, str(e)))
