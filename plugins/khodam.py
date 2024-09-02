@@ -53,7 +53,7 @@ async def ckdm_cmd(client: nlx, message, _):
     try:
         deskripsi_khodam = gen_kdm(client, nama, _)
         url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
-        payload = {"model": "flux", "prompt": deskripsi_khodam}
+        payload = {"prompt": deskripsi_khodam}
         async with aiohttp.ClientSession() as session:
             async with session.post(url, json=payload) as resp:
                 image = io.BytesIO(await resp.read())
