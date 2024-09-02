@@ -80,15 +80,14 @@ async def ckdm_cmd(client: nlx, message, _):
                 caption=caption,
                 reply_to_message_id=message.id,
             )
+            if os.path.exists(f"{client.me.id}.jpg"):
+                os.remove(f"{client.me.id}.jpg")
         else:
             await asyncio.sleep(2)
             teks = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
             )
             return await pros.edit(teks)
-        finally:
-            if os.path.exists(f"{client.me.id}.jpg"):
-                os.remove(f"{client.me.id}.jpg")
 
     except Exception as e:
         # return await pros.edit(_("err_1").format(emo.gagal, str(e)))
