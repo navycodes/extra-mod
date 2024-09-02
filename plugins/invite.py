@@ -33,6 +33,9 @@ async def _(c, m, _):
     except PeerIdInvalid:
         await mg.edit(_("peer").format(em.gagal))
         return
+    except UserAlreadyParticipant:
+        await m.delete()
+        return await mg.delete()
     except KeyError:
         await mg.edit(_("keyeror").format(em.gagal))
         return
