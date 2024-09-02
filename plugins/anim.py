@@ -115,7 +115,7 @@ async def _(c: nlx, m, _):
 
 
 @ky.ubot("ahh")
-async def hello_world(c: nlx, m):
+async def hello_world(c: nlx, m, _):
     mg = await m.reply("ahh")
     await asyncio.sleep(0.2)
     await mg.edit("aahh")
