@@ -56,9 +56,13 @@ async def _(c: nlx, m, _):
         if "-dl" in m.command[1]:
             query = m.command[2]
             if not query.startswith("https"):
-                await m.reply("{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0]))
+                await m.reply(
+                    "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
+                )
             await download_spot(c, m, query)
             return await pros.delete()
         else:
-            await m.reply("{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0]))
+            await m.reply(
+                "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
+            )
             return await pros.delete()
