@@ -52,6 +52,10 @@ async def _(c: nlx, m, _):
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
     for chat in chats:
         if dbgb.check_gban(nyet):
             await xx.edit(_("glbl_5").format(em.gagal))
@@ -96,6 +100,10 @@ async def _(c: nlx, m, _):
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
     for chat in chats:
         if not dbgb.check_gban(nyet):
             await xx.edit(_("glbl_7").format(em.gagal))
@@ -140,6 +148,10 @@ async def _(c: nlx, m, _):
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
     for chat in chats:
         if dbgm.check_gmute(nyet):
             await xx.edit(_("glbl_10").format(em.gagal))
@@ -177,6 +189,10 @@ async def _(c: nlx, m, _):
         mention = (await c.get_users(nyet)).mention
     except IndexError:
         mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
     for chat in chats:
         if not dbgm.check_gmute(nyet):
             await xx.edit(_("glbl_12").format(em.gagal))
