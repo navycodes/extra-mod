@@ -89,7 +89,7 @@ async def ckdm_cmd(client: nlx, message, _):
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
             )
             await pros.delete()
-            return await m.reply(teks)
+            return await message.reply(teks)
 
     except Exception as e:
         # return await pros.edit(_("err_1").format(emo.gagal, str(e)))
