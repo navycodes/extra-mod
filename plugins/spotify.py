@@ -31,7 +31,7 @@ async def _(c: nlx, m, _):
     else:
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
         udB.set_var(c.me.id, "spot", xk)
-        cmd = m.command[1]
+        cmd = m.command.split()[1]
         if m.command[1] == "-dl":
             await m.reply(
                 "{} Gunakan format `{}` Judul lagu".format(em.gagal, m.text.split()[0])
