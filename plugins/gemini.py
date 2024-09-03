@@ -3,7 +3,6 @@ import os
 
 import aiohttp
 import google.generativeai as genai
-import requests
 from pyrogram.enums import ChatAction
 from pyrogram.errors import *
 from Userbot import *
@@ -95,12 +94,20 @@ async def _(c: nlx, m, _):
     await mari_kirim(c, m, reply_text)
     await pros.delete()
 
+
 async def costum_api(c, text):
     gw = f"<a href=tg://user?id={c.me.id}>{c.me.first_name} {c.me.last_name or ''}</a>"
     bahan = [
-      {"role": "system", "content": f"Lo adalah asisten teletram dari pengguna akun {gw}"},
-      {"role": "assistant", "content": f"Lo adalah asisten teletram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat."},
-      {"role": "user", "content": f"{text}"}]
+        {
+            "role": "system",
+            "content": f"Lo adalah asisten teletram dari pengguna akun {gw}",
+        },
+        {
+            "role": "assistant",
+            "content": f"Lo adalah asisten teletram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat.",
+        },
+        {"role": "user", "content": f"{text}"},
+    ]
     url = "https://api.botcahx.eu.org/api/search/openai-custom"
     payload = {"message": bahan, "apikey": "gwkenapanan"}
     res = await fetch.post(url, json=payload)
@@ -110,6 +117,7 @@ async def costum_api(c, text):
     else:
         return f"{res.text}"
 
+
 @ky.ubot("ai|ask")
 async def _(client: nlx, message, _):
     em = Emojik(client)
@@ -118,11 +126,12 @@ async def _(client: nlx, message, _):
         a = client.get_text(message)
         await client.send_chat_action(message.chat.id, ChatAction.TYPING)
         prs = await message.reply_text(_("proses").format(em.proses))
-        
+
         try:
             x = await costum_api(client, a)
-            await message.reply("{} {}".format(em.sukses, x), reply_to_message_id=message.id
-                )
+            await message.reply(
+                "{} {}".format(em.sukses, x), reply_to_message_id=message.id
+            )
             return await prs.delete()
         except Exception as e:
             return await prs.edit(_("err").format(em.gagal, str(e)))
