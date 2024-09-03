@@ -28,7 +28,7 @@ async def download_spot(c, m, query):
             """
             await c.bash(f"curl -L {download_url} -o {title}.mp3")
             try:
-                await c.send_audio(m.chat.id, audio=f"{download_url}.mp3", caption=output)
+                await c.send_audio(m.chat.id, audio=f"{title}.mp3", caption=output)
             except Exception as e:
                 return await m.reply(f"{str(e)}")
             
