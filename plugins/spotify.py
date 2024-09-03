@@ -14,7 +14,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
     if len(m.command) == 3:
-      if m.command[1] == "-dl":
+        if m.command[1] == "-dl":
             query = m.command[2]
             if len(m.command) < 3 or not query.startswith("https"):
                 await m.reply(
@@ -22,7 +22,7 @@ async def _(c: nlx, m, _):
                 )
             await download_spot(c, m, query)
             return await pros.delete()
-      else:
+        else:
             await m.reply(
                 "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
             )
@@ -34,7 +34,3 @@ async def _(c: nlx, m, _):
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
         return await pros.delete()
-            
-
-
-        
