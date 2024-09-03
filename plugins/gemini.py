@@ -153,6 +153,7 @@ async def _(c: nlx, m, _):
             await m.reply_photo(image)
             if os.path.exists(f"{c.me.id}.jpg"):
                 os.remove(f"{c.me.id}.jpg")
+            return await pros.delete()
         except ImageProcessFailed as e:
             await m.reply(_("err_1").format(em.gagal, str(e)))
-    return await pros.delete()
+            return await pros.delete()
