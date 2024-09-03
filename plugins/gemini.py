@@ -147,7 +147,7 @@ async def _(c: nlx, m, _):
     text = c.get_arg(m)
     if not text:
         return pros.edit(_("enc_5").format(em.gagal))
-    url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
+    url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen"
     payload = {"prompt": text}
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as resp:
