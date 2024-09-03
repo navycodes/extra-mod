@@ -40,4 +40,4 @@ async def _(c: nlx, m, _):
         print(cmd)
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-        #return await pros.delete()
+        # return await pros.delete()
