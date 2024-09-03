@@ -55,7 +55,7 @@ async def _(c: nlx, m, _):
 
 @ky.nocmd("LOGS_GROUP", nlx)
 @capture_err
-@manage_handlers
+#@manage_handlers
 async def _(client, message, _):
     log = udB.get_var(client.me.id, "TAG_LOG")
     if not log:
