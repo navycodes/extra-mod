@@ -126,13 +126,14 @@ async def _(client: nlx, message, _):
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
     prs = await message.reply_text(_("proses").format(em.proses))
     try:
-            x = await costum_api(client, a)
-            await message.reply(
-                "{} {}".format(em.sukses, x), reply_to_message_id=message.id
-            )
+        x = await costum_api(client, a)
+        await message.reply(
+            "{} {}".format(em.sukses, x), reply_to_message_id=message.id
+        )
     except Exception as e:
         await message.reply(_("err").format(em.gagal, str(e)))
     return await prs.delete()
+
 
 @ky.ubot("fluxai")
 async def _(c: nlx, m, _):
