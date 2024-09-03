@@ -122,22 +122,17 @@ async def costum_api(c, text):
 async def _(client: nlx, message, _):
     em = Emojik(client)
     em.initialize()
+    a = client.get_text(message)
+    await client.send_chat_action(message.chat.id, ChatAction.TYPING)
+    prs = await message.reply_text(_("proses").format(em.proses))
     try:
-        a = client.get_text(message)
-        await client.send_chat_action(message.chat.id, ChatAction.TYPING)
-        prs = await message.reply_text(_("proses").format(em.proses))
-
-        try:
             x = await costum_api(client, a)
             await message.reply(
                 "{} {}".format(em.sukses, x), reply_to_message_id=message.id
             )
-            return await prs.delete()
-        except Exception as e:
-            return await prs.edit(_("err").format(em.gagal, str(e)))
     except Exception as e:
-        return await prs.edit(_("err").format(em.gagal, str(e)))
-
+        await message.reply(_("err").format(em.gagal, str(e)))
+    return await prs.delete()
 
 @ky.ubot("fluxai")
 async def _(c: nlx, m, _):
