@@ -39,12 +39,7 @@ async def _(c: nlx, m, _):
     if nyet in DEVS:
         await xx.edit(_("glbl_3").format(em.gagal))
         return
-    if len(m.text.split()) == 3 and not m.reply_to_message:
-        alasan = m.text.split(None, 3)[3]
-    elif len(m.text.split()) == 2 and m.reply_to_message:
-        alasan = m.text.split(None, 2)[2]
-    else:
-        alasan = "None"
+    alasan = "Gabut"
     bs = 0
     gg = 0
     chats = await c.get_chats_dialog("gban")
@@ -135,12 +130,7 @@ async def _(c: nlx, m, _):
     if nyet in DEVS:
         await xx.edit(_("glbl_3").format(em.gagal))
         return
-    if len(m.text.split()) == 3 and not m.reply_to_message:
-        alasan = m.text.split(None, 3)[3]
-    elif len(m.text.split()) == 2 and m.reply_to_message:
-        alasan = m.text.split(None, 2)[2]
-    else:
-        alasan = "None"
+    alasan = "GABUT"
     bs = 0
     gg = 0
     chats = await c.get_chats_dialog("grup")
