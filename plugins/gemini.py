@@ -95,6 +95,20 @@ async def _(c: nlx, m, _):
     await mari_kirim(c, m, reply_text)
     await pros.delete()
 
+async def costum_api(c, text):
+    gw = f"<a href=tg://user?id={c.me.id}>{c.me.first_name} {c.me.last_name or ''}</a>"
+    bahan = [
+      {"role": "system", "content": f"Lo adalah asisten teletram dari pengguna akun {gw}"},
+      {"role": "assistant", "content": f"Lo adalah asisten teletram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat."},
+      {"role": "user", "content": f"{text}"}]
+    url = "https://api.botcahx.eu.org/api/search/openai-custom"
+    payload = {"message": bahan, "apikey": "gwkenapanan"}
+    res = await fetch.post(url, json=payload)
+    if res.status_code == 200:
+        data = res.json()
+        return data["result"]
+    else:
+        return f"{res.text}"
 
 @ky.ubot("ai|ask")
 async def _(client: nlx, message, _):
@@ -104,22 +118,16 @@ async def _(client: nlx, message, _):
         a = client.get_text(message)
         await client.send_chat_action(message.chat.id, ChatAction.TYPING)
         prs = await message.reply_text(_("proses").format(em.proses))
-        url = f"https://widipe.com/v2/gpt4?text={a}"
-        headers = {"accept": "application/json"}
-        res = requests.get(url, headers=headers)
+        
         try:
-            if res.status_code == 200:
-                x = res.json()["result"]
-                await message.reply(
-                    "{} {}".format(em.sukses, x), reply_to_message_id=message.id
+            x = await costum_api(client, a)
+            await message.reply("{} {}".format(em.sukses, x), reply_to_message_id=message.id
                 )
-                return await prs.delete()
-            else:
-                return await prs.edit(_("err_1").format(em.gagal, response.text))
+            return await prs.delete()
         except Exception as e:
-            return await prs.edit(_("err").format(em.gagal, e))
+            return await prs.edit(_("err").format(em.gagal, str(e)))
     except Exception as e:
-        return await prs.edit(_("err").format(em.gagal, e))
+        return await prs.edit(_("err").format(em.gagal, str(e)))
 
 
 @ky.ubot("fluxai")
@@ -131,7 +139,7 @@ async def _(c: nlx, m, _):
     if not text:
         return pros.edit(_("enc_5").format(em.gagal))
     url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
-    payload = {"model": "flux", "prompt": text}
+    payload = {"prompt": text}
     async with aiohttp.ClientSession() as session:
         async with session.post(url, json=payload) as resp:
             image = io.BytesIO(await resp.read())
