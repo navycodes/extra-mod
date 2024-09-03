@@ -28,11 +28,11 @@ async def download_spot(c, m, query):
             ⏳ **Duration:** {duration}
             🎧 **Preview:** [Listen here]({preview})
             """
-            await c.bash(f"curl -L {download_url} -o {title}.mp3")
+            await c.bash(f"curl -L {download_url} -o {c.me.id}.mp3")
             try:
-                await c.send_audio(m.chat.id, audio=f"{title}.mp3", caption=output)
+                await c.send_audio(m.chat.id, audio=f"{c.me.id}.mp3", caption=output)
             except Exception as e:
-                return await m.reply(f"{str(e)}")
+                await m.reply(f"{str(e)}")
 
         else:
             return "Error: Invalid result format."
@@ -44,21 +44,21 @@ async def download_spot(c, m, query):
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
+    pros = await m.reply(_("proses").format(em.gagal))
     if len(m.command) < 3:
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
         udB.set_var(c.me.id, "spot", xk)
         cmd = m.command[1]
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+        return await pros.delete()
     else:
         if "-dl" in m.command[1]:
             query = m.command[2]
             if not query.startswith("https"):
-                return await m.reply(
-                    "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
-                )
+                await m.reply("{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0]))
             await download_spot(c, m, query)
+            return await pros.delete()
         else:
-            return await m.reply(
-                "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
-            )
+            await m.reply("{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0]))
+            return await pros.delete()
