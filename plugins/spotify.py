@@ -1,5 +1,5 @@
 from Userbot import *
-from Userbot.assistant.spotify import download_spot
+
 
 __MODULES__ = "Spotify"
 
@@ -7,6 +7,35 @@ __MODULES__ = "Spotify"
 def help_string(org):
     return h_s(org, "help_porn")
 
+async def download_spot(c, m, query):
+    url = f"https://api.botcahx.eu.org/api/download/spotify?url={query}&apikey=gwkenapanan"
+    res = await fetch.get(url)
+    if res.status_code == 200:
+        data = res.json()
+        if data.get("status") and data.get("result"):
+            result = data["result"]["data"]
+            result.get("thumbnail", "Thumbnail not available")
+            title = result.get("title", "Title not available")
+            artist_name = result["artist"].get("name", "Artist not available")
+            duration = result.get("duration", "Duration not available")
+            preview = result.get("preview", "Preview not available")
+            download_url = result.get("url", "Download URL not available")
+            output = f"""
+<blockquote>🎶 **Title:** {title}
+👤 **Artist:** {artist_name}
+⏳ **Duration:** {duration}
+🎧 **Preview:** [Listen here]({preview})</blockquote>
+"""
+            await c.bash(f"curl -L {download_url} -o {c.me.id}.mp3")
+            try:
+                await c.send_audio(m.chat.id, audio=f"{c.me.id}.mp3", caption=output)
+            except Exception as e:
+                await m.reply(f"{str(e)}")
+
+        else:
+            return "Error: Invalid result format."
+    else:
+        return f"Error: Request failed with status code {res.text}"
 
 @ky.ubot("spotify|sptf")
 async def _(c: nlx, m, _):
