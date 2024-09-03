@@ -42,7 +42,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
-    
+
     if m.command[1] == "-dl":
         query = m.command[2]
         if len(m.command) < 3 or not query.startswith("https"):
@@ -52,7 +52,7 @@ async def _(c: nlx, m, _):
             return await pros.delete()
         await download_spot(c, m, query)
         return await pros.delete()
-    
+
     else:
         cmd = " ".join(m.text.split()[1:])
         xk = {"_id": c.me.id, "args": cmd}
