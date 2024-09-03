@@ -23,11 +23,11 @@ async def download_spot(c, m, query):
             download_url = result.get("url", "Download URL not available")
             wget.download(thumbnail)
             output = f"""
-            🎶 **Title:** {title}
-            👤 **Artist:** {artist_name}
-            ⏳ **Duration:** {duration}
-            🎧 **Preview:** [Listen here]({preview})
-            """
+<blockquote>🎶 **Title:** {title}
+👤 **Artist:** {artist_name}
+⏳ **Duration:** {duration}
+🎧 **Preview:** [Listen here]({preview})</blockquote>
+"""
             await c.bash(f"curl -L {download_url} -o {c.me.id}.mp3")
             try:
                 await c.send_audio(m.chat.id, audio=f"{c.me.id}.mp3", caption=output)
