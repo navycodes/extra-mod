@@ -149,10 +149,10 @@ async def _(c: nlx, m, _):
         async with session.post(url, json=payload) as resp:
             image = io.BytesIO(await resp.read())
         image.name = f"{c.me.id}.jpg"
-        if image:
+        try:
             await m.reply_photo(image)
             if os.path.exists(f"{c.me.id}.jpg"):
                 os.remove(f"{c.me.id}.jpg")
-        else:
-            await m.reply(_("err_1").format(em.gagal, em.gagal))
+        except ImageProcessFailed as e:
+            await m.reply(_("err_1").format(em.gagal, str(e)))
     return await pros.delete()
