@@ -13,7 +13,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
-    if len(m.command) < 3:
+    if len(m.command) < 2:
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
         udB.set_var(c.me.id, "spot", xk)
         cmd = m.command[1]
