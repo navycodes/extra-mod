@@ -14,14 +14,14 @@ async def _(c: nlx, m, _):
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
     if m.command[1] == "-dl":
-            query = m.command[2]
-            if len(m.command) < 3 or not query.startswith("https"):
-                await m.reply(
-                    "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
-                )
-                return await pros.delete()
-            await download_spot(c, m, query)
+        query = m.command[2]
+        if len(m.command) < 3 or not query.startswith("https"):
+            await m.reply(
+                "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
+            )
             return await pros.delete()
+        await download_spot(c, m, query)
+        return await pros.delete()
     else:
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
         udB.set_var(c.me.id, "spot", xk)
