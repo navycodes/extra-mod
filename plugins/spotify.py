@@ -13,8 +13,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
-    if len(m.command) == 3:
-        if m.command[1] == "-dl":
+    if m.command[1] == "-dl":
             query = m.command[2]
             if len(m.command) < 3 or not query.startswith("https"):
                 await m.reply(
@@ -22,11 +21,6 @@ async def _(c: nlx, m, _):
                 )
                 return await pros.delete()
             await download_spot(c, m, query)
-            return await pros.delete()
-        else:
-            await m.reply(
-                "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
-            )
             return await pros.delete()
     else:
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
