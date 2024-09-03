@@ -16,6 +16,7 @@ async def _(client: nlx, message, _):
 
 @ky.nocmd("AFK", nlx)
 @capture_err
+@manage_handlers
 async def _(client, message, _):
     afk_handler = AFK_(client, message)
     await afk_handler.get_afk()
