@@ -22,7 +22,7 @@ async def _(c: nlx, m, _):
                 )
             await download_spot(c, m, query)
             return await pros.delete()
-        else:
+      else:
             await m.reply(
                 "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
             )
