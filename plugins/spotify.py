@@ -14,7 +14,6 @@ async def download_spot(c, m, query):
         data = res.json()
         if data.get("status") and data.get("result"):
             result = data["result"]["data"]
-            result.get("thumbnail", "Thumbnail not available")
             title = result.get("title", "Title not available")
             artist_name = result["artist"].get("name", "Artist not available")
             duration = result.get("duration", "Duration not available")
