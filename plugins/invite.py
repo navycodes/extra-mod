@@ -30,6 +30,9 @@ async def _(c, m, _):
         return
     try:
         await c.add_chat_members(m.chat.id, user_list, forward_limit=100)
+    except UserChannelsTooMuch:
+        await mg.delete()
+        return
     except PeerIdInvalid:
         await mg.edit(_("peer").format(em.gagal))
         return
