@@ -71,7 +71,7 @@ async def ckdm_cmd(client: nlx, message, _):
         )
         if len(caption) > MAX_CAPTION_LENGTH:
             caption = caption[:MAX_CAPTION_LENGTH] + "..."
-        if imeg:
+        try:
             await asyncio.sleep(2)
             await pros.delete()
             await client.send_photo(
@@ -82,7 +82,7 @@ async def ckdm_cmd(client: nlx, message, _):
             )
             if os.path.exists(f"{client.me.id}.jpg"):
                 os.remove(f"{client.me.id}.jpg")
-        else:
+        except ImageProcessFailed:
             await asyncio.sleep(2)
             teks = _("kdm_2").format(
                 emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
