@@ -21,9 +21,9 @@ async def _(c: nlx, m, _):
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
         return await pros.delete()
     else:
-        if "-dl" in m.command[1]:
+        if m.command[1] == "-dl":
             query = m.command[2]
-            if not query.startswith("https"):
+            if len(m.command) < 3 or not query.startswith("https"):
                 await m.reply(
                     "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
                 )
