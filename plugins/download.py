@@ -349,7 +349,7 @@ async def _(c: nlx, m, _):
 async def insta_handler(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
-    pros = await m.edit(_("proses").format(em.proses))
+    pros = await m.reply(_("proses").format(em.proses))
     try:
         url = m.command[1]
         if url.startswith("https://www.instagram.com/p/") or url.startswith(
