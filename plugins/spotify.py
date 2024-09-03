@@ -20,6 +20,7 @@ async def _(c: nlx, m, _):
                 await m.reply(
                     "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
                 )
+                return await pros.delete()
             await download_spot(c, m, query)
             return await pros.delete()
         else:
@@ -35,6 +36,7 @@ async def _(c: nlx, m, _):
             await m.reply(
                 "{} Gunakan format `{}` Judul lagu".format(em.gagal, m.text.split()[0])
             )
+            return await pros.delete()
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
         return await pros.delete()
