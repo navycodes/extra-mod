@@ -1,11 +1,11 @@
 from Userbot import *
 
-
 __MODULES__ = "Spotify"
 
 
 def help_string(org):
     return h_s(org, "help_porn")
+
 
 async def download_spot(c, m, query):
     url = f"https://api.botcahx.eu.org/api/download/spotify?url={query}&apikey=gwkenapanan"
@@ -36,6 +36,7 @@ async def download_spot(c, m, query):
             return "Error: Invalid result format."
     else:
         return f"Error: Request failed with status code {res.text}"
+
 
 @ky.ubot("spotify|sptf")
 async def _(c: nlx, m, _):
