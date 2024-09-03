@@ -277,7 +277,7 @@ async def download_and_send_file(c, chat_id, url, content_type):
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
-    pros = await m.edit(_("proses").format(em.proses))
+    pros = await m.reply(_("proses").format(em.proses))
     if len(m.command) < 2:
         await pros.edit(f"{em.gagal} <b>Silakan berikan tautan Twitter.</b>")
         return
