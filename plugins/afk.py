@@ -11,18 +11,18 @@ def help_string(org):
 async def _(client: nlx, message, _):
     reason = client.get_arg(message)
     afk_handler = AFK_(client, message, reason)
-    await afk_handler.set_afk()
+    return await afk_handler.set_afk()
 
 
 @ky.nocmd("AFK", nlx)
 @capture_err
-# @manage_handlers
+#@manage_handlers
 async def _(client, message, _):
     afk_handler = AFK_(client, message)
-    await afk_handler.get_afk()
+    return await afk_handler.get_afk()
 
 
 @ky.ubot("unafk")
 async def _(client, message, _):
     afk_handler = AFK_(client, message)
-    await afk_handler.unset_afk()
+    return await afk_handler.unset_afk()
