@@ -54,10 +54,7 @@ async def _(c: nlx, m, _):
         return await pros.delete()
 
     else:
-        cmd = " ".join(m.text.split()[1:])
-        xk = {"_id": c.me.id, "args": cmd}
-        udB.set_var(c.me.id, "spot", xk)
-        print(cmd)
+        cmd = " ".join(m.text.split()[1:]).replace(" ", "+")
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
         return await pros.delete()
