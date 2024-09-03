@@ -13,15 +13,8 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
-    if len(m.command) < 2:
-        xk = {"_id": c.me.id, "args": c.get_arg(m)}
-        udB.set_var(c.me.id, "spot", xk)
-        cmd = m.command[1]
-        x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
-        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-        return await pros.delete()
-    else:
-        if m.command[1] == "-dl":
+    if len(m.command) == 3:
+      if m.command[1] == "-dl":
             query = m.command[2]
             if len(m.command) < 3 or not query.startswith("https"):
                 await m.reply(
@@ -34,3 +27,14 @@ async def _(c: nlx, m, _):
                 "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
             )
             return await pros.delete()
+    else:
+        xk = {"_id": c.me.id, "args": c.get_arg(m)}
+        udB.set_var(c.me.id, "spot", xk)
+        cmd = m.command[1]
+        x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
+        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+        return await pros.delete()
+            
+
+
+        
