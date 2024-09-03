@@ -1,14 +1,11 @@
-import wget
 from Userbot import *
 from Userbot.assistant.spotify import download_spot
+
 __MODULES__ = "Spotify"
 
 
 def help_string(org):
     return h_s(org, "help_porn")
-
-
-
 
 
 @ky.ubot("spotify|sptf")
