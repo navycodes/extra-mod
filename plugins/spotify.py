@@ -26,11 +26,6 @@ async def _(c: nlx, m, _):
         xk = {"_id": c.me.id, "args": c.get_arg(m)}
         udB.set_var(c.me.id, "spot", xk)
         cmd = m.text.split()[1]
-        if m.command[1] == "-dl":
-            await m.reply(
-                "{} Gunakan format `{}` Judul lagu".format(em.gagal, m.text.split()[0])
-            )
-            return await pros.delete()
         print(cmd)
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
