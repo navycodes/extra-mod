@@ -39,8 +39,7 @@ async def consu(dok):
         image_io.name = "quotly.webp"
         return image_io
     except Exception as e:
-        print("Error:", e)
-        raise
+        raise e
 
 
 @ky.ubot("qcolor")
