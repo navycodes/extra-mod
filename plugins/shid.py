@@ -46,12 +46,11 @@ async def _(c, m, _):
         text += f" **[Replied Message ID:]({reply.link})** `{reply.id}`\n"
         text += f" **[Replied User ID:](tg://user?id={id_})** `{id_}`"
 
-    await m.reply_text(
+    return await m.reply_text(
         text,
         disable_web_page_preview=True,
         parse_mode=ParseMode.MARKDOWN,
     )
-    return
 
 
 @ky.ubot("gifid")
@@ -59,10 +58,10 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     if m.reply_to_message and m.reply_to_message.animation:
-        await m.reply_text(
+        return await m.reply_text(
             _("shid_9").format(em.sukses, m.reply_to_message.animation.file_id),
             parse_mode=ParseMode.HTML,
         )
     else:
-        await m.reply_text(_("shid_10").format(em.gagal))
-    return
+        return await m.reply_text(_("shid_10").format(em.gagal))
+    
