@@ -16,14 +16,14 @@ from Userbot import *
 
 @ky.ubot("ywc")
 async def _(c: nlx, m, _):
-    await m.reply("**Oke Sama-sama**", reply_to_message_id=ReplyCheck(m))
+    return await m.reply("**Oke Sama-sama**", reply_to_message_id=ReplyCheck(m))
 
 
 @ky.ubot("jamet")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**WOIII**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.5)
     await uputt.edit("**JAMETTT**")
@@ -44,15 +44,15 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.5)
     await uputt.edit("**MENTAL TEMPE**")
     await asyncio.sleep(1.5)
-    await uputt.edit("**LEMBEK NGENTOT🔥**")
+    return await uputt.edit("**LEMBEK NGENTOT🔥**")
 
 
 @ky.ubot("pp")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**PASANG PP DULU GOBLOK,BIAR ORANG-ORANG PADA TAU BETAPA HINA NYA MUKA LU 😆**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -61,9 +61,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("dp")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**MUKA LU HINA, GAUSAH SOK KERAS YA ANJENGG!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -72,9 +72,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("so")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**GAUSAH SOKAB SAMA GUA GOBLOK, LU BABU GA LEVEL!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -83,9 +83,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("met")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**NAMANYA JUGA JAMET CAPER SANA SINI BUAT CARI NAMA**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -94,9 +94,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("war")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**WAR WAR PALAK BAPAK KAU WAR, SOK KERAS BANGET GOBLOK, DI TONGKRONGAN JADI BABU, DI TELE SOK JAGOAN...**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -105,9 +105,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("wartai")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+    return await m.reply(
         "**WAR WAR TAI ANJING, KETRIGGER MINTA SHARELOK LU KIRA MAU COD-AN GOBLOK, BACOTAN LU AJA KGA ADA KERAS KERASNYA GOBLOK**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -116,9 +115,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("kismin")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+    return await m.reply(
         "**CUIHHHH, MAKAN AJA MASIH NGEMIS LO GOBLOK, JANGAN SO NINGGI YA KONTOL GA KEREN LU KEK GITU GOBLOK!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -127,9 +125,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("ded")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**MATI AJA LU GOBLOK, GAGUNA LU HIDUP DI BUMI**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -138,9 +136,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("sokab")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**SOKAB BET LU GOBLOK, KAGA ADA ISTILAH NYA BAWAHAN TEMENAN AMA BOS!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -149,9 +147,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("gembel")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**MUKA BAPAK LU KEK KELAPA SAWIT ANJING, GA USAH NGATAIN ORANG, MUKA LU AJA KEK GEMBEL TEXAS GOBLOK!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -160,9 +158,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("cuih")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**GAK KEREN LO KEK BEGITU GOBLOK, KELUARGA LU BAWA SINI GUA LUDAHIN SATU-SATU. CUIHH!!!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -171,9 +169,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("dih")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**DIHHH NAJISS ANAK HARAM LO GOBLOK, JANGAN BELAGU DIMARI KAGA KEREN LU KEK BGITU TOLOL!**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -182,9 +180,9 @@ async def _(c: nlx, m, _):
 @ky.ubot("skb")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
-    await m.reply(
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
+    return await m.reply(
         "**EMANG KITA KENAL? KAGA GOBLOK SOKAB BANGET LU GOBLOK**",
         reply_to_message_id=ReplyCheck(m),
     )
@@ -193,8 +191,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("virtual")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**OOOO... INI YANG VIRTUAL**", reply_to_message_id=ReplyCheck(m)
     )
@@ -211,4 +209,4 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.5)
     await uputt.edit("**BHAHAHAHA**")
     await asyncio.sleep(1.5)
-    await uputt.edit("**KASIAN MANA MASIH MUDA**")
+    return await uputt.edit("**KASIAN MANA MASIH MUDA**")
