@@ -44,8 +44,6 @@ async def _(c, m, _):
         return
     mention = (await c.get_users(user_id)).mention
     return await mg.edit(_("inv_3").format(em.sukses, mention, m.chat.title))
-    
-    
 
 
 @ky.ubot("getlink|invitelink")
