@@ -1,6 +1,5 @@
 import asyncio
 import io
-import os
 
 import aiohttp
 import google.generativeai as genai
