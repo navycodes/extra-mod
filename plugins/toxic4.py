@@ -18,7 +18,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("`Pertama-tama kamu cantik`")
     await asyncio.sleep(1.8)
     await uputt.edit("`Kedua kamu manis`")
@@ -33,7 +33,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**Lah, Lu tolol?**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Apa dongok?**")
@@ -47,7 +47,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**WOII**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**KONTOL**")
@@ -63,7 +63,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "**Wahh, War nya keren bang**", reply_to_message_id=ReplyCheck(m)
     )
@@ -89,7 +89,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("eh kamu, iya kamu", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**ALAY bnget sih**")
@@ -105,7 +105,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("Hai, Kamu Anak Erpe Ya", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("Kok Pake Muka Orang sih?")
@@ -129,7 +129,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**OI ANAK TITLE**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**OOO INI YANG SOK JADI PAHLAWAN DI TELEGRAM?**")
