@@ -34,7 +34,6 @@ async def _(c: nlx, m, _):
     else:
         flood[int(c.me.id)] = 1
     if flood[int(c.me.id)] > 5:
-        # del flood[int(c.me.id)]
         if c.me.id not in the_cegers:
             udB.add_to_var(c.me.id, "flood_bokep", c.me.id, "user")
             return await m.reply_text(
@@ -44,4 +43,4 @@ async def _(c: nlx, m, _):
     udB.set_var(c.me.id, "bokep", xnxx)
     cmd = m.command[0]
     x = await c.get_inline_bot_results(bot_username, f"bokep {cmd}")
-    await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+    return await m.reply_inline_bot_result(x.query_id, x.results[0].id)
