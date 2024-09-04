@@ -136,10 +136,9 @@ async def _(c: nlx, m, _):
             file.write("\n".join(loanjing))
         await m.reply_document("bglist.txt", caption=_("qot_2").format(em.sukses))
         os.remove("bglist.txt")
-        return 
+        return
     else:
         return await pros.edit(jadi)
-    
 
 
 @ky.ubot("temlist")
@@ -155,7 +154,6 @@ async def _(c: nlx, m, _):
             file.write("\n".join(tempik))
         await m.reply_document("temlist.txt", caption=_("them_2").format(em.sukses))
         os.remove("temlist.txt")
-        return 
+        return
     else:
         return await pros.edit(jadi)
-    
