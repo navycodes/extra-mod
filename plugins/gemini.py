@@ -48,7 +48,6 @@ def gemini(text):
         if respon:
             return f"{respon.text}"
     except Exception as e:
-        print(f"Error generating text: {str(e)}")
         return f"Error generating text: {str(e)}"
 
 
@@ -73,14 +72,14 @@ async def mari_kirim(c, m, query):
                 chat_id, "chatbot.txt", reply_to_message_id=m.id
             )
             os.remove("chatbot.txt")
-            await m._client.send_chat_action(chat_id, ChatAction.CANCEL)
+            return await m._client.send_chat_action(chat_id, ChatAction.CANCEL)
         else:
             await m.reply_text(
                 "{} {}".format(em.sukses, respon), reply_to_message_id=m.id
             )
-        await m._client.send_chat_action(chat_id, ChatAction.CANCEL)
+        return await m._client.send_chat_action(chat_id, ChatAction.CANCEL)
     except ChatWriteForbidden:
-        pass
+        return
 
 
 @ky.ubot("gemini")
@@ -92,7 +91,7 @@ async def _(c: nlx, m, _):
     if not reply_text:
         return pros.edit(_("enc_5").format(em.gagal))
     await mari_kirim(c, m, reply_text)
-    await pros.delete()
+    return await pros.delete()
 
 
 async def costum_api(c, text):
@@ -127,12 +126,13 @@ async def _(client: nlx, message, _):
     prs = await message.reply_text(_("proses").format(em.proses))
     try:
         x = await costum_api(client, a)
-        await message.reply(
+        await prs.delete()
+        return await message.reply(
             "{} {}".format(em.sukses, x), reply_to_message_id=message.id
         )
     except Exception as e:
-        await message.reply(_("err").format(em.gagal, str(e)))
-    return await prs.delete()
+        await prs.delete()
+        return await message.reply(_("err").format(em.gagal, str(e)))
 
 
 @ky.ubot("fluxai")
