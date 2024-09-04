@@ -13,17 +13,17 @@ async def process_message(c: nlx, m, _, text, decode=False):
             data = response.json()
             if not decode and "encoded" in data:
                 encoded_text = data["encoded"]
-                await m.reply(_("enc_1").format(em.sukses, encoded_text))
+                return await m.reply(_("enc_1").format(em.sukses, encoded_text))
             elif decode and "decoded" in data:
                 decoded_text = data["decoded"]
-                await m.reply(_("enc_2").format(em.sukses, decoded_text))
+                return await m.reply(_("enc_2").format(em.sukses, decoded_text))
             else:
                 gagal = f"encode" if not decode else "decode"
-                await m.reply(_("enc_3").format(em.gagal, gagal))
+                return await m.reply(_("enc_3").format(em.gagal, gagal))
         else:
-            await m.reply(_("enc_4").format(em.gagal, response.status_code))
+            return await m.reply(_("enc_4").format(em.gagal, response.status_code))
     else:
-        await m.reply(_("enc_5").format(em.gagal))
+        return await m.reply(_("enc_5").format(em.gagal))
 
 
 @ky.ubot("encode")
@@ -36,8 +36,8 @@ async def _(c: nlx, m, _):
     else:
         text = " ".join(m.command[1:])
     await process_message(c, m, _, text)
-    await pros.delete()
-    return
+    return await pros.delete()
+    
 
 
 @ky.ubot("decode")
@@ -50,5 +50,5 @@ async def _(c: nlx, m, _):
     else:
         text = " ".join(m.command[1:])
     await process_message(c, m, _, text, decode=True)
-    await pros.delete()
-    return
+    return await pros.delete()
+    
