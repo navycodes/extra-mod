@@ -19,7 +19,7 @@ async def _(c: nlx, m, _):
     if reply and reply.sender_chat and reply.sender_chat != m.chat.id:
         aan = await m.reply_text(_("res_3").format(em.gagal))
         await asyncio.sleep(0.5)
-        await aan.delete()
+        return await aan.delete()
     if len(m.command) == 2:
         user = m.text.split(None, 1)[1]
     elif len(m.command) == 1 and reply:
@@ -27,13 +27,13 @@ async def _(c: nlx, m, _):
     else:
         aa = await m.reply_text(_("prof_1").format(em.gagal))
         await asyncio.sleep(0.5)
-        await aa.delete()
+        return await aa.delete()
     await m.delete()
     try:
-        await c.delete_user_history(m.chat.id, user)
+        return await c.delete_user_history(m.chat.id, user)
     except:
         pass
-    return
+    
 
 
 @ky.ubot("clearchat|endchat|clchat")
