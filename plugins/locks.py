@@ -124,7 +124,9 @@ async def _(client: nlx, message, _):
     permissions = await current_chat_permissions(client, chat_id)
 
     if parameter in data:
-        return await tg_lock(client, message, _, permissions, data[parameter], state == "lock")
+        return await tg_lock(
+            client, message, _, permissions, data[parameter], state == "lock"
+        )
     elif parameter == "all" and state == "lock":
         try:
             await client.set_chat_permissions(chat_id, ChatPermissions())
@@ -212,4 +214,3 @@ async def _(c: nlx, m, _):
 
         except RPCError as e_f:
             return await m.reply_text(_("err").format(em.gagal, e_f))
-    
