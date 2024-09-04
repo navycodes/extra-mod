@@ -33,7 +33,7 @@ async def memify(c: nlx, m, _):
     doc = await c.download_media(rep)
     im1 = Image.open("font-module/bahan2.png")
     if doc.endswith(".tgs"):
-        await client.download_media(reply, "man.tgs")
+        await c.download_media(reply, "man.tgs")
         await c.bash("lottie_convert.py man.tgs json.json")
         json = open("json.json", "r")
         jsn = json.read()
