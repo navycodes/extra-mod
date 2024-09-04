@@ -87,4 +87,4 @@ async def _(c: nlx, m, _):
         return await search_images(query, m, max_results, pros)
         
     except Exception as e:
-        return (f"Error: {e}")
+        return f"Error: {e}"
