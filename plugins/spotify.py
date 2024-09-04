@@ -4,7 +4,7 @@ __MODULES__ = "Spotify"
 
 
 def help_string(org):
-    return h_s(org, "help_porn")
+    return h_s(org, "help_spotify")
 
 
 async def download_spot(c, m, pros, query):
