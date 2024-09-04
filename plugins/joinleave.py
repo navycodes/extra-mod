@@ -148,8 +148,9 @@ async def _(c: nlx, m, _):
         except Exception as e:
             print(f"An error occurred while fetching dialogs: {e}")
     await xenn.delete()
-    return await m.reply(_("join_6").format(em.sukses, luci, command, em.gagal, nan, command))
-    
+    return await m.reply(
+        _("join_6").format(em.sukses, luci, command, em.gagal, nan, command)
+    )
 
 
 @ky.ubot("leavemute")
@@ -182,4 +183,3 @@ async def _(c, m, _):
     gc = "grup"
     await xenn.delete()
     return await m.reply(_("join_6").format(em.sukses, nan, gc, em.gagal, luci, gc))
-    
