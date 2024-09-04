@@ -55,7 +55,7 @@ async def _(c: nlx, m, _):
             )
         except Exception as e:
             return await babi.edit(_("err").format(em.gagal, e))
-            
+
     else:
         await m.reply(_("butt_1").format(em.gagal))
         return await babi.delete()
