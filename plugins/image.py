@@ -84,7 +84,7 @@ async def _(c: nlx, m, _):
                 _("img_1").format(em.gagal, m.text.split()[0], m.text.split()[0])
             )
         pros = await m.reply(_("proses").format(em.proses))
-        await search_images(query, m, max_results, pros)
-        return
+        return await search_images(query, m, max_results, pros)
+        
     except Exception as e:
-        print(f"Error: {e}")
+        return (f"Error: {e}")
