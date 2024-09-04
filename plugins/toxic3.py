@@ -9,8 +9,8 @@ from Userbot import *
 @ky.ubot("ceking")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     sepong = await m.reply(
         "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**",
         reply_to_message_id=ReplyCheck(m),
@@ -27,7 +27,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await sepong.edit("**KERONGKONGAN LUH ITU UDAH RUSAK TOLOL...**")
     await asyncio.sleep(1.8)
-    await sepong.edit(
+    return await sepong.edit(
         "**MASIH AJA MAKSAIN BUAT ADU ROASTING AMA GUA BEGO BANGET SIH LUH...**"
     )
 
@@ -35,8 +35,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("hina")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     Kon = await m.reply("**IZIN PANTUN BANG...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await Kon.edit("**KETEMU SI MAMAS DIAJAKIN KE CIBINONG...**")
@@ -53,7 +53,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await Kon.edit("**MANUSIA HINA YANG DI CIPTAKAN DENGAN SECARA HINA**")
     await asyncio.sleep(1.8)
-    await Kon.edit(
+    return await Kon.edit(
         "**MANUSIA HINA YANG DI CIPTAKAN DENGAN SECARA HINA EMANG PANTES UNTUK DI HINA HINA...**"
     )
 
@@ -61,8 +61,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("ngaca")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     omek = await m.reply(
         "**IZIN NUMPANG PANTUN BANG...**", reply_to_message_id=ReplyCheck(m)
     )
@@ -79,4 +79,4 @@ async def _(c: nlx, m, _):
         "**UDAH BULUK ITEM PENDEK BERPONI BAJU KEGEDEAN KAYAK JAMET SOK-SOK AN MAU NGEHINA GUA KONTOL**"
     )
     await asyncio.sleep(1.8)
-    await omek.edit("**KENA KAN MENTAL LU...**")
+    return await omek.edit("**KENA KAN MENTAL LU...**")
