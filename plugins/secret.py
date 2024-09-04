@@ -16,4 +16,4 @@ async def msg_cmd(client, message, _):
     text = f"secret {id(message)}"
     await message.delete()
     x = await client.get_inline_bot_results(bot.me.username, text)
-    await message.reply_to_message.reply_inline_bot_result(x.query_id, x.results[0].id)
+    return await message.reply_to_message.reply_inline_bot_result(x.query_id, x.results[0].id)
