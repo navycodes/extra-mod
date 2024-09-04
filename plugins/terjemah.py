@@ -32,7 +32,7 @@ async def _(c: nlx, m, _):
         kata = m.reply_to_message.text or m.reply_to_message.caption
     else:
         if len(m.command) < 2:
-            await pros.edit(_("tr_1").format(em.gagal, m.command))
+            return await pros.edit(_("tr_1").format(em.gagal, m.command))
         else:
             bhs = c._translate[c.me.id]["negara"]
             kata = m.text.split(None, 1)[1]
@@ -49,10 +49,10 @@ async def _(c: nlx, m, _):
         os.remove("trs.oog")
         return
     except Exception as er:
-        await pros.edit(_("err").format(em.gagal, er))
-        return
+        return await pros.edit(_("err").format(em.gagal, er))
+        
     except FileNotFoundError:
-        pass
+        return
 
 
 @ky.ubot("tr")
@@ -67,8 +67,8 @@ async def _(c: nlx, m, _):
         src = await trans.detect(txt)
     else:
         if len(m.command) < 2:
-            await m.reply(_("tr_1").format(em.gagal, m.command))
-            return
+            return await m.reply(_("tr_1").format(em.gagal, m.command))
+            
         else:
             bhs = c._translate[c.me.id]["negara"]
             txt = m.text.split(None, 1)[1]
@@ -77,8 +77,8 @@ async def _(c: nlx, m, _):
     reply = _("tr_2").format(em.sukses, trsl.text)
     rep = m.reply_to_message or m
     await pros.delete()
-    await c.send_message(m.chat.id, reply, reply_to_message_id=rep.id)
-    return
+    return await c.send_message(m.chat.id, reply, reply_to_message_id=rep.id)
+    
 
 
 @ky.ubot("lang")
@@ -89,11 +89,11 @@ async def _(c: nlx, m, _):
         bhs_list = "\n".join(
             f"- **{lang}**: `{code}`" for lang, code in kode_bahasa.items()
         )
-        await m.reply(_("tr_3").format(em.sukses, bhs_list))
-        return
+        return await m.reply(_("tr_3").format(em.sukses, bhs_list))
+        
     except Exception as e:
-        await m.reply(_("err").format(em.gagal, e))
-        return
+        return await m.reply(_("err").format(em.gagal, e))
+        
 
 
 @ky.ubot("setlang")
@@ -102,13 +102,13 @@ async def _(c: nlx, m, _):
     em.initialize()
     pros = await m.reply(_("proses").format(em.proses))
     if len(m.command) < 2:
-        await pros.edit(_("tr_4").format(em.gagal, m.text))
-        return
+        return await pros.edit(_("tr_4").format(em.gagal, m.text))
+        
     for lang, code in kode_bahasa.items():
         kd = m.text.split(None, 1)[1]
         if kd.lower() == code.lower():
             c._translate[c.me.id] = {"negara": kd}
-            await pros.edit(_("tr_5").format(em.sukses, kd, lang))
-            return
-    await pros.edit(_("tr_6").format(em.gagal))
-    return
+            return await pros.edit(_("tr_5").format(em.sukses, kd, lang))
+            
+    return await pros.edit(_("tr_6").format(em.gagal))
+    
