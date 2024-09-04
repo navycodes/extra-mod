@@ -34,7 +34,7 @@ async def _(c: nlx, m, _):
             )
         )
         return
-    blacklist = dB.get_chat(c.me.id)
+    blacklist = dB.mmg(c.me.id)
     chats = await c.get_chats_dialog(command)
     done = 0
     failed = 0
@@ -85,7 +85,7 @@ async def _(c: nlx, m, _):
     if not text:
         await msg.edit(_("gcs_1").format(em.gagal))
         return
-    blacklist = dB.get_chat(c.me.id)
+    blacklist = dB.mmg(c.me.id)
     chats = await c.get_chats_dialog("grup")
     done = 0
     failed = 0
@@ -134,7 +134,7 @@ async def _(c: nlx, m, _):
     if not text:
         await msg.edit(_("gcs_1").format(em.gagal))
         return
-    blacklist = dB.get_chat(c.me.id)
+    blacklist = dB.mmg(c.me.id)
     chats = await c.get_chats_dialog("user")
     done = 0
     failed = 0
@@ -180,7 +180,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
     chat_id = m.chat.id
-    blacklist = dB.get_chat(c.me.id)
+    blacklist = dB.mmg(c.me.id)
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
     add_blacklist = dB.add_chat(c.me.id, chat_id)
@@ -203,7 +203,7 @@ async def _(c: nlx, m, _):
             chat_id = m.chat.id
         else:
             chat_id = int(m.command[1])
-        blacklist = dB.get_chat(c.me.id)
+        blacklist = dB.mmg(c.me.id)
         if chat_id not in blacklist:
             return await pp.edit(_("gcs_7").format(em.gagal, m.chat.id, m.chat.title))
         del_blacklist = dB.remove_chat(c.me.id, chat_id)
@@ -223,8 +223,8 @@ async def _(c: nlx, m, _):
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
 
-    msg = _("gcs_10").format(em.sukses, int(len(dB.get_chat(c.me.id))))
-    for x in dB.get_chat(c.me.id):
+    msg = _("gcs_10").format(em.sukses, int(len(dB.mmg(c.me.id))))
+    for x in dB.mmg(c.me.id):
         try:
             get = await c.get_chat(x)
             msg += _("gcs_11").format(get.title, get.id)
@@ -240,7 +240,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     msg = await m.reply(_("proses").format(em.proses))
-    get_bls = dB.get_chat(c.me.id)
+    get_bls = dB.mmg(c.me.id)
     if len(get_bls) == 0:
         return await msg.edit(_("gcs_13").format(em.gagal))
     for x in get_bls:
