@@ -75,14 +75,12 @@ async def ckdm_cmd(client: nlx, message, _):
         try:
             await asyncio.sleep(2)
             await pros.delete()
-            await client.send_photo(
+            return await client.send_photo(
                 message.chat.id,
                 photo=imeg,
                 caption=caption,
                 reply_to_message_id=message.id,
             )
-            if os.path.exists(f"{client.me.id}.jpg"):
-                os.remove(f"{client.me.id}.jpg")
         except ImageProcessFailed:
             await asyncio.sleep(2)
             teks = _("kdm_2").format(
