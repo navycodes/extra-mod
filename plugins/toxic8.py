@@ -22,14 +22,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.2)
     await uputt.edit("`Fakta Yang Belum Terbongkar Selama Ini`")
     await asyncio.sleep(1.2)
-    await uputt.edit("**GUA GANTENG FIX NO DEBAT😏**")
+    return await uputt.edit("**GUA GANTENG FIX NO DEBAT😏**")
 
 
 @ky.ubot("wibu")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("`Kata Emak`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(2)
     await uputt.edit("`Kalo Ketemu Wibuu`")
@@ -56,7 +56,7 @@ async def _(c: nlx, m, _):
     await uputt.edit("`ㅤㅤ🏃🏻💨ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`")
     await uputt.edit("`ㅤ🏃🏻💨ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`")
     await uputt.edit("`🏃🏻💨ㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤㅤ`")
-    await uputt.edit("`🧎🏻‍♂️ huhh... akhirnya bisa lolos dari wibu mematikan`")
+    return await uputt.edit("`🧎🏻‍♂️ huhh... akhirnya bisa lolos dari wibu mematikan`")
 
 
 # create by ayiin
@@ -65,10 +65,10 @@ async def _(c: nlx, m, _):
 @ky.ubot("ssenggol")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "`Bapaknya Udin Di Makan Singkong`", reply_to_message_id=ReplyCheck(m)
     )
     await asyncio.sleep(1.8)
-    await uputt.edit("`Cuma Sendiri ni Senggol Dong`")
+    return await uputt.edit("`Cuma Sendiri ni Senggol Dong`")
