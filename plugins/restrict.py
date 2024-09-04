@@ -89,7 +89,6 @@ async def _(c: nlx, m, _):
     await m.reply_text(msg)
     await asyncio.sleep(1)
     return await m.chat.unban_member(user_id)
-    
 
 
 @ky.ubot("ban|delban")
@@ -153,7 +152,6 @@ async def _(c: nlx, m, _):
         return await m.reply_text(_("res_12").format(em.gagal))
     umention = (await c.get_users(user)).mention
     return await m.reply_text(_("res_6").format(em.sukses, umention))
-    
 
 
 async def delete_reply(c, message):
@@ -165,7 +163,7 @@ async def delete_reply(c, message):
 async def _(c: nlx, m, _):
     if m.reply_to_message:
         return await delete_reply(c, m.reply_to_message)
-        
+
     else:
         return await m.delete()
 
@@ -183,9 +181,9 @@ async def _(c: nlx, m, _):
             _("res_8").format(em.sukses, r.link), disable_web_page_preview=True
         )
     await r.pin(disable_notification=True)
-    return await m.reply(_("res_9").format(em.sukses, r.link), disable_web_page_preview=True)
-    
-    
+    return await m.reply(
+        _("res_9").format(em.sukses, r.link), disable_web_page_preview=True
+    )
 
 
 @ky.ubot("mute|delmute")
@@ -230,10 +228,9 @@ async def _(c: nlx, m, _):
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
     except RPCError:
-        return 
+        return
     except Exception as e:
         return await m.reply_text(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("unmute")
@@ -258,10 +255,9 @@ async def _(c: nlx, m, _):
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
     except RPCError:
-        return 
+        return
     except Exception as e:
         return await m.reply_text(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("zombies")
@@ -286,7 +282,6 @@ async def _(c: nlx, m, _):
         return await mt.edit(_("res_15").format(em.sukses, banned_users))
     else:
         return await mt.edit(_("res_16").format(em.gagal))
-        
 
 
 @ky.ubot("report")
@@ -364,17 +359,18 @@ async def _(c: nlx, m, _):
 
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user.first_name, user.id)
-        return await m.reply_text(_("res_23").format(em.profil, promoter, em.warn, promoted))
+        return await m.reply_text(
+            _("res_23").format(em.profil, promoter, em.warn, promoted)
+        )
 
     except ChatAdminRequired:
         return await m.reply_text(_("res_12").format(em.gagal))
     except UserAdminInvalid:
         return await m.reply_text(_("res_3").format(em.gagal))
     except RPCError:
-        return 
+        return
     except Exception as e:
         return await m.reply_text(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("promote")
@@ -421,17 +417,18 @@ async def _(c: nlx, m, _):
         await c.set_administrator_title(m.chat.id, user_id, title)
         promoter = await mention_html(m.from_user.first_name, m.from_user.id)
         promoted = await mention_html(user.first_name, user.id)
-        return await m.reply_text(_("res_24").format(em.profil, promoter, em.warn, promoted))
+        return await m.reply_text(
+            _("res_24").format(em.profil, promoter, em.warn, promoted)
+        )
 
     except ChatAdminRequired:
         return await m.reply_text(_("res_12").format(em.gagal))
     except UserAdminInvalid:
         return await m.reply_text(_("res_3").format(em.gagal))
     except RPCError:
-        return 
+        return
     except Exception as e:
         return await m.reply_text(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("demote")
@@ -466,7 +463,9 @@ async def _(c: nlx, m, _):
         )
         demoter = await mention_html(m.from_user.first_name, m.from_user.id)
         demoted = await mention_html(user.first_name, user.id)
-        return await m.reply_text(_("res_26").format(em.profil, demoter, em.warn, demoted))
+        return await m.reply_text(
+            _("res_26").format(em.profil, demoter, em.warn, demoted)
+        )
     except BotChannelsNa:
         return await m.reply_text(_("res_27").format(em.gagal))
     except ChatAdminRequired:
@@ -474,10 +473,9 @@ async def _(c: nlx, m, _):
     except UserAdminInvalid:
         return await m.reply_text(_("res_3").format(em.gagal))
     except RPCError:
-        return 
+        return
     except Exception as e:
         return await m.reply_text(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("gctitle")
@@ -602,4 +600,3 @@ async def _(c: nlx, m, _):
         f"{em.sukses} **Berhasil menghapus : `{total_deleted_messages}`\n{em.gagal} Tersisa yang berlum terhapus : `{total_remaining_messages}`**"
     )
     return await pros.delete()
-    
