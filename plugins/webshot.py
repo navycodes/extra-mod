@@ -47,7 +47,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     if len(m.command) < 2:
         return await m.reply(_("webs_1").format(em.gagal, m.command))
-        
+
     if len(m.command) == 2:
         url = m.text.split(None, 1)[1]
         full = False
