@@ -145,7 +145,7 @@ async def gas_download(g, c: nlx, inf, m):
         await inf.delete()
         os.remove(media)
         os.remove(thumbnail)
-    return
+    
 
 
 @ky.ubot("copy")
@@ -159,7 +159,8 @@ async def _(c: nlx, m, _):
 
     if not link:
         return await inf.edit(_("cpy_1").format(em.gagal, m.command))
-
+    if "?single" in link:
+        link = link.replace("?single", "")
     if link.startswith(("https", "t.me")):
         msg_id = int(link.split("/")[-1])
 
@@ -169,11 +170,11 @@ async def _(c: nlx, m, _):
                 g = await c.get_messages(chat, msg_id)
                 try:
                     await g.copy(m.chat.id, reply_to_message_id=msg.id)
-                    await inf.delete()
+                    return await inf.delete()
                 except Exception:
-                    await gas_download(g, c, inf, m)
+                    return await gas_download(g, c, inf, m)
             except Exception as e:
-                await inf.edit(str(e))
+                return await inf.edit(str(e))
         else:
             copy = await c.send_message(bot_username, f"/copy {link}")
             msg = m.reply_to_message or m
@@ -183,38 +184,11 @@ async def _(c: nlx, m, _):
                 await c.copy_message(
                     m.chat.id, bot_username, get.id, reply_to_message_id=msg.id
                 )
-                # await c.delete_messages(m.chat.id, COPY_ID[c.me.id])
                 await get.delete()
-                await inf.delete()
-            """
-            chat = str(link.split("/")[-2])
-            udB.set_var(c.me.id, "link_copy", link)
-            try:
-                g = await c.get_messages(chat, msg_id)
-                await g.copy(m.chat.id, reply_to_message_id=msg.id)
-                await inf.delete()
-            except Exception:
-                try:
-                    nyolong_jalan = True
-                    text = f"get_msg {id(m)}"
-                    x = await c.get_inline_bot_results(bot_username, text)
-                    results = await c.send_inline_bot_result(
-                        m.chat.id,
-                        x.query_id,
-                        x.results[0].id,
-                        reply_to_message_id=msg.id,
-                    )
-                    COPY_ID[c.me.id] = int(results.updates[0].id)
-                    await inf.delete()
-                    nyolong_jalan = False
-                except Exception as error:
-                    await inf.edit(f"{str(error)}"
-                    )
-                """
+                return await inf.delete()
 
     else:
-        await inf.edit(_("cpy_2").format(em.sukses))
-    return
+        return await inf.edit(_("cpy_2").format(em.sukses))
 
 
 @ky.ubot("cancel_copy")
