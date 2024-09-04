@@ -33,6 +33,7 @@ async def _(c: nlx, m, _):
         return await c.delete_user_history(m.chat.id, user)
     except:
         pass
+    
 
 
 @ky.ubot("clearchat|endchat|clchat")
@@ -91,5 +92,4 @@ async def _(c: nlx, m, _):
                 info = await c.resolve_peer(who)
                 await c.invoke(DeleteHistory(peer=info, max_id=0, revoke=True))
             await m.reply(_("auend_2").format(em.sukses, who))
-    await mek.delete()
-    return
+    return await mek.delete()
