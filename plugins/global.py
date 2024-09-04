@@ -74,9 +74,9 @@ async def _(c: nlx, m, _):
     mmg = _("glbl_6").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
     )
-    await m.reply(mmg)
     await xx.delete()
-    return
+    return await m.reply(mmg)
+    
 
 
 @ky.ubot("ungban")
@@ -113,9 +113,8 @@ async def _(c: nlx, m, _):
     dbgb.remove_gban(nyet)
     await c.unblock_user(nyet)
     mmg = _("glbl_8").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
-    await m.reply(mmg)
     await xx.delete()
-    return
+    return await m.reply(mmg)
 
 
 @ky.ubot("gmute")
@@ -157,9 +156,9 @@ async def _(c: nlx, m, _):
     mmg = _("glbl_11").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
     )
-    await m.reply(mmg)
     await xx.delete()
-    return
+    return await m.reply(mmg)
+    
 
 
 @ky.ubot("ungmute")
@@ -196,9 +195,9 @@ async def _(c: nlx, m, _):
             await asyncio.sleep(0.1)
     dbgm.remove_gmute(nyet)
     mmg = _("glbl_13").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
-    await m.reply(mmg)
     await xx.delete()
-    return
+    return await m.reply(mmg)
+    
 
 
 @ky.ubot("gbanlist|listgban")
@@ -223,8 +222,8 @@ async def _(c: nlx, m, _):
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gbanlist.txt"
             await m.reply_document(document=f, caption=_("glbl_17").format(em.profil))
-    await msg.delete()
-    return
+    return await msg.delete()
+    
 
 
 @ky.ubot("gmutelist|listgmute")
