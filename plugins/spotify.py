@@ -50,7 +50,7 @@ async def _(c: nlx, m, _):
         query = m.command[2]
         if len(m.command) < 3 or not query.startswith("https"):
             await m.reply(
-                "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
+                "{} User format `{}` -dl url".format(em.gagal, m.text.split()[0])
             )
             return await pros.delete()
         return await download_spot(c, m, pros, query)
