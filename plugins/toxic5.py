@@ -13,7 +13,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-
+        
     uputt = await m.reply("**Ayaaang** 🥺")
     await asyncio.sleep(1.8)
     await uputt.edit("**Kangeeen** 👉👈")
@@ -27,22 +27,22 @@ async def _(c: nlx, m, _):
 @ky.ubot("nakal")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Ayaaang Ih** 🥺", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Nakal Banget Dah Ayang** 🥺")
     await asyncio.sleep(1.8)
     await uputt.edit("**Aku Gak Like Ayang** 😠")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Pokoknya Aku Gak Like Ih** 😠")
+    return await uputt.edit("**Pokoknya Aku Gak Like Ih** 😠")
 
 
 @ky.ubot("favboy")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**Duuhh Ada Cowo Ganteng** 👉👈", reply_to_message_id=ReplyCheck(m)
     )
@@ -53,14 +53,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**Pokoknya Harus Jadi Cowo Aku** 👉👈")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
+    return await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
 
 
 @ky.ubot("favgirl")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**Duuhh Ada Cewe Cantik** 👉👈", reply_to_message_id=ReplyCheck(m)
     )
@@ -71,14 +71,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**Pokoknya Harus Jadi Cewe Aku** 👉👈")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
+    return await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
 
 
 @ky.ubot("canlay")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**Eh Kamu Cantik-cantik**", reply_to_message_id=ReplyCheck(m)
     )
@@ -89,14 +89,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**Baru Bikin Userbot Ya??**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Pantes Norak Xixixi**")
+    return await uputt.edit("**Pantes Norak Xixixi**")
 
 
 @ky.ubot("ganlay")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**Eh Kamu Ganteng-ganteng**", reply_to_message_id=ReplyCheck(m)
     )
@@ -107,16 +107,16 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**Baru Bikin Userbot Ya??**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Pantes Norak Xixixi**")
+    return await uputt.edit("**Pantes Norak Xixixi**")
 
 
 @ky.ubot("ange")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Ayanggg 😖**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Aku Ange 😫**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Ayuukk Picies Yang 🤤**")
+    return await uputt.edit("**Ayuukk Picies Yang 🤤**")
