@@ -1,7 +1,6 @@
 import asyncio
 import os
 import platform
-import subprocess
 import sys
 import traceback
 from datetime import datetime, timedelta
@@ -9,7 +8,6 @@ from io import BytesIO, StringIO
 from subprocess import PIPE, Popen, TimeoutExpired
 from time import perf_counter
 
-import pexpect
 import psutil
 from psutil._common import bytes2human
 from pyrogram.enums import *
@@ -226,7 +224,6 @@ async def _(c: nlx, m, _):
     softw += f"Percentage: {svmem.percent}%\n"
 
     return await xx.edit(f"{softw}")
-    
 
 
 async def generate_sysinfo(workdir):
@@ -287,7 +284,6 @@ async def _(c: nlx, m, _):
     return await m.reply(
         f"{em.proses} # {c.me.first_name}\nStats : Total Usage\n" + response,
     )
-    
 
 
 @ky.ubot("benal")
@@ -390,7 +386,6 @@ async def _(c: nlx, m, _):
         return await m.reply(
             f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
         )
-    
 
 
 async def mak_mek(c, chat_id, message):
@@ -414,7 +409,6 @@ async def mak_mek(c, chat_id, message):
     return await message.edit(
         f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
     )
-    
 
 
 @ky.ubot("anben")
