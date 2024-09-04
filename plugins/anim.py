@@ -37,14 +37,14 @@ async def _(c: nlx, m, _):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await uy.edit(animation_chars[i % 14])
+        return await uy.edit(animation_chars[i % 14])
 
 
 @ky.ubot("loveyou")
 async def _(c: nlx, m, _):
     noble = random.randint(1, len(NOBLE) - 2)
     reply_text = NOBLE[noble]
-    await m.reply(reply_text)
+    return await m.reply(reply_text)
 
 
 @ky.ubot("wink")
@@ -81,10 +81,10 @@ async def _(c: nlx, m, _):
         r = requests.get(url=hmm_s).json()
         image_s = r["link"]
         await c.send_video(m.chat.id, image_s)
-        await proses.delete()
+        return await proses.delete()
     except (requests.exceptions.RequestException, KeyError, ValueError) as e:
         print("Error:", e)
-        await c.send_message(m.chat.id, "Failed to fetch pat animation.")
+        return await c.send_message(m.chat.id, "Failed to fetch pat animation.")
 
 
 @ky.ubot("pikachu")
@@ -96,20 +96,13 @@ async def _(c: nlx, m, _):
     image_s = r["link"]
     proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     await c.send_video(m.chat.id, image_s)
-    await proses.delete()
-    if image_s.endswith(".png"):
-        await c.send_photo(m.chat.id, image_s)
-        await proses.delete()
-        return
-    if image_s.endswith(".jpg"):
-        await c.send_photo(m.chat.id, image_s)
-        await proses.delete()
-        return
+    return await proses.delete()
+    
 
 
 @ky.ubot("hmm")
 async def _(c: nlx, m, _):
-    mg = await m.reply(
+    return await m.reply(
         "┈┈╱▔▔▔▔▔╲┈┈┈HM┈HM\n┈╱┈┈╱▔╲╲╲▏┈┈┈HMMM\n╱┈┈╱━╱▔▔▔▔▔╲━╮┈┈\n▏┈▕┃▕╱▔╲╱▔╲▕╮┃┈┈\n▏┈▕╰━▏▊▕▕▋▕▕━╯┈┈\n╲┈┈╲╱▔╭╮▔▔┳╲╲┈┈┈\n┈╲┈┈▏╭━━━━╯▕▕┈┈┈\n┈┈╲┈╲▂▂▂▂▂▂╱╱┈┈┈\n┈┈┈┈▏┊┈┈┈┈┊┈┈┈╲\n┈┈┈┈▏┊┈┈┈┈┊▕╲┈┈╲\n┈╱▔╲▏┊┈┈┈┈┊▕╱▔╲▕\n┈▏┈┈┈╰┈┈┈┈╯┈┈┈▕▕\n┈╲┈┈┈╲┈┈┈┈╱┈┈┈╱┈╲\n┈┈╲┈┈▕▔▔▔▔▏┈┈╱╲╲╲▏\n┈╱▔┈┈▕┈┈┈┈▏┈┈▔╲▔▔\n┈╲▂▂▂╱┈┈┈┈╲▂▂▂╱┈ ",
     )
 
@@ -130,7 +123,7 @@ async def hello_world(c: nlx, m, _):
     await asyncio.sleep(0.2)
     await mg.edit("aahhhhhhh")
     await asyncio.sleep(0.2)
-    await mg.edit("aaahhhhhhhh")
+    return await mg.edit("aaahhhhhhhh")
 
 
 @ky.ubot("brain")
@@ -139,7 +132,7 @@ async def _(c: nlx, m, _):
         return
     animation_interval = 1
     animation_ttl = range(0, 14)
-    await m.edit(f"<b>This is Your Brain!</b>")
+    uh = await m.reply(f"<b>This is Your Brain!</b>")
     animation_chars = [
         "Your Brain : ➡️ 🧠\n\n🧠         <(^_^ <)🗑",
         "Your Brain : ➡️ 🧠\n\n🧠       <(^_^ <)  🗑",
@@ -158,7 +151,7 @@ async def _(c: nlx, m, _):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 14])
+        return await uh.edit(animation_chars[i % 14])
 
 
 @ky.ubot("bomb")
@@ -183,8 +176,8 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.2)
     await m.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n😵😵😵😵 \n")
     await asyncio.sleep(1.2)
-    await m.edit("`RIP PLOXXX......`")
-    await asyncio.sleep(2)
+    return await m.edit("`RIP PLOXXX......`")
+    
 
 
 @ky.ubot("call")
@@ -216,7 +209,7 @@ async def _(c: nlx, m, _):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await xu.edit(animation_chars[i % 18])
+        return await xu.edit(animation_chars[i % 18])
 
 
 @ky.ubot("kill")
@@ -242,7 +235,7 @@ async def _(c: nlx, m, _):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await xi.edit(animation_chars[i % 12])
+        return await xi.edit(animation_chars[i % 12])
 
 
 @ky.ubot("wtf")
@@ -263,9 +256,9 @@ async def _(c: nlx, m, _):
         "[𝗪𝗵𝗮𝘁 𝗧𝗵𝗲 𝗙 𝗕𝗿𝗮𝗵](https://telegra.ph//file/f3b760e4a99340d331f9b.jpg)",
     ]
     for i in animation_ttl:
-        await asyncio.sleep(animation_interval)
-        await ro.edit(animation_chars[i % 5])
         await proses.delete()
+        await asyncio.sleep(animation_interval)
+        return await ro.edit(animation_chars[i % 5])
 
 
 @ky.ubot("ding")
@@ -290,7 +283,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(4)
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 10])
+        return await m.edit(animation_chars[i % 10])
 
 
 @ky.ubot("hypo")
@@ -319,7 +312,7 @@ async def _(c: nlx, m, _):
     ]
     for i in animation_ttl:
         await asyncio.sleep(animation_interval)
-        await m.edit(animation_chars[i % 15])
+        return await m.edit(animation_chars[i % 15])
 
 
 @ky.ubot("gang")
@@ -338,7 +331,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(0.3)
     await m.edit("🔥🔥🔥")
     await asyncio.sleep(0.3)
-    await m.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
+    return await m.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
 
 
 @ky.ubot("char")
@@ -354,7 +347,7 @@ async def _(c: nlx, m, _):
         k = k + 10
         await asyncio.sleep(1)
     await asyncio.sleep(1)
-    await m.edit(
+    return await m.edit(
         "`Tesla Wireless Charging (beta) Completed...\nDevice Detected: Nokia 1100 (Space Grey Varient)\nBattery Percentage:` [100%](https://telegra.ph/file/a45aa7450c8eefed599d9.mp4) ",
     )
 
@@ -390,65 +383,65 @@ async def _(c: nlx, m, _):
     await e.edit("8===✊D💦💦💦💦💦💦💦💦💦")
     await e.edit("8==✊=D💦💦💦💦💦💦💦💦💦💦")
     await e.edit("8=✊==D Lah Kok Habis?")
-    await e.edit("😭😭😭😭")
+    return await e.edit("😭😭😭😭")
 
 
 @ky.ubot("hack")
 async def _(c: nlx, m, _):
-    re = await m.reply(
+    ou = await m.reply(
         "Looking for WhatsApp databases in targeted person...",
     )
     await asyncio.sleep(2)
-    await re.edit_text(" User online: True\nTelegram access: True\nRead Storage: True ")
+    await ou.edit_text(" User online: True\nTelegram access: True\nRead Storage: True ")
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 0%\n[░░░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 20s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 11.07%\n[██░░░░░░░░░░░░░░░░░░]\n`Looking for WhatsApp...`\nETA: 0m, 18s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 20.63%\n[███░░░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 16s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 34.42%\n[█████░░░░░░░░░░░░░░░]\n`Found folder C:/WhatsApp`\nETA: 0m, 14s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 42.17%\n[███████░░░░░░░░░░░░░]\n`Searching for databases`\nETA: 0m, 12s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
-        "Hacking... 55.30%\n[█████████░░░░░░░░░░░]\n`Found msgstore.db.crypt12`\nETA: 0m, 10s"
+    await ou.edit_text(
+        "Hacking... 55.30%\n[█████████░░░░░░░░░░░]\n`Found msgstoou.db.crypt12`\nETA: 0m, 10s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
-        "Hacking... 64.86%\n[███████████░░░░░░░░░]\n`Found msgstore.db.crypt12`\nETA: 0m, 08s"
+    await ou.edit_text(
+        "Hacking... 64.86%\n[███████████░░░░░░░░░]\n`Found msgstoou.db.crypt12`\nETA: 0m, 08s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 74.02%\n[█████████████░░░░░░░]\n`Trying to Decrypt...`\nETA: 0m, 06s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 86.21%\n[███████████████░░░░░]\n`Trying to Decrypt...`\nETA: 0m, 04s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 93.50%\n[█████████████████░░░]\n`Decryption successful!`\nETA: 0m, 02s"
     )
     await asyncio.sleep(2)
-    await re.edit_text(
+    await ou.edit_text(
         "Hacking... 100%\n[████████████████████]\n`Scanning file...`\nETA: 0m, 00s"
     )
     await asyncio.sleep(2)
-    await re.edit_text("Hacking complete!\nUploading file...")
+    await ou.edit_text("Hacking complete!\nUploading file...")
     await asyncio.sleep(2)
-    await re.edit_text(
-        "Targeted Account Hacked...!\n\n ✅ File has been successfully uploaded to my server.\nWhatsApp Database:\n`./DOWNLOADS/msgstore.db.crypt12`"
+    return await ou.edit_text(
+        "Targeted Account Hacked...!\n\n ✅ File has been successfully uploaded to my server.\nWhatsApp Database:\n`./DOWNLOADS/msgstoou.db.crypt12`"
     )
 
 
@@ -458,7 +451,7 @@ async def _(c: nlx, m, _):
     kontol = MEMES.GAMBAR_KONTOL
     if emoji:
         kontol = kontol.replace("⡀", emoji)
-    await m.reply(kontol)
+    return await m.reply(kontol)
 
 
 @ky.ubot("titit|titid")
@@ -467,7 +460,7 @@ async def _(c: nlx, m, _):
     titid = MEMES.GAMBAR_TITIT
     if emoji:
         titid = titid.replace("😋", emoji)
-    await m.reply(titid)
+    return await m.reply(titid)
 
 
 @ky.ubot("dino")
@@ -524,7 +517,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1)
     await typew.edit("`🧎🦖`")
     await asyncio.sleep(2)
-    await typew.edit("`-TAMAT-`")
+    return await typew.edit("`-TAMAT-`")
 
 
 @ky.ubot("syg|sayang|seng")
@@ -574,7 +567,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.2)
     await e.edit("💘💕💞💝")
     await asyncio.sleep(1.2)
-    await e.edit("SAYANG KAMU💞")
+    return await e.edit("SAYANG KAMU💞")
 
 
 @ky.ubot("gabut|gbt")
@@ -777,12 +770,12 @@ async def _(c: nlx, m, _):
     await e.edit("🚶                              🐢")
     await e.edit("🚶                               🐢")
     await e.edit("🚶                                🐢")
-    await e.edit("`GABUT`")
+    return await e.edit("`GABUT`")
 
 
 @ky.ubot("heli|helikopter")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "▬▬▬.◙.▬▬▬ \n"
         "═▂▄▄▓▄▄▂ \n"
         "◢◤ █▀▀████▄▄▄▄◢◤ \n"
@@ -804,14 +797,14 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("tembak")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "_/﹋\\_\n" "(҂`_´)\n" "<,︻╦╤─ ҉\n" r"_/﹋\_" "\n<b>Mau Jadi Pacarku Gak?!</b>",
     )
 
 
 @ky.ubot("bundir")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "`Dadah Semuanya...`          \n　　　　　|"
         "\n　　　　　| \n"
         "　　　　　| \n"
@@ -831,7 +824,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("awk|awok")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "────██──────▀▀▀██\n"
         "──▄▀█▄▄▄─────▄▀█▄▄▄\n"
         "▄▀──█▄▄──────█─█▄▄\n"
@@ -842,7 +835,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("y|oke")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "‡‡‡‡‡‡‡‡‡‡‡‡▄▄▄▄\n"
         "‡‡‡‡‡‡‡‡‡‡‡█‡‡‡‡█\n"
         "‡‡‡‡‡‡‡‡‡‡‡█‡‡‡‡█\n"
@@ -861,7 +854,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("tank")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "█۞███████]▄▄▄▄▄▄▄▄▄▄▃ \n"
         "▂▄▅█████████▅▄▃▂…\n"
         "[███████████████████]\n"
@@ -871,7 +864,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("babi")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "┈┈┏━╮╭━┓┈╭━━━━╮\n"
         "┈┈┃┏┗┛┓┃╭┫Ngok ┃\n"
         "┈┈╰┓▋▋┏╯╯╰━━━━╯\n"
@@ -885,7 +878,7 @@ async def _(c: nlx, m, _):
 
 @ky.ubot("ajg")
 async def _(c: nlx, m, _):
-    await m.reply(
+    return await m.reply(
         "╥━━━━━━━━╭━━╮━━┳\n"
         "╢╭╮╭━━━━━┫┃▋▋━▅┣\n"
         "╢┃╰┫┈┈┈┈┈┃┃┈┈╰┫┣\n"
@@ -899,7 +892,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     typew = await m.reply("`\n(\\_/)`" "`\n(●_●)`" "`\n />💖 *Ini Buat Kamu`")
     await asyncio.sleep(2)
-    await typew.edit("`\n(\\_/)`" "`\n(●_●)`" "`\n💖<\\  *Tapi Bo'ong`")
+    return await typew.edit("`\n(\\_/)`" "`\n(●_●)`" "`\n💖<\\  *Tapi Bo'ong`")
 
 
 @ky.ubot("santet")
@@ -1211,4 +1204,4 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(0.03)
     await typew.edit(str(number) + "%   ████████████████▌")
     await asyncio.sleep(1)
-    await typew.edit("<b>Target Berhasil Tersantet Online 🥴</b>")
+    return await typew.edit("<b>Target Berhasil Tersantet Online 🥴</b>")
