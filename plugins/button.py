@@ -50,13 +50,12 @@ async def _(c: nlx, m, _):
             x = await c.get_inline_bot_results(
                 bot.me.username, f"buat_button2 {c.me.id}"
             )
-            await c.send_inline_bot_result(
+            return await c.send_inline_bot_result(
                 m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
             )
         except Exception as e:
-            await babi.edit(_("err").format(em.gagal, e))
-            return
+            return await babi.edit(_("err").format(em.gagal, e))
+            
     else:
         await m.reply(_("butt_1").format(em.gagal))
-    await babi.delete()
-    return
+        return await babi.delete()
