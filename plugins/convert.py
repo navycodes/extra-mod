@@ -153,7 +153,6 @@ async def _(c: nlx, message, _):
         return
     except Exception as e:
         return await message.reply(_("err").format(em.gagal, e))
-    
 
 
 @ky.ubot("togif")
@@ -172,10 +171,9 @@ async def _(c: nlx, message, _):
         await c.send_animation(message.chat.id, file, reply_to_message_id=message.id)
         os.remove(file)
         return await pros.delete()
-        
+
     except Exception as error:
         return await pros.edit(_("err").format(em.gagal, star(error)))
-        
 
 
 @ky.ubot("toaudio")
@@ -218,7 +216,6 @@ async def _(c: nlx, message, _):
         if os.path.exists(out_file):
             os.remove(out_file)
         return await pros.edit(_("konpert_7").format(em.gagal))
-    
 
 
 @ky.ubot("efek|effect|voifek")
@@ -341,4 +338,3 @@ async def _(c: nlx, m, _):
         return await pros.edit(
             f"{em.gagal} Mohon balas pesan dengan audio atau berikan URL audio yang valid untuk mentranskripsinya."
         )
-    
