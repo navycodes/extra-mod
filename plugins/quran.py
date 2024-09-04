@@ -121,9 +121,7 @@ async def _(c: nlx, m, _):
         else:
             await m.reply(response_text, reply_to_message_id=ReplyCheck(m))
 
-        await pros.delete()
-        return
+        return await pros.delete()
     else:
         await m.reply(_("qur_3").format(em.gagal, surah_name.capitalize()))
-        await pros.delete()
-        return
+        return await pros.delete()
