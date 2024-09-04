@@ -115,7 +115,7 @@ async def _(c, m, _):
         else:
             text = m.command[1:]
     except Exception as e:
-        await m.reply(f"Terjadi kesalahan: {str(e)}")
+        return await m.reply(f"Terjadi kesalahan: {str(e)}")
     finally:
         await ex.delete()
         if "meg" in locals():
@@ -136,9 +136,10 @@ async def _(c: nlx, m, _):
             file.write("\n".join(loanjing))
         await m.reply_document("bglist.txt", caption=_("qot_2").format(em.sukses))
         os.remove("bglist.txt")
+        return 
     else:
-        await pros.edit(jadi)
-    return
+        return await pros.edit(jadi)
+    
 
 
 @ky.ubot("temlist")
@@ -154,6 +155,7 @@ async def _(c: nlx, m, _):
             file.write("\n".join(tempik))
         await m.reply_document("temlist.txt", caption=_("them_2").format(em.sukses))
         os.remove("temlist.txt")
+        return 
     else:
-        await pros.edit(jadi)
-    return
+        return await pros.edit(jadi)
+    
