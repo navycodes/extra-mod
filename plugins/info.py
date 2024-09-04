@@ -68,7 +68,7 @@ async def _(c: nlx, m, _):
         return
     sus = await c.extract_user(m)
     if not sus:
-        await m.reply_text(_("glbl_2").format(em.gagal))
+        return await m.reply_text(_("glbl_2").format(em.gagal))
     try:
         user = await c.get_users(sus)
     except KeyError:
@@ -92,7 +92,7 @@ async def _(c: nlx, m, _):
     udB.set_var(c.me.id, "user_info", dict_userinfo)
     try:
         x = await c.get_inline_bot_results(bot_username, "user_info")
-        await c.send_inline_bot_result(
+        return await c.send_inline_bot_result(
             m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
         )
     except Exception as e:
@@ -153,7 +153,7 @@ async def _(c: nlx, m, _):
     udB.set_var(c.me.id, "gc_info", dict_gcinfo)
     try:
         x = await c.get_inline_bot_results(bot_username, "gc_info")
-        await c.send_inline_bot_result(
+        return await c.send_inline_bot_result(
             m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=m.id
         )
     except Exception as e:
