@@ -73,7 +73,7 @@ async def _(c, m, _):
                 return await ceger.edit(_("join_2").format(em.gagal, namagece))
             else:
                 await ceger.edit(_("join_3").format(em.sukses, c.me.mention, namagece))
-                await c.leave_chat(chat_id)
+                return await c.leave_chat(chat_id)
 
         elif chat_arg.startswith("https://t.me/"):
             chat_id = chat_arg.split("/")[-1]
@@ -148,8 +148,8 @@ async def _(c: nlx, m, _):
         except Exception as e:
             print(f"An error occurred while fetching dialogs: {e}")
     await xenn.delete()
-    await m.reply(_("join_6").format(em.sukses, luci, command, em.gagal, nan, command))
-    return
+    return await m.reply(_("join_6").format(em.sukses, luci, command, em.gagal, nan, command))
+    
 
 
 @ky.ubot("leavemute")
@@ -181,5 +181,5 @@ async def _(c, m, _):
             print(f"An error occurred while fetching dialogs: {e}")
     gc = "grup"
     await xenn.delete()
-    await m.reply(_("join_6").format(em.sukses, nan, gc, em.gagal, luci, gc))
-    return
+    return await m.reply(_("join_6").format(em.sukses, nan, gc, em.gagal, luci, gc))
+    
