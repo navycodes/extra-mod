@@ -76,5 +76,5 @@ async def _(c: nlx, m, _):
     if sudoers == 0:
         return await m.reply(_("sud_5").format(em.gagal))
     else:
-        await m.reply(_("sud_6").format(em.sukses, msg))
-        return
+        return await m.reply(_("sud_6").format(em.sukses, msg))
+        
