@@ -34,12 +34,12 @@ async def memify(c: nlx, m, _):
     im1 = Image.open("font-module/bahan2.png")
     if doc.endswith(".tgs"):
         await client.download_media(reply, "man.tgs")
-        await bash("lottie_convert.py man.tgs json.json")
+        await c.bash("lottie_convert.py man.tgs json.json")
         json = open("json.json", "r")
         jsn = json.read()
         jsn = jsn.replace("512", "2000")
         ("json.json", "w").write(jsn)
-        await bash("lottie_convert.py json.json man.tgs")
+        await c.bash("lottie_convert.py json.json man.tgs")
         file = "man.tgs"
         os.remove("json.json")
     elif doc.endswith((".gif", ".mp4")):
