@@ -7,8 +7,8 @@ from Userbot import *
 @ky.ubot("ngentot")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     pler = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await pler.edit("**JANGAN SOK JAGOAN DAH LU**")
@@ -27,7 +27,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await pler.edit("**SAMA ORANG LAIN**")
     await asyncio.sleep(1.8)
-    await pler.edit("**HAHAHAHA**")
+    return await pler.edit("**HAHAHAHA**")
 
 
 # Create by myself @localheart
