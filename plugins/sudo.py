@@ -77,4 +77,3 @@ async def _(c: nlx, m, _):
         return await m.reply(_("sud_5").format(em.gagal))
     else:
         return await m.reply(_("sud_6").format(em.sukses, msg))
-        
