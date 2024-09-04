@@ -50,7 +50,7 @@ async def _(c: nlx, m, _):
         return
     except Exception as er:
         return await pros.edit(_("err").format(em.gagal, er))
-        
+
     except FileNotFoundError:
         return
 
@@ -68,7 +68,7 @@ async def _(c: nlx, m, _):
     else:
         if len(m.command) < 2:
             return await m.reply(_("tr_1").format(em.gagal, m.command))
-            
+
         else:
             bhs = c._translate[c.me.id]["negara"]
             txt = m.text.split(None, 1)[1]
@@ -78,7 +78,6 @@ async def _(c: nlx, m, _):
     rep = m.reply_to_message or m
     await pros.delete()
     return await c.send_message(m.chat.id, reply, reply_to_message_id=rep.id)
-    
 
 
 @ky.ubot("lang")
@@ -90,10 +89,9 @@ async def _(c: nlx, m, _):
             f"- **{lang}**: `{code}`" for lang, code in kode_bahasa.items()
         )
         return await m.reply(_("tr_3").format(em.sukses, bhs_list))
-        
+
     except Exception as e:
         return await m.reply(_("err").format(em.gagal, e))
-        
 
 
 @ky.ubot("setlang")
@@ -103,12 +101,11 @@ async def _(c: nlx, m, _):
     pros = await m.reply(_("proses").format(em.proses))
     if len(m.command) < 2:
         return await pros.edit(_("tr_4").format(em.gagal, m.text))
-        
+
     for lang, code in kode_bahasa.items():
         kd = m.text.split(None, 1)[1]
         if kd.lower() == code.lower():
             c._translate[c.me.id] = {"negara": kd}
             return await pros.edit(_("tr_5").format(em.sukses, kd, lang))
-            
+
     return await pros.edit(_("tr_6").format(em.gagal))
-    
