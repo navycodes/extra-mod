@@ -142,7 +142,7 @@ async def _(c: nlx, m, _):
             return
     except Exception as e:
         print(f"An error occurred while fetching dialogs: {e}")
-        return 
+        return
 
 
 @ky.ubot("setpp")
@@ -196,4 +196,3 @@ async def _(c: nlx, m, _):
             message_ids=hundred_messages_or_less,
             revoke=True,
         )
-        
