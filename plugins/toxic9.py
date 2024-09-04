@@ -17,22 +17,22 @@ from Userbot import *
 @ky.ubot("cacad")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Cacad 😏**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Najis Akunnya Cacad 😂**")
     await asyncio.sleep(1.8)
     await uputt.edit("**Hahahaha Cacad 🤣**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Canda Akun Cacad 😂🤣**")
+    return await uputt.edit("**Canda Akun Cacad 😂🤣**")
 
 
 @ky.ubot("hayo")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Hayolo 😂**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Hayoloo 😭**")
@@ -47,4 +47,4 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**Botnya Mati Ya?**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Botnya Mati Ya? kasiaaaan** 😭🤌")
+    return await uputt.edit("**Botnya Mati Ya? kasiaaaan** 😭🤌")
