@@ -248,5 +248,5 @@ async def _(c: nlx, m, _):
         with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
             f.name = "gmutelist.txt"
             await m.reply_document(document=f, caption=_("glbl_21").format(em.profil))
-    await msg.delete()
-    return
+    return await msg.delete()
+    
