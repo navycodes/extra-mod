@@ -97,7 +97,6 @@ async def _(c: nlx, m, _):
     proses = await m.reply(f"{em.proses} <b>Sedang proses ...</b>")
     await c.send_video(m.chat.id, image_s)
     return await proses.delete()
-    
 
 
 @ky.ubot("hmm")
@@ -177,7 +176,6 @@ async def _(c: nlx, m, _):
     await m.edit("▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n▪️▪️▪️▪️ \n😵😵😵😵 \n")
     await asyncio.sleep(1.2)
     return await m.edit("`RIP PLOXXX......`")
-    
 
 
 @ky.ubot("call")
