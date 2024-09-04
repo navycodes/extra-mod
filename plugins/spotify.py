@@ -7,7 +7,7 @@ def help_string(org):
     return h_s(org, "help_porn")
 
 
-async def download_spot(c, m, query):
+async def download_spot(c, m, pros, query):
     url = f"https://api.botcahx.eu.org/api/download/spotify?url={query}&apikey=gwkenapanan"
     res = await fetch.get(url)
     if res.status_code == 200:
@@ -30,8 +30,9 @@ async def download_spot(c, m, query):
                 await c.send_audio(m.chat.id, audio=f"{c.me.id}.mp3", caption=output)
                 if os.path.exists(f"{c.me.id}.mp3"):
                     os.remove(f"{c.me.id}.mp3")
+                return await pros.delete()
             except Exception as e:
-                await m.reply(f"{str(e)}")
+                return await m.reply(f"{str(e)}")
 
         else:
             return "Error: Invalid result format."
@@ -52,11 +53,10 @@ async def _(c: nlx, m, _):
                 "{} Gunakan format `{}` -dl url".format(em.gagal, m.text.split()[0])
             )
             return await pros.delete()
-        await download_spot(c, m, query)
-        return await pros.delete()
+        return await download_spot(c, m, pros, query)
 
     else:
         cmd = " ".join(m.text.split()[1:]).replace(" ", "+")
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
-        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-        return await pros.delete()
+        await pros.delete()
+        return await m.reply_inline_bot_result(x.query_id, x.results[0].id)
