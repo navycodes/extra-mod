@@ -37,7 +37,7 @@ def download_file(url, filename, stream: False = bool):
                 file.write(chunk)
         print(f"Downloaded: {filename}")
     else:
-        print(f"Failed to download: {filename}")
+        return (f"Failed to download: {filename}")
 
 
 async def download_tiktok_video(c, m, _, link, em, opsi):
@@ -67,6 +67,7 @@ async def download_tiktok_video(c, m, _, link, em, opsi):
                     os.remove("thumbnail.jpg")
                     os.remove(f"video_{i+1}.mp4")
                     os.remove("title.txt")
+                    return 
             elif opsi == "audio":
                 audio_urls = result["audio"]
                 for i, audio_url in enumerate(audio_urls):
@@ -82,17 +83,18 @@ async def download_tiktok_video(c, m, _, link, em, opsi):
                     os.remove("thumbnail.jpg")
                     os.remove(f"audio_{i+1}.mp3")
                     os.remove("title.txt")
+                    return 
             else:
-                await m.reply(
+                return await m.reply(
                     f"{em.gagal} Silakan gunakan format `{m.text.split()[0]}` video link-tiktok atau `{m.text.split()[0]}` audio link-tiktok."
                 )
         else:
-            await m.reply(
+            return await m.reply(
                 f"{em.gagal} **Failed to download TikTok video. Reason: {str(e)}**"
             )
     except Exception as e:
-        print(f"Error occurred: {e}")
-        await m.reply(
+        
+        return await m.reply(
             f"{em.gagal} **Failed to download TikTok video. Reason: {str(e)}**"
         )
 
@@ -123,7 +125,7 @@ async def _(c, m, _):
         search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
         link = f"https://youtu.be/{search['id']}"
     except Exception as error:
-        await m.reply_text(_("err").format(em.gagal, error))
+        return await m.reply_text(_("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -136,7 +138,7 @@ async def _(c, m, _):
             data_ytp,
         ) = await YoutubeDownload(link, as_video=True)
     except Exception as error:
-        await m.reply_text(_("err").format(em.gagal, error))
+        return await m.reply_text(_("err").format(em.gagal, error))
     thumbnail = wget.download(thumb)
     await c.send_video(
         m.chat.id,
@@ -256,23 +258,6 @@ def download_media_from_twitter(tweet_url):
         return None
 
 
-async def download_and_send_file(c, chat_id, url, content_type):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        if response.status_code == 200:
-            file_name = f"downloaded_{content_type}.{url.split('.')[-1]}"
-            with open(file_name, "wb") as f:
-                f.write(response.content)
-            if content_type == "photo":
-                await c.reply_photo(chat_id, file_name)
-            elif content_type == "video":
-                await c.reply_video(chat_id, file_name)
-            os.remove(file_name)
-    except Exception as e:
-        await c.reply("Terjadi kesalahan saat mengunduh atau mengirim file.")
-
-
 @ky.ubot("twit|twitt")
 async def _(c: nlx, m, _):
     em = Emojik(c)
@@ -309,7 +294,7 @@ async def _(c: nlx, m, _):
             if media_url:
                 caption = f"{em.sukses} <b>Successfully Download Photo by : {c.me.mention}</b>"
                 await c.send_photo(chat_id=m.chat.id, photo=media_url, caption=caption)
-                await pros.delete()
+                return await pros.delete()
         elif media_type == "video":
             video_info = (
                 media_info.get("result", {})
@@ -331,18 +316,18 @@ async def _(c: nlx, m, _):
                     await c.send_video(
                         chat_id=m.chat.id, video=video_url, caption=caption
                     )
-                    await pros.delete()
-                    return
+                    return await pros.delete()
+                    
             else:
-                await pros.edit(
+                return await pros.edit(
                     f"{em.gagal} <b>Gagal mendapatkan URL video dari tautan Twitter.</b>"
                 )
-                return
+                
     else:
-        await pros.edit(
+        return await pros.edit(
             f"{em.gagal} <b>Gagal mendapatkan informasi media dari Twitter.</b>"
         )
-        return
+        
 
 
 @ky.ubot("insta")
@@ -376,7 +361,7 @@ async def insta_handler(c: nlx, m, _):
                         photo=media_url,
                         caption=f"{em.sukses} <b>Successfully Download Photo by : {c.me.mention}</b>",
                     )
-                    await pros.delete()
+                    return await pros.delete()
                 elif result["type"] == "video/mp4":
                     await c.send_video(
                         m.chat.id,
@@ -384,22 +369,22 @@ async def insta_handler(c: nlx, m, _):
                         thumb=thumb_url,
                         caption=f"{em.sukses} <b>Successfully Download Video by : {c.me.mention}</b>",
                     )
-                    await pros.delete()
+                    return await pros.delete()
                 else:
-                    await pros.edit(f"{em.gagal} <b>Tipe media tidak didukung.</b>")
+                    return await pros.edit(f"{em.gagal} <b>Tipe media tidak didukung.</b>")
             else:
-                await pros.edit(
+                return await pros.edit(
                     f"{em.gagal} <b>Gagal mengunduh media dari tautan yang diberikan.</b>"
                 )
         else:
-            await pros.edit(
+            return await pros.edit(
                 f"{em.gagal} <b>Tautan yang diberikan bukan tautan Instagram yang valid.</b>"
             )
     except IndexError:
-        await pros.edit(
+        return await pros.edit(
             f"{em.gagal} <b>Format perintah salah.\nGunakan perintah `{m.text} [tautan_instagram]`</b>."
         )
-    return
+    
 
 
 @ky.ubot("ytdl")
@@ -422,7 +407,7 @@ async def _(c: nlx, m, _):
             data_ytp,
         ) = await YoutubeDownload(url, as_video=True)
     except Exception as error:
-        await m.reply_text(_("err").format(em.gagal, error))
+        return await m.reply_text(_("err").format(em.gagal, error))
     thumbnail = wget.download(thumb)
     await c.send_video(
         m.chat.id,
