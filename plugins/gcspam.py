@@ -56,7 +56,7 @@ async def SpamMsg(client, message, send):
 
 async def SpamGcast(client, message, send):
     total_spam_gcast[client.me.id] = 0
-    
+
     blacklist = dB.get_list_from_var(client.me.id, "BLGCAST")
     delay = dB.get_var(client.me.id, "SPAM") or 0
 
