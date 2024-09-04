@@ -8,7 +8,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-
+        
     pler = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await pler.edit("**JANGAN SOK JAGOAN DAH LU**")
@@ -36,8 +36,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("goblok")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     puki = await m.reply("**WOYY GOBLOK!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await puki.edit("**KO LU GOBLOK BANGET SIH**")
@@ -56,7 +56,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await puki.edit("**EHHH SANGE NYA MAU DAPAT YANG CANTIK**")
     await asyncio.sleep(1.8)
-    await puki.edit("**HAHAHAHA**")
+    return await puki.edit("**HAHAHAHA**")
 
 
 # Create by myself @localheart
@@ -65,8 +65,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("ngatain")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     kon = await m.reply("**BABI!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await kon.edit("**MUKA LU KAYA BABI**")
@@ -85,7 +85,7 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await kon.edit("**EHHH SANGE NYA MAU DAPAT YANG CANTIK**")
     await asyncio.sleep(1.8)
-    await kon.edit("**HAHAHAHA**")
+    return await kon.edit("**HAHAHAHA**")
 
 
 # Create by myself @localheart
@@ -94,8 +94,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("yatim")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     mek = await m.reply(
         "`Hai Anak Kontol 🙈, Jangan Lupa Makan Yaa`", reply_to_message_id=ReplyCheck(m)
     )
@@ -116,14 +116,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await mek.edit("`MAAF YA, CANDAA BEBANNNN xixixi 🙈`")
     await asyncio.sleep(1.8)
-    await mek.edit("`Tapi Bo'ong Hiyahiyahiya`")
+    return await mek.edit("`Tapi Bo'ong Hiyahiyahiya`")
 
 
 @ky.ubot("kont")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     putt = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await putt.edit("**LU ANAK KONTOLL**")
@@ -146,4 +146,4 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await putt.edit("**BIAR LO PUNYA KONTOLL**")
     await asyncio.sleep(1.8)
-    await putt.edit("**KASIAN CACAD GAPUNYA KONTOLL**")
+    return await putt.edit("**KASIAN CACAD GAPUNYA KONTOLL**")
