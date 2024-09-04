@@ -35,32 +35,26 @@ async def _(c: nlx, m, _):
 
         if os.path.getsize(anu) == 0:
             os.remove(anu)
-            await c.send_message(logs, _("spy_1").format(em.gagal))
-            return
-
+            return await c.send_message(logs, _("spy_1").format(em.gagal))
         try:
             if dia.photo:
-                await c.send_photo(logs, anu, anjing)
+                return await c.send_photo(logs, anu, anjing)
             elif dia.video:
-                await c.send_video(logs, anu, anjing)
+                return await c.send_video(logs, anu, anjing)
 
             elif dia.audio:
-                await c.send_audio(logs, anu, anjing)
+                return await c.send_audio(logs, anu, anjing)
 
             elif dia.voice:
 
-                await c.send_voice(logs, anu, anjing)
+                return await c.send_voice(logs, anu, anjing)
 
             elif dia.document:
 
-                await c.send_document(logs, anu, anjing)
+                return await c.send_document(logs, anu, anjing)
         except Exception as e:
 
-            await c.send_message(logs, _("err").format(em.gagal, e))
-
-        finally:
-            os.remove(anu)
+            return await c.send_message(logs, _("err").format(em.gagal, e))
     else:
 
-        await c.send_message(logs, _("spy_2").format(em.sukses))
-        return
+        return await c.send_message(logs, _("spy_2").format(em.sukses))
