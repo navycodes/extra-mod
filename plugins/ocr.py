@@ -38,6 +38,6 @@ async def read_cmd(client, message, _):
         req = requests.get(
             f"https://script.google.com/macros/s/AKfycbwURISN0wjazeJTMHTPAtxkrZTWTpsWIef5kxqVGoXqnrzdLdIQIfLO7jsR5OQ5GO16/exec?url={url}"
         ).json()
-        await msg.edit(f"{em.sukses} <code>{req['text']}</code>")
+        return await msg.edit(f"{em.sukses} <code>{req['text']}</code>")
     except Exception as e:
-        await msg.edit(_("err").format(em.gagal, str(e)))
+        return await msg.edit(_("err").format(em.gagal, str(e)))
