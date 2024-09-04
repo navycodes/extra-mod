@@ -46,8 +46,8 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     if len(m.command) < 2:
-        await m.reply(_("webs_1").format(em.gagal, m.command))
-        return
+        return await m.reply(_("webs_1").format(em.gagal, m.command))
+        
     if len(m.command) == 2:
         url = m.text.split(None, 1)[1]
         full = False
@@ -60,26 +60,21 @@ async def _(c: nlx, m, _):
             "true",
         ]
     else:
-        await m.reply(_("webs_1").format(em.gagal))
-        return
-
+        return await m.reply(_("webs_1").format(em.gagal))
     tit = await m.reply(_("proses").format(em.proses))
-
     try:
         photo = await ss(url, full)
         if not photo:
             await tit.edit(_("webs_2").format(em.gagal))
-            return
+            return await tit.delete()
         await tit.delete()
-
         tot = await m.reply(_("upload").format(em.proses))
 
         if not full:
             await m.reply_photo(photo)
         else:
             await m.reply_document(photo)
-        await tot.delete()
-        return
+        return await tot.delete()
     except Exception as r:
         await m.reply(_("err").format(em.gagal, r))
-        return
+        return await tot.delete()
