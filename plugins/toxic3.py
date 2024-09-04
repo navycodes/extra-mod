@@ -10,7 +10,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     sepong = await m.reply(
         "**GIGI KUNING MATA MERAH BADAN KURUS CEKING EMANG PANTES...**",
         reply_to_message_id=ReplyCheck(m),
@@ -36,7 +36,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     Kon = await m.reply("**IZIN PANTUN BANG...**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await Kon.edit("**KETEMU SI MAMAS DIAJAKIN KE CIBINONG...**")
@@ -62,7 +62,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     omek = await m.reply(
         "**IZIN NUMPANG PANTUN BANG...**", reply_to_message_id=ReplyCheck(m)
     )

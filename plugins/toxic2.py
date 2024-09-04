@@ -8,7 +8,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     pler = await m.reply("**WOYY NGENTOD!!**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await pler.edit("**JANGAN SOK JAGOAN DAH LU**")
