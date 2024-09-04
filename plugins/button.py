@@ -28,22 +28,22 @@ async def _(c: nlx, m, _):
     babi = await m.reply(_("proses").format(em.proses))
     id_button[c.me.id] = c.get_arg(m)
     if rep.text:
-        udB.set_var(c.me.id, "id_button", id_button[c.me.id])
+        dB.set_var(c.me.id, "id_button", id_button[c.me.id])
     elif rep.media:
         if rep.photo:
             file = rep.photo.file_id
             don = await c.download_media(file)
             oh = upload_file(don)
             mmk = f"https://telegra.ph/{oh[0]}"
-            udB.set_var(c.me.id, "id_button_pic", mmk)
-            udB.set_var(c.me.id, "id_button", id_button[c.me.id])
+            dB.set_var(c.me.id, "id_button_pic", mmk)
+            dB.set_var(c.me.id, "id_button", id_button[c.me.id])
         elif rep.video:
             file = rep.video.file_id
             don = await c.download_media(file)
             oh = upload_file(don)
             mmk = f"https://telegra.ph/{oh[0]}"
-            udB.set_var(c.me.id, "id_button_pic", mmk)
-            udB.set_var(c.me.id, "id_button", id_button[c.me.id])
+            dB.set_var(c.me.id, "id_button_pic", mmk)
+            dB.set_var(c.me.id, "id_button", id_button[c.me.id])
     text, keyboard = get_msg_button(teks)
     if keyboard:
         try:

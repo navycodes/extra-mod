@@ -10,7 +10,7 @@ def help_string(org):
 
 
 def flood_bokep(org):
-    trial = udB.get_list_from_var(bot.me.id, "flood_bokep", "user")
+    trial = dB.get_list_from_var(bot.me.id, "flood_bokep", "user")
     if org in trial:
         return True
     return False
@@ -35,12 +35,12 @@ async def _(c: nlx, m, _):
         flood[int(c.me.id)] = 1
     if flood[int(c.me.id)] > 5:
         if c.me.id not in the_cegers:
-            udB.add_to_var(c.me.id, "flood_bokep", c.me.id, "user")
+            dB.add_to_var(c.me.id, "flood_bokep", c.me.id, "user")
             return await m.reply_text(
                 f"<b>{em.gagal} Limit mencapai batas!! Silahkan coba lagi besok atau hubungi @kenapanan untuk membuka limit</b>"
             )
     xnxx = {"_id": c.me.id, "args": c.get_arg(m)}
-    udB.set_var(c.me.id, "bokep", xnxx)
+    dB.set_var(c.me.id, "bokep", xnxx)
     cmd = m.command[0]
     x = await c.get_inline_bot_results(bot_username, f"bokep {cmd}")
     return await m.reply_inline_bot_result(x.query_id, x.results[0].id)

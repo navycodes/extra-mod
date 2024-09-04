@@ -136,7 +136,7 @@ async def _(c: nlx, message, _):
     em = Emojik(c)
     em.initialize()
     global berenti
-    list_gc = udB.get_list_from_var(c.me.id, "db_spam", "grup")
+    list_gc = dB.get_list_from_var(c.me.id, "db_spam", "grup")
     if not list_gc:
         return await message.reply(
             f"{em.gagal} ANAK KONTOL MAU SPAM TAPI LIST GC KOSONG!!"
@@ -198,14 +198,14 @@ async def _(c: nlx, m, _):
         chat_id = int(chat_id)
     if chat_id in NO_GCAST:
         return await m.delete()
-    blacklist = udB.get_list_from_var(c.me.id, "db_spam", "grup")
+    blacklist = dB.get_list_from_var(c.me.id, "db_spam", "grup")
     try:
         chat = await c.get_chat(chat_id)
     except:
         chat = "Private "
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
-    udB.add_to_var(c.me.id, "db_spam", chat_id, "grup")
+    dB.add_to_var(c.me.id, "db_spam", chat_id, "grup")
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id, chat.title))
 
 
@@ -219,10 +219,10 @@ async def _(c: nlx, m, _):
             chat_id = m.chat.id
         else:
             chat_id = int(m.command[1])
-        blacklist = udB.get_list_from_var(c.me.id, "db_spam", "grup")
+        blacklist = dB.get_list_from_var(c.me.id, "db_spam", "grup")
         if chat_id not in blacklist:
             return await pp.edit(_("gcs_7").format(em.gagal, chat_id))
-        udB.remove_from_var(c.me.id, "db_spam", chat_id, "grup")
+        dB.remove_from_var(c.me.id, "db_spam", chat_id, "grup")
         return await pp.edit(_("gcs_8").format(em.sukses, chat_id))
 
     except Exception as error:
@@ -236,7 +236,7 @@ async def _(c: nlx, m, _):
     pp = await m.reply(_("proses").format(em.proses))
 
     msg = "<b>{} List Group Spam FW</b>\n\n".format(em.sukses)
-    listbc = udB.get_list_from_var(c.me.id, "db_spam", "grup")
+    listbc = dB.get_list_from_var(c.me.id, "db_spam", "grup")
     for x in listbc:
         try:
             get = await c.get_chat(x)
@@ -252,12 +252,12 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     msg = await m.reply(_("proses").format(em.proses))
-    get_bls = udB.get_list_from_var(c.me.id, "db_spam", "grup")
+    get_bls = dB.get_list_from_var(c.me.id, "db_spam", "grup")
     if not get_bls:
         # if len(get_bls) == 0:
         return await msg.edit(_("gcs_13").format(em.gagal))
     for x in get_bls:
-        udB.remove_from_var(c.me.id, "db_spam", x, "grup")
+        dB.remove_from_var(c.me.id, "db_spam", x, "grup")
     return await msg.edit(_("gcs_14").format(em.sukses))
 
 

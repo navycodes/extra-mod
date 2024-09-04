@@ -89,7 +89,7 @@ async def _(c: nlx, m, _):
         "isbot": user.is_bot,
         "dc_id": user.dc_id,
     }
-    udB.set_var(c.me.id, "user_info", dict_userinfo)
+    dB.set_var(c.me.id, "user_info", dict_userinfo)
     try:
         x = await c.get_inline_bot_results(bot_username, "user_info")
         return await c.send_inline_bot_result(
@@ -150,7 +150,7 @@ async def _(c: nlx, m, _):
         "total_banned": total_banned,
         "desc": about,
     }
-    udB.set_var(c.me.id, "gc_info", dict_gcinfo)
+    dB.set_var(c.me.id, "gc_info", dict_gcinfo)
     try:
         x = await c.get_inline_bot_results(bot_username, "gc_info")
         return await c.send_inline_bot_result(

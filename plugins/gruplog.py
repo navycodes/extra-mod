@@ -27,7 +27,7 @@ async def _(c: nlx, m, _):
     xx = await m.reply(_("proses").format(em.proses))
     cek = c.get_arg(m)
     if cek.lower() == "on":
-        if not udB.get_var(c.me.id, "TAG_LOG"):
+        if not dB.get_var(c.me.id, "TAG_LOG"):
             try:
                 pr = await check_logger(c)
             except (PeerFlood, UserRestricted, UserBannedInChannel):
@@ -38,12 +38,12 @@ async def _(c: nlx, m, _):
         else:
             return await xx.edit(_("grplog_2").format(em.sukses))
     if cek.lower() == "off":
-        if udB.get_var(c.me.id, "TAG_LOG"):
-            xx = udB.get_var(c.me.id, "TAG_LOG")
+        if dB.get_var(c.me.id, "TAG_LOG"):
+            xx = dB.get_var(c.me.id, "TAG_LOG")
             try:
                 await c.delete_supergroup(int(xx))
                 c.set_logger(c.me.id, None)
-                udB.remove_var(c.me.id, "TAG_LOG")
+                dB.remove_var(c.me.id, "TAG_LOG")
                 return await xx.edit(_("grplog_3").format(em.gagal))
             except Exception as e:
                 return f"{e}"
@@ -57,7 +57,7 @@ async def _(c: nlx, m, _):
 @capture_err
 # @manage_handlers
 async def _(client, message, _):
-    log = udB.get_var(client.me.id, "TAG_LOG")
+    log = dB.get_var(client.me.id, "TAG_LOG")
     if not log:
         return
     if message.chat.id == 777000:

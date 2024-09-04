@@ -22,7 +22,7 @@ async def _(c: nlx, m, _):
     rep = m.reply_to_message
     if not rep and len(m.command) < 3:
         return await TM.edit("Reply to message!!")
-    udB.set_var(c.me.id, "toprem", rep.text)
+    dB.set_var(c.me.id, "toprem", rep.text)
     link = m.text.split(None, 1)[1]
     await c.send_message(bot_username, f"/btch {link}")
     return await TM.edit("Done")

@@ -20,11 +20,11 @@ async def _(c: nlx, m, _):
     except Exception as error:
         return await msg.edit(error)
     usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
-    sudoers = udB.get_list_from_var(c.me.id, "sudoers", "userid")
+    sudoers = dB.get_list_from_var(c.me.id, "sudoers", "userid")
     if user.id in sudoers:
         return await msg.edit(_("sud_1").format(em.sukses, usro))
     try:
-        udB.add_to_var(c.me.id, "sudoers", user.id, "userid")
+        dB.add_to_var(c.me.id, "sudoers", user.id, "userid")
         return await msg.edit(_("sud_2").format(em.sukses, usro))
     except Exception as error:
         return await msg.edit(error)
@@ -44,13 +44,13 @@ async def _(c: nlx, m, _):
     except Exception as error:
         return await msg.edit(error)
 
-    sudo_users = udB.get_list_from_var(c.me.id, "sudoers", "userid")
+    sudo_users = dB.get_list_from_var(c.me.id, "sudoers", "userid")
     usro = f"[{user.first_name} {user.last_name or ''}](tg://user?id={user.id})"
     if user.id not in sudo_users:
         return await msg.edit(_("sud_3").format(em.sukses, usro))
 
     try:
-        udB.remove_from_var(c.me.id, "sudoers", user.id, "userid")
+        dB.remove_from_var(c.me.id, "sudoers", user.id, "userid")
         return await msg.edit(_("sud_4").format(em.sukses, usro))
     except Exception as error:
         return await msg.edit(_("err").format(em.gagal, error))
@@ -61,7 +61,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     msg = ""
-    sudoers = udB.get_list_from_var(c.me.id, "sudoers", "userid")
+    sudoers = dB.get_list_from_var(c.me.id, "sudoers", "userid")
     for ix in sudoers:
         try:
             org = await c.get_users(int(ix))

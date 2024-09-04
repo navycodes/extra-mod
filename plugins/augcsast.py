@@ -41,7 +41,7 @@ async def _(c, m, _):
     """
     msg = await m.reply(_("proses").format(em.proses))
     type, value = extract_type_and_text(m)
-    auto_text_vars = udB.get_var(c.me.id, "AUTO_TEXT")
+    auto_text_vars = dB.get_var(c.me.id, "AUTO_TEXT")
     if type == "on":
         if not auto_text_vars:
             return await msg.edit(_("augcs_1").format(em.gagal))
@@ -50,8 +50,8 @@ async def _(c, m, _):
             AG.append(c.me.id)
             done = 0
             while c.me.id in AG:
-                delay = udB.get_var(c.me.id, "DELAY_GCAST") or 1
-                blacklist = udB.get_chat(c.me.id)
+                delay = dB.get_var(c.me.id, "DELAY_GCAST") or 1
+                blacklist = dB.get_chat(c.me.id)
                 txt = random.choice(auto_text_vars)
 
                 group = 0
@@ -103,7 +103,7 @@ async def _(c, m, _):
         )
 
     elif type == "delay":
-        udB.set_var(c.me.id, "DELAY_GCAST", value)
+        dB.set_var(c.me.id, "DELAY_GCAST", value)
         return await msg.edit(
             f"{em.sukses} <b>Delay Auto Gcast diatur ke : <code>{value}</code></b>"
         )
@@ -114,14 +114,14 @@ async def _(c, m, _):
                 f"{em.gagal} <b>Minimal kasih angka Tolol, teks keberapa perlu dihapus.</b>"
             )
         if value == "all":
-            udB.set_var(c.me.id, "AUTO_TEXT", [])
+            dB.set_var(c.me.id, "AUTO_TEXT", [])
             return await msg.edit(
                 f"{em.sukses} <b>Yosh semua teks alay lo udah dihapus.</b>"
             )
         try:
             value = int(value) - 1
             auto_text_vars.pop(value)
-            udB.set_var(c.me.id, "AUTO_TEXT", auto_text_vars)
+            dB.set_var(c.me.id, "AUTO_TEXT", auto_text_vars)
             return await msg.edit(
                 f"{em.sukses} <b>Teks ke : <code>{value+1}</code> dihapus.</b>"
             )
@@ -168,6 +168,6 @@ async def _(c, m, _):
 
 
 async def add_auto_text(c, text):
-    auto_text = udB.get_var(c.me.id, "AUTO_TEXT") or []
+    auto_text = dB.get_var(c.me.id, "AUTO_TEXT") or []
     auto_text.append(text)
-    udB.set_var(c.me.id, "AUTO_TEXT", auto_text)
+    dB.set_var(c.me.id, "AUTO_TEXT", auto_text)

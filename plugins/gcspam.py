@@ -46,7 +46,7 @@ total_spam_gcast = {}
 
 
 async def SpamMsg(client, message, send):
-    delay = udB.get_var(client.me.id, "SPAM") or 0
+    delay = dB.get_var(client.me.id, "SPAM") or 0
     await asyncio.sleep(int(delay))
     if message.reply_to_message:
         return await send.copy(message.chat.id)
@@ -56,8 +56,8 @@ async def SpamMsg(client, message, send):
 
 async def SpamGcast(client, message, send):
     total_spam_gcast[client.me.id] = 0
-    blacklist = udB.get_chat(client.me.id)
-    delay = udB.get_var(client.me.id, "SPAM") or 0
+    blacklist = dB.get_chat(client.me.id)
+    delay = dB.get_var(client.me.id, "SPAM") or 0
 
     async def send_message(target_chat):
         await asyncio.sleep(int(delay))
@@ -135,7 +135,7 @@ async def _(client, message, _):
     r = await message.reply(_("proses").format(em.proses))
     count, msg = extract_type_and_msg(message)
     if count.lower() == "none":
-        udB.set_var(client.me.id, "SPAM", 0)
+        dB.set_var(client.me.id, "SPAM", 0)
         return await r.edit(
             "{} Spam delay berhasil diatur menjadi none".format(em.sukses)
         )
@@ -145,7 +145,7 @@ async def _(client, message, _):
         return await r.edit(_("err").format(em.gagal, error))
     if not count:
         return await r.edit("{} Silahkan berikan angka delay".format(em.gagal))
-    udB.set_var(client.me.id, "SPAM", count)
+    dB.set_var(client.me.id, "SPAM", count)
     return await r.edit(
         "{} Spam delay berhasil disetel ke: `{}`.".format(em.sukses, count)
     )
