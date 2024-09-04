@@ -49,13 +49,12 @@ async def search_images(query, m, max_results, pros=None):
                 if response.status_code == 200:
                     img = BytesIO(response.content)
                     media_list.append(InputMediaPhoto(img))
-
-        await m.reply_media_group(media_list, reply_to_message_id=ReplyCheck(m))
+        await pros.delete()
+        return await m.reply_media_group(media_list, reply_to_message_id=ReplyCheck(m))
     except Exception as e:
-        print(f"Error fetching images: {e}")
-    finally:
-        if pros:
-            await pros.delete()
+        return f"Error fetching images: {e}")
+    
+            
 
 
 @ky.ubot("image|img")
