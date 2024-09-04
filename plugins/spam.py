@@ -31,7 +31,6 @@ async def _(c: nlx, m, _):
     if m.chat.id in NO_GCAST:
         return await m.reply("ANAK KONTOL MALAH MAU SPAM DIGC SUPPORT GOBLOK")
     reply = m.reply_to_message
-    msg = await m.reply(_("proses").format(em.proses))
     berenti = True
 
     if reply:
@@ -41,14 +40,12 @@ async def _(c: nlx, m, _):
                 if not berenti:
                     break
                 await reply.copy(m.chat.id)
-                await msg.delete()
                 await asyncio.sleep(0.1)
         except Exception as error:
-            return await msg.edit(str(error))
+            return await m.reply(str(error))
     else:
         if len(m.command) < 2:
-            return await msg.edit(_("spm_1").format(em.gagal, m.command))
-
+            return await m.reply(_("spm_1").format(em.gagal, m.text.split()[1]))
         else:
             try:
                 count_message = int(m.command[1])
@@ -60,12 +57,9 @@ async def _(c: nlx, m, _):
                     )
                     await asyncio.sleep(0.1)
             except Exception as error:
-                return await msg.edit(str(error))
+                return await m.reply(str(error))
     berenti = False
-
-    await msg.delete()
-    await m.delete()
-    return
+    return await m.delete()
 
 
 @ky.ubot("dspam")
@@ -78,16 +72,13 @@ async def _(c: nlx, m, _):
     if m.chat.id in NO_GCAST:
 
         return await m.reply("ANAK KONTOL MALAH MAU SPAM DIGC SUPPORT GOBLOK")
-    # msg = await m.reply(_("proses").format(em.proses))
-    # await msg.delete()
-    await m.delete()
     berenti = True
     if reply:
         try:
             count_message = int(m.command[1])
             count_delay = int(m.command[2])
         except Exception as error:
-            return await m.edit(str(error))
+            return await m.reply(str(error))
         for i in range(count_message):
             if not berenti:
                 break
@@ -104,13 +95,13 @@ async def _(c: nlx, m, _):
                 await asyncio.sleep(count_delay)
     else:
         if len(m.command) < 4:
-            return await m.reply(_("spm_2").format(em.gagal, m.command))
+            return await m.reply(_("spm_2").format(em.gagal, m.text.split()[1]))
         else:
             try:
                 count_message = int(m.command[1])
                 count_delay = int(m.command[2])
             except Exception as error:
-                return await m.edit(str(error))
+                return await m.reply(str(error))
             for i in range(count_message):
                 if not berenti:
                     break
@@ -125,10 +116,8 @@ async def _(c: nlx, m, _):
                     await asyncio.sleep(e.value)
                     await m.reply(m.text.split(None, 3)[3])
                     await asyncio.sleep(count_delay)
-
     berenti = False
-
-    return
+    return await m.delete()
 
 
 @ky.ubot("cspam")
@@ -139,8 +128,7 @@ async def _(c: nlx, m, _):
     if not berenti:
         return await m.reply(_("spm_3").format(em.gagal))
     berenti = False
-    await m.reply(_("spm_4").format(em.sukses))
-    return
+    return await m.reply(_("spm_4").format(em.sukses))
 
 
 @ky.ubot("bcfw")
@@ -148,16 +136,6 @@ async def _(c: nlx, message, _):
     em = Emojik(c)
     em.initialize()
     global berenti
-    """
-    if message.chat.id in NO_GCAST:
-        for x in the_cegers:
-            if c.me.id == x:
-                continue
-            else:
-                return await message.reply(
-                    "ANAK KONTOL MALAH MAU SPAM DIGC SUPPORT GOBLOK"
-                )
-    """
     list_gc = udB.get_list_from_var(c.me.id, "db_spam", "grup")
     if not list_gc:
         return await message.reply(
@@ -171,12 +149,8 @@ async def _(c: nlx, message, _):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await proses.reply(_("spm_5").format(em.gagal, message.command))
-        await proses.delete()
-        return
-
+        return await proses.edit(_("spm_5").format(em.gagal, message.text.split()[1]))
     chat_id, message_id = link.split("/")[-2:]
-
     try:
         chat_id = int(chat_id)
     except ValueError:
@@ -191,8 +165,6 @@ async def _(c: nlx, message, _):
                     break
                 await c.get_messages(chat_id, message_id)
                 await c.forward_messages(gc, chat_id, message_ids=message_id)
-                await proses.delete()
-                await message.delete()
                 await asyncio.sleep(delay)
             except Exception as e:
                 if (
@@ -201,15 +173,12 @@ async def _(c: nlx, message, _):
                     or "USER_RESTRICTED" in str(e)
                 ):
                     await message.reply(_("spm_6").format(em.gagal))
-                    await proses.delete()
                 else:
                     await message.reply(_("err").format(em.gagal, e))
-                    await proses.delete()
                 break
     berenti = False
     await message.delete()
-    await proses.delete()
-    return
+    return await proses.delete()
 
 
 @ky.ubot("addfw")
@@ -257,7 +226,7 @@ async def _(c: nlx, m, _):
         return await pp.edit(_("gcs_8").format(em.sukses, chat_id))
 
     except Exception as error:
-        await pp.edit(str(error))
+        return await pp.edit(str(error))
 
 
 @ky.ubot("listfw")
@@ -275,8 +244,7 @@ async def _(c: nlx, m, _):
         except:
             msg += _("gcs_12").format(x)
     await pp.delete()
-    await m.reply(msg)
-    return
+    return await m.reply(msg)
 
 
 @ky.ubot("clearfw")
@@ -315,9 +283,7 @@ async def _(c: nlx, message, _):
         count = int(count_str)
         delay = int(delay_str)
     except ValueError:
-        await proses.reply(_("spm_5").format(em.gagal, message.command))
-        await proses.delete()
-        return
+        return await proses.edit(_("spm_5").format(em.gagal, message.command))
 
     chat_id, message_id = link.split("/")[-2:]
 
@@ -334,8 +300,6 @@ async def _(c: nlx, message, _):
                 break
             await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
-            await proses.delete()
-            await message.delete()
             await asyncio.sleep(delay)
         except Exception as e:
             if (
@@ -344,12 +308,10 @@ async def _(c: nlx, message, _):
                 or "USER_RESTRICTED" in str(e)
             ):
                 await message.reply(_("spm_6").format(em.gagal))
-                await proses.delete()
             else:
                 await proses.reply(_("err").format(em.gagal, e))
-                await proses.delete()
             break
     berenti = False
     await message.delete()
-    await proses.delete()
-    return
+    return await proses.delete()
+    
