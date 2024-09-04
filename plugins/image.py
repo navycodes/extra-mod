@@ -52,7 +52,7 @@ async def search_images(query, m, max_results, pros=None):
         await pros.delete()
         return await m.reply_media_group(media_list, reply_to_message_id=ReplyCheck(m))
     except Exception as e:
-        return f"Error fetching images: {e}")
+        return f"Error fetching images: {e}"
     
             
 
