@@ -17,13 +17,13 @@ from Userbot import *
 @ky.ubot("sadboy")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("`Pertama-tama kamu cantik`")
     await asyncio.sleep(1.8)
     await uputt.edit("`Kedua kamu manis`")
     await asyncio.sleep(1.8)
-    await uputt.edit("`Dan yang terakhir adalah kamu bukan milikku`")
+    return await uputt.edit("`Dan yang terakhir adalah kamu bukan milikku`")
 
 
 # Create by myself @localheart
@@ -32,22 +32,22 @@ async def _(c: nlx, m, _):
 @ky.ubot("lah")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Lah, Lu tolol?**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Apa dongok?**")
     await asyncio.sleep(1.8)
     await uputt.edit("**Gausah sok keras**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Gua ga ketrigger sama bocah baru nyemplung!**")
+    return await uputt.edit("**Gua ga ketrigger sama bocah baru nyemplung!**")
 
 
 @ky.ubot("sok")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**WOII**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**KONTOL**")
@@ -56,14 +56,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**GAUSAH SOK KERAS DEH**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**GA KEREN LO BEGITU NGENTOT**")
+    return await uputt.edit("**GA KEREN LO BEGITU NGENTOT**")
 
 
 @ky.ubot("wah")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply(
         "**Wahh, War nya keren bang**", reply_to_message_id=ReplyCheck(m)
     )
@@ -80,7 +80,7 @@ async def _(c: nlx, m, _):
         "**Kasian badut🤡, Ga di hargain pengunjung, Eh lampiaskan nya ke Tele, Wkwkwk**"
     )
     await asyncio.sleep(1.8)
-    await uputt.edit(
+    return await uputt.edit(
         "**Dah sana cabut, Makasih hiburannya, Udah bikin Gua tawa ngakak**"
     )
 
@@ -88,8 +88,8 @@ async def _(c: nlx, m, _):
 @ky.ubot("alay")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("eh kamu, iya kamu", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**ALAY bnget sih**")
@@ -98,14 +98,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**baru pande bikin userbot ya?? xixixi**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**pantes NORAK**")
+    return await uputt.edit("**pantes NORAK**")
 
 
 @ky.ubot("erpe")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("Hai, Kamu Anak Erpe Ya", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("Kok Pake Muka Orang sih?")
@@ -122,14 +122,14 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("Canda **BURIK**")
     await asyncio.sleep(1.8)
-    await uputt.edit("Lari Ada Plastik KePanasan")
+    return await uputt.edit("Lari Ada Plastik KePanasan")
 
 
 @ky.ubot("tittle")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**OI ANAK TITLE**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**OOO INI YANG SOK JADI PAHLAWAN DI TELEGRAM?**")
@@ -164,4 +164,4 @@ async def _(c: nlx, m, _):
     await asyncio.sleep(1.8)
     await uputt.edit("**MANA VIRTUAL LAGI, SOK JAGO LAGI DUH**")
     await asyncio.sleep(1.8)
-    await uputt.edit("**SEMOGA CEPET SADAR YA HAHAHAHA**")
+    return await uputt.edit("**SEMOGA CEPET SADAR YA HAHAHAHA**")
