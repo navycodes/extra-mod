@@ -46,7 +46,7 @@ async def _(c: nlx, m, _):
                 udB.remove_var(c.me.id, "TAG_LOG")
                 return await xx.edit(_("grplog_3").format(em.gagal))
             except Exception as e:
-                print(f"{e}")
+                return f"{e}"
         else:
             return await xx.edit(_("grplog_4").format(em.gagal))
     else:
@@ -88,18 +88,17 @@ async def _(client, message, _):
 • <b>Link Message: [Here]({message_link}) </blockquote>
 """
         try:
-            await client.send_message(int(log), text, disable_web_page_preview=True)
             await asyncio.sleep(0.5)
+            return await client.send_message(int(log), text, disable_web_page_preview=True)
         except ChatForwardsRestricted:
-            print(f"Error ChatForwardsRestricted {message.chat.id}")
+            return f"Error ChatForwardsRestricted {message.chat.id}"
         except MessageIdInvalid:
-            print(f"Error MessageIdInvalid {message.chat.id}")
+            return f"Error MessageIdInvalid {message.chat.id}"
         except ChannelPrivate:
-            print(f"Error ChannelPrivate {message.chat.id}")
+            return f"Error ChannelPrivate {message.chat.id}"
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            await client.send_message(int(log), text, disable_web_page_preview=True)
-            await asyncio.sleep(0.5)
+            return await client.send_message(int(log), text, disable_web_page_preview=True)
     else:
         text = f"""
 📨 <b><u>Private Notifications</u></b>
@@ -109,9 +108,8 @@ async def _(client, message, _):
 • <b>Link Message: [Here]({message_link}) </b>
 """
         try:
-            await client.send_message(int(log), text, disable_web_page_preview=True)
             await asyncio.sleep(0.5)
-            # await message.forward(int(log))
+            return await client.send_message(int(log), text, disable_web_page_preview=True)
         except ChatForwardsRestricted:
             pass
         except MessageIdInvalid:
@@ -120,6 +118,5 @@ async def _(client, message, _):
             pass
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            await client.send_message(int(log), text, disable_web_page_preview=True)
-            await asyncio.sleep(0.5)
-            # await message.forward(int(log))
+            return await client.send_message(int(log), text, disable_web_page_preview=True)
+
