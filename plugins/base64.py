@@ -37,7 +37,6 @@ async def _(c: nlx, m, _):
         text = " ".join(m.command[1:])
     await process_message(c, m, _, text)
     return await pros.delete()
-    
 
 
 @ky.ubot("decode")
@@ -51,4 +50,3 @@ async def _(c: nlx, m, _):
         text = " ".join(m.command[1:])
     await process_message(c, m, _, text, decode=True)
     return await pros.delete()
-    
