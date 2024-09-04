@@ -102,7 +102,7 @@ async def tg_lock(client, message, _, permissions: list, perm: str, lock: bool):
             f"{em.gagal} **To unlock this, you have to unlock 'messages' first.**"
         )
 
-    await message.reply(
+    return await message.reply(
         (_("lck_6").format(em.sukses)) if lock else (_("lck_20").format(em.sukses))
     )
 
@@ -124,11 +124,11 @@ async def _(client: nlx, message, _):
     permissions = await current_chat_permissions(client, chat_id)
 
     if parameter in data:
-        await tg_lock(client, message, _, permissions, data[parameter], state == "lock")
+        return await tg_lock(client, message, _, permissions, data[parameter], state == "lock")
     elif parameter == "all" and state == "lock":
         try:
             await client.set_chat_permissions(chat_id, ChatPermissions())
-            await message.reply(_("lck_4").format(em.sukses))
+            return await message.reply(_("lck_4").format(em.sukses))
         except ChatAdminRequired:
             return await message.reply(_("lck_13").format(em.gagal))
 
@@ -147,7 +147,7 @@ async def _(client: nlx, message, _):
                     can_pin_messages=False,
                 ),
             )
-            await message.reply(_("lck_18").format(em.sukses))
+            return await message.reply(_("lck_18").format(em.sukses))
         except ChatAdminRequired:
             return await message.reply(_("lck_13").format(em.gagal))
 
@@ -208,9 +208,8 @@ async def _(c: nlx, m, _):
       <b>Send Video:</b> {video}
       <b>Send Video Rounds:</b> {vnv}
       """
-            await chkmsg.edit_text(permission_view_str)
+            return await chkmsg.edit_text(permission_view_str)
 
         except RPCError as e_f:
-            await chkmsg.edit_text(_("lck_28").format(em.gagal))
-            await m.reply_text(_("err").format(em.gagal, e_f))
-    return
+            return await m.reply_text(_("err").format(em.gagal, e_f))
+    
