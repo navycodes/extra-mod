@@ -145,7 +145,6 @@ async def gas_download(g, c: nlx, inf, m):
         await inf.delete()
         os.remove(media)
         os.remove(thumbnail)
-    
 
 
 @ky.ubot("copy")
