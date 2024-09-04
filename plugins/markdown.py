@@ -26,7 +26,6 @@ async def _(c: nlx, m, _):
         return await c.send_inline_bot_result(
             m.chat.id, xi.query_id, xi.results[0].id, reply_to_message_id=ReplyCheck(m)
         )
-        
+
     except Exception as e:
         return await m.edit(f"{e}")
-        
