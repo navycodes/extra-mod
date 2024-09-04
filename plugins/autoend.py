@@ -33,7 +33,6 @@ async def _(c: nlx, m, _):
         return await c.delete_user_history(m.chat.id, user)
     except:
         pass
-    
 
 
 @ky.ubot("clearchat|endchat|clchat")
