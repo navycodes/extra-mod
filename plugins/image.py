@@ -53,8 +53,6 @@ async def search_images(query, m, max_results, pros=None):
         return await m.reply_media_group(media_list, reply_to_message_id=ReplyCheck(m))
     except Exception as e:
         return f"Error fetching images: {e}"
-    
-            
 
 
 @ky.ubot("image|img")
@@ -85,6 +83,6 @@ async def _(c: nlx, m, _):
             )
         pros = await m.reply(_("proses").format(em.proses))
         return await search_images(query, m, max_results, pros)
-        
+
     except Exception as e:
         return f"Error: {e}"
