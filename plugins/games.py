@@ -15,10 +15,9 @@ async def _(c, m, _):
         return await c.send_inline_bot_result(
             m.chat.id, x.query_id, x.results[0].id, reply_to_message_id=msg.id
         )
-        
+
     except Exception as error:
         return await m.reply(error)
-        
 
 
 @ky.ubot("dice")
