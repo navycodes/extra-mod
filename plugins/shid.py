@@ -64,4 +64,3 @@ async def _(c: nlx, m, _):
         )
     else:
         return await m.reply_text(_("shid_10").format(em.gagal))
-    
