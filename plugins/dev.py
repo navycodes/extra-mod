@@ -136,7 +136,7 @@ async def _(c: nlx, message, _):
             )
     else:
         await reply_to_.reply_text(final_output)
-    await TM.delete()
+    return await TM.delete()
 
 
 @ky.cegers("ceval")
@@ -173,7 +173,7 @@ async def _(c: nlx, message, _):
             )
     else:
         await reply_to_.reply_text(final_output)
-    await TM.delete()
+    return await TM.delete()
 
 
 def get_size(bytes, suffix="B"):
@@ -225,8 +225,8 @@ async def _(c: nlx, m, _):
     softw += f"Used      : {get_size(svmem.used)}\n"
     softw += f"Percentage: {svmem.percent}%\n"
 
-    await xx.edit(f"{softw}")
-    return
+    return await xx.edit(f"{softw}")
+    
 
 
 async def generate_sysinfo(workdir):
@@ -284,10 +284,10 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     response = await generate_sysinfo(c.workdir)
-    await m.reply(
+    return await m.reply(
         f"{em.proses} # {c.me.first_name}\nStats : Total Usage\n" + response,
     )
-    return
+    
 
 
 @ky.ubot("benal")
@@ -383,14 +383,14 @@ async def _(c: nlx, m, _):
                 except MessageNotModified:
                     pass
         else:
-            await m.reply(
+            return await m.reply(
                 f"{em.gagal} Izin admin Anda tidak cukup untuk menggunakan perintah ini!"
             )
     else:
-        await m.reply(
+        return await m.reply(
             f"{em.gagal} Anda harus menjadi admin dan memiliki izin yang cukup!"
         )
-    return
+    
 
 
 async def mak_mek(c, chat_id, message):
@@ -411,10 +411,10 @@ async def mak_mek(c, chat_id, message):
                 await c.send_message(
                     chat_id, f"{em.gagal} Harap tunggu {e.value} detik lagi"
                 )
-    await message.edit(
+    return await message.edit(
         f"{em.sukses} Berhasil unban : <code>{unban_count}</code> member."
     )
-    return
+    
 
 
 @ky.ubot("anben")
@@ -430,65 +430,13 @@ async def _(c: nlx, m, _):
             await pros.delete()
             return
 
-        await mak_mek(c, m.chat.id, pros)
+        return await mak_mek(c, m.chat.id, pros)
     else:
         await m.reply(
             f"{em.gagal} Anda harus menjadi admin atau memiliki izin yang cukup untuk menggunakan perintah ini!"
         )
         await pros.delete()
         return
-
-
-async def run_mongodump(uri, password):
-    process = subprocess.Popen(
-        f"mongodump {uri}",
-        shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
-    )
-    output, error = process.communicate()
-    if error:
-        LOGGER.info(f"Error: {error.decode()}")
-        return
-    if "Enter password for mongo user:" in output.decode():
-        pexpect.sendline(password)
-
-
-@ky.ubot("mongo")
-@ky.thecegers
-async def backup(c: nlx, message):
-    m = await message.reply("Backing up data...")
-    if len(message.command) < 2:
-        return await m.edit(
-            "Invalid command usage. Please provide MongoDB URI and password."
-        )
-
-    uri = message.text.split(None, 2)[1]
-    password = message.text.split(None, 2)[2]
-
-    try:
-        await run_mongodump(uri, password)
-        os.system("zip backup.zip -r9 dump/*")
-        await message.reply_document("backup.zip")
-        await m.delete()
-        os.remove("backup.zip")
-    except Exception as e:
-        await m.edit(f"Backup failed: {str(e)}")
-
-
-@ky.ubot("prem")
-@ky.thecegers
-async def _(c: nlx, m, _):
-    if len(m.command) == 1:
-        user = m.reply_to_message.from_user.id
-        udB.add_prem(user)
-        await m.reply("Done men.")
-    elif len(m.command) > 2 and not m.reply_to_message:
-        user, _ = await c.extract_user_and_reason(m)
-        udB.add_prem(user)
-        await m.reply("Done men.")
-    else:
-        return await m.reply("Please men...")
 
 
 @ky.ubot("reboot")
@@ -511,5 +459,4 @@ async def _(c: nlx, m, _):
         return
     pros = await m.reply(_("proses").format(em.proses))
     await pros.edit(f"{em.sukses} Done!! You Logout!!")
-    await c.log_out()
-    sys.exit(1)
+    return await c.log_out()
