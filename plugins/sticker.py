@@ -1,5 +1,4 @@
 import asyncio
-import os
 
 from pyrogram.errors import *
 from pyrogram.file_id import *
@@ -23,7 +22,7 @@ async def _(c: nlx, m, _):
     stick = rep.sticker
     if not rep:
         return await m.reply(_("st_1").format(em.gagal))
-        
+
     else:
         if stick.is_video == True:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.mp4")
@@ -35,7 +34,6 @@ async def _(c: nlx, m, _):
             )
         elif stick.is_animated == True:
             return await m.reply(_("st_1").format(em.gagal))
-            
 
         else:
             pat = await c.download_media(stick, file_name=f"{stick.set_name}.png")
@@ -55,7 +53,7 @@ async def _(self: nlx, m, _):
     await self.unblock_user(bot_username)
     if not rep:
         return await m.reply(_("st_3").format(em.gagal))
-        
+
     if rep.sticker:
         pros = await m.reply(_("proses").format(em.proses))
         ai = await self.forward_messages(bot_username, m.chat.id, message_ids=rep.id)
@@ -65,7 +63,7 @@ async def _(self: nlx, m, _):
             return await pros.edit(_("st_4").format(em.sukses))
         else:
             return await pros.edit(_("st_5").format(em.gagal))
-            
+
     else:
         return await m.reply(_("st_6").format(em.gagal))
 
@@ -79,7 +77,7 @@ async def _(self: nlx, m, _):
     await self.unblock_user(bot_username)
     if not rep:
         return await m.reply(_("st_7").format(em.gagal))
-        
+
     await self.send_message(bot_username, "/kang")
     pros = await m.reply(_("proses").format(em.proses))
     if len(m.command) == 2:
