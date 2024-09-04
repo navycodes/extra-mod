@@ -314,4 +314,3 @@ async def _(c: nlx, message, _):
     berenti = False
     await message.delete()
     return await proses.delete()
-    
