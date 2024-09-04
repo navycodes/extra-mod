@@ -13,7 +13,7 @@ from Userbot import *
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**Ayaaang** 🥺")
     await asyncio.sleep(1.8)
     await uputt.edit("**Kangeeen** 👉👈")
@@ -28,7 +28,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**Ayaaang Ih** 🥺", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Nakal Banget Dah Ayang** 🥺")
@@ -42,7 +42,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "**Duuhh Ada Cowo Ganteng** 👉👈", reply_to_message_id=ReplyCheck(m)
     )
@@ -60,7 +60,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "**Duuhh Ada Cewe Cantik** 👉👈", reply_to_message_id=ReplyCheck(m)
     )
@@ -78,7 +78,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "**Eh Kamu Cantik-cantik**", reply_to_message_id=ReplyCheck(m)
     )
@@ -96,7 +96,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "**Eh Kamu Ganteng-ganteng**", reply_to_message_id=ReplyCheck(m)
     )
@@ -114,7 +114,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("**Ayanggg 😖**", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1.8)
     await uputt.edit("**Aku Ange 😫**")
