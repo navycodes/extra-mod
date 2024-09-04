@@ -37,7 +37,7 @@ def download_file(url, filename, stream: False = bool):
                 file.write(chunk)
         print(f"Downloaded: {filename}")
     else:
-        return (f"Failed to download: {filename}")
+        return f"Failed to download: {filename}"
 
 
 async def download_tiktok_video(c, m, _, link, em, opsi):
@@ -67,7 +67,7 @@ async def download_tiktok_video(c, m, _, link, em, opsi):
                     os.remove("thumbnail.jpg")
                     os.remove(f"video_{i+1}.mp4")
                     os.remove("title.txt")
-                    return 
+                    return
             elif opsi == "audio":
                 audio_urls = result["audio"]
                 for i, audio_url in enumerate(audio_urls):
@@ -83,7 +83,7 @@ async def download_tiktok_video(c, m, _, link, em, opsi):
                     os.remove("thumbnail.jpg")
                     os.remove(f"audio_{i+1}.mp3")
                     os.remove("title.txt")
-                    return 
+                    return
             else:
                 return await m.reply(
                     f"{em.gagal} Silakan gunakan format `{m.text.split()[0]}` video link-tiktok atau `{m.text.split()[0]}` audio link-tiktok."
@@ -93,7 +93,7 @@ async def download_tiktok_video(c, m, _, link, em, opsi):
                 f"{em.gagal} **Failed to download TikTok video. Reason: {str(e)}**"
             )
     except Exception as e:
-        
+
         return await m.reply(
             f"{em.gagal} **Failed to download TikTok video. Reason: {str(e)}**"
         )
@@ -317,17 +317,16 @@ async def _(c: nlx, m, _):
                         chat_id=m.chat.id, video=video_url, caption=caption
                     )
                     return await pros.delete()
-                    
+
             else:
                 return await pros.edit(
                     f"{em.gagal} <b>Gagal mendapatkan URL video dari tautan Twitter.</b>"
                 )
-                
+
     else:
         return await pros.edit(
             f"{em.gagal} <b>Gagal mendapatkan informasi media dari Twitter.</b>"
         )
-        
 
 
 @ky.ubot("insta")
@@ -371,7 +370,9 @@ async def insta_handler(c: nlx, m, _):
                     )
                     return await pros.delete()
                 else:
-                    return await pros.edit(f"{em.gagal} <b>Tipe media tidak didukung.</b>")
+                    return await pros.edit(
+                        f"{em.gagal} <b>Tipe media tidak didukung.</b>"
+                    )
             else:
                 return await pros.edit(
                     f"{em.gagal} <b>Gagal mengunduh media dari tautan yang diberikan.</b>"
@@ -384,7 +385,6 @@ async def insta_handler(c: nlx, m, _):
         return await pros.edit(
             f"{em.gagal} <b>Format perintah salah.\nGunakan perintah `{m.text} [tautan_instagram]`</b>."
         )
-    
 
 
 @ky.ubot("ytdl")
