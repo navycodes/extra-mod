@@ -12,13 +12,13 @@ from Userbot import *
 @ky.ubot("lipkol")
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
-        await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        return
+        return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
+        
     uputt = await m.reply("**Ayaaang** 🥺")
     await asyncio.sleep(1.8)
     await uputt.edit("**Kangeeen** 👉👈")
     await asyncio.sleep(1.8)
-    await uputt.edit("**Pingiinn Slipkool Yaaang** 🥺👉👈")
+    return await uputt.edit("**Pingiinn Slipkool Yaaang** 🥺👉👈")
 
 
 # Create by myself @localheart
