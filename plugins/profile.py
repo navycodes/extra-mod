@@ -142,6 +142,7 @@ async def _(c: nlx, m, _):
             return
     except Exception as e:
         print(f"An error occurred while fetching dialogs: {e}")
+        return 
 
 
 @ky.ubot("setpp")
@@ -190,9 +191,9 @@ async def _(c: nlx, m, _):
         return
     to_delete = [message_ids[i : i + 999] for i in range(0, len(message_ids), 999)]
     for hundred_messages_or_less in to_delete:
-        await c.delete_messages(
+        return await c.delete_messages(
             chat_id=chat_id,
             message_ids=hundred_messages_or_less,
             revoke=True,
         )
-        return
+        
