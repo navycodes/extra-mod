@@ -127,7 +127,7 @@ async def _(c: nlx, message, _):
             caption=_("konpert_5").format(em.sukses, c.me.mention),
             reply_to_message_id=message.id,
         )
-        await pros.delete()
+        return await pros.delete()
     except Exception as e:
         await pros.delete()
         return await c.send_message(
@@ -135,7 +135,6 @@ async def _(c: nlx, message, _):
             _("err").format(em.gagal, e),
             reply_to_message_id=message.id,
         )
-    return
 
 
 @ky.ubot("tosticker|tostick")
@@ -151,9 +150,10 @@ async def _(c: nlx, message, _):
         )
         await message.reply_sticker(sticker)
         os.remove(sticker)
+        return
     except Exception as e:
-        await message.reply(_("err").format(em.gagal, e))
-    return
+        return await message.reply(_("err").format(em.gagal, e))
+    
 
 
 @ky.ubot("togif")
@@ -171,11 +171,11 @@ async def _(c: nlx, message, _):
     try:
         await c.send_animation(message.chat.id, file, reply_to_message_id=message.id)
         os.remove(file)
-        await pros.delete()
-        return
+        return await pros.delete()
+        
     except Exception as error:
-        await pros.edit(_("err").format(em.gagal, star(error)))
-        return
+        return await pros.edit(_("err").format(em.gagal, star(error)))
+        
 
 
 @ky.ubot("toaudio")
@@ -218,7 +218,7 @@ async def _(c: nlx, message, _):
         if os.path.exists(out_file):
             os.remove(out_file)
         return await pros.edit(_("konpert_7").format(em.gagal))
-    return
+    
 
 
 @ky.ubot("efek|effect|voifek")
@@ -306,10 +306,11 @@ async def stt_cmd(c, m, upload_url, pros):
             _("konpert_21").format(em.sukses, c.me.mention, transcript.text)
         )
         os.remove(upload_url)
+        return
     else:
         await pros.edit(_("konpert_22").format(em.gagal))
         os.remove(upload_url)
-    return
+        return
 
 
 @ky.ubot("stt")
@@ -331,13 +332,13 @@ async def _(c: nlx, m, _):
     elif m.command and len(m.command) > 1:
         url = m.command[1]
         if re.match(r"^https?://.*\.(mp3|ogg)$", url):
-            await stt_cmd(c, m, url, pros)
+            return await stt_cmd(c, m, url, pros)
         else:
-            await pros.edit(
+            return await pros.edit(
                 f"{em.gagal} URL yang diberikan bukan URL audio yang valid."
             )
     else:
-        await pros.edit(
+        return await pros.edit(
             f"{em.gagal} Mohon balas pesan dengan audio atau berikan URL audio yang valid untuk mentranskripsinya."
         )
-    return
+    
