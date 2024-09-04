@@ -29,7 +29,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply("`Kata Emak`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(2)
     await uputt.edit("`Kalo Ketemu Wibuu`")
@@ -66,7 +66,7 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         return await m.reply("**AKUN LO MO ILANG BANGSAT??**")
-        
+
     uputt = await m.reply(
         "`Bapaknya Udin Di Makan Singkong`", reply_to_message_id=ReplyCheck(m)
     )
