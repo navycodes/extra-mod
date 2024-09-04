@@ -76,7 +76,6 @@ async def _(c: nlx, m, _):
     )
     await xx.delete()
     return await m.reply(mmg)
-    
 
 
 @ky.ubot("ungban")
@@ -158,7 +157,6 @@ async def _(c: nlx, m, _):
     )
     await xx.delete()
     return await m.reply(mmg)
-    
 
 
 @ky.ubot("ungmute")
@@ -197,7 +195,6 @@ async def _(c: nlx, m, _):
     mmg = _("glbl_13").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await xx.delete()
     return await m.reply(mmg)
-    
 
 
 @ky.ubot("gbanlist|listgban")
@@ -223,7 +220,6 @@ async def _(c: nlx, m, _):
             f.name = "gbanlist.txt"
             await m.reply_document(document=f, caption=_("glbl_17").format(em.profil))
     return await msg.delete()
-    
 
 
 @ky.ubot("gmutelist|listgmute")
@@ -249,4 +245,3 @@ async def _(c: nlx, m, _):
             f.name = "gmutelist.txt"
             await m.reply_document(document=f, caption=_("glbl_21").format(em.profil))
     return await msg.delete()
-    
