@@ -184,7 +184,7 @@ async def _(c: nlx, m, _):
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
-    return await pp.edit(_("gcs_5").format(em.sukses, m.chat.id))
+    return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
 
 
 @ky.ubot("delbl")
@@ -197,7 +197,7 @@ async def _(c: nlx, m, _):
         chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
         blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
         if chat_id not in blacklist:
-            return await pp.edit(_("gcs_7").format(em.gagal, m.chat.id))
+            return await pp.edit(_("gcs_7").format(em.gagal, chat_id))
         dB.remove_from_var(c.me.id, "BLGCAST", chat_id)
         return await pp.edit(_("gcs_8").format(em.gagal, chat_id))
 
