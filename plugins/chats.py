@@ -21,7 +21,7 @@ async def _(c, m, _):
         await asyncio.sleep(1)
         return await pros.edit("{} Total members group {}".format(em.sukses, o))
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, str(e)))
+        return await pros.edit(_("err").format(em.gagal, str(e)))
 
 
 @ky.ubot("cekonline")
@@ -35,7 +35,7 @@ async def _(c, m, _):
         await asyncio.sleep(1)
         return await pros.edit("{} Total members online group {}".format(em.sukses, o))
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, str(e)))
+        return await pros.edit(_("err").format(em.gagal, str(e)))
 
 
 @ky.ubot("cekmsg")
@@ -60,7 +60,7 @@ async def _(c, m, _):
             )
         )
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, str(e)))
+        return await pros.edit(_("err").format(em.gagal, str(e)))
 
 
 @ky.ubot("cekos")
@@ -122,6 +122,6 @@ async def _(client, message, _):
 """
             return await pros.edit(f"<b>{text}</b>")
         except Exception as e:
-            return await pros.edit(_("err_1").format(em.gagal, e))
+            return await pros.edit(_("err").format(em.gagal, e))
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, e))
+        return await pros.edit(_("err").format(em.gagal, e))
