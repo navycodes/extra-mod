@@ -13,8 +13,6 @@ from pyrogram.errors import *
 from pyrogram.raw.functions.channels import GetFullChannel
 from Userbot import *
 
-gban_db = GBan()
-
 __MODULES__ = "Info"
 
 
