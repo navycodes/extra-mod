@@ -34,7 +34,7 @@ async def _(c: nlx, m, _):
             )
         )
         return
-    blacklist = dB.mmg(c.me.id)
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     chats = await c.get_chats_dialog(command)
     done = 0
     failed = 0
@@ -85,7 +85,7 @@ async def _(c: nlx, m, _):
     if not text:
         await msg.edit(_("gcs_1").format(em.gagal))
         return
-    blacklist = dB.mmg(c.me.id)
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     chats = await c.get_chats_dialog("grup")
     done = 0
     failed = 0
@@ -134,7 +134,7 @@ async def _(c: nlx, m, _):
     if not text:
         await msg.edit(_("gcs_1").format(em.gagal))
         return
-    blacklist = dB.mmg(c.me.id)
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     chats = await c.get_chats_dialog("user")
     done = 0
     failed = 0
@@ -180,16 +180,12 @@ async def _(c: nlx, m, _):
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
     chat_id = m.chat.id
-    blacklist = dB.mmg(c.me.id)
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
-    add_blacklist = dB.add_chat(c.me.id, chat_id)
-    if add_blacklist:
-        await pp.edit(_("gcs_5").format(em.sukses, m.chat.id, m.chat.title))
-        return
-    else:
-        await pp.edit(_("gcs_6").format(em.sukses, m.chat.id))
-        return
+    dB.add_to_var(c.me.id, "BLGCAST", chat_id)
+    return await pp.edit(_("gcs_6").format(em.sukses, m.chat.id))
+        
 
 
 @ky.ubot("delbl")
@@ -203,18 +199,14 @@ async def _(c: nlx, m, _):
             chat_id = m.chat.id
         else:
             chat_id = int(m.command[1])
-        blacklist = dB.mmg(c.me.id)
+        blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
         if chat_id not in blacklist:
             return await pp.edit(_("gcs_7").format(em.gagal, m.chat.id, m.chat.title))
-        del_blacklist = dB.remove_chat(c.me.id, chat_id)
-        if del_blacklist:
-            await pp.edit(_("gcs_8").format(em.sukses, chat_id))
-            return
-        else:
-            await pp.edit(_("gcs_9").format(em.gagal, chat_id))
-            return
+        dB.remove_from_var(c.me.id, "BLGCAST", chat_id)
+        return await pp.edit(_("gcs_9").format(em.gagal, chat_id))
+        
     except Exception as error:
-        await pp.edit(str(error))
+        return await pp.edit(str(error))
 
 
 @ky.ubot("listbl")
@@ -222,17 +214,17 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
-
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     msg = _("gcs_10").format(em.sukses, int(len(dB.mmg(c.me.id))))
-    for x in dB.mmg(c.me.id):
+    for x in blacklist:
         try:
             get = await c.get_chat(x)
             msg += _("gcs_11").format(get.title, get.id)
         except:
             msg += _("gcs_12").format(x)
     await pp.delete()
-    await m.reply(msg)
-    return
+    return await m.reply(msg)
+    
 
 
 @ky.ubot("rmall")
@@ -240,11 +232,11 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     msg = await m.reply(_("proses").format(em.proses))
-    get_bls = dB.mmg(c.me.id)
-    if len(get_bls) == 0:
+    blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
+    if blacklist is None:
         return await msg.edit(_("gcs_13").format(em.gagal))
-    for x in get_bls:
-        dB.remove_chat(c.me.id, x)
+    for x in blacklist:
+        dB.remove_from_var(c.me.id, "BLGCAST", x)
     return await msg.edit(_("gcs_14").format(em.sukses))
 
 
