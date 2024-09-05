@@ -94,18 +94,25 @@ async def _(c: nlx, m, _):
     return await pros.delete()
 
 
-async def costum_api(c, text):
+chat_topics = {}
+async def costum_api(c, text, user_id):
+    if user_id in chat_topics:
+        topik = chat_topics[user_id]
+    else:
+        topik = text
+        chat_topics[user_id] = topik
+
     gw = f"<a href=tg://user?id={c.me.id}>{c.me.first_name} {c.me.last_name or ''}</a>"
     bahan = [
         {
             "role": "system",
-            "content": f"Lo adalah asisten teletram dari pengguna akun {gw}",
+            "content": f"Lo adalah asisten telegram dari pengguna akun {gw}",
         },
         {
             "role": "assistant",
-            "content": f"Lo adalah asisten teletram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat.",
+            "content": f"Lo adalah asisten telegram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat.",
         },
-        {"role": "user", "content": f"{text}"},
+        {"role": "user", "content": f"{topik}"}
     ]
     url = "https://api.botcahx.eu.org/api/search/openai-custom"
     payload = {"message": bahan, "apikey": "gwkenapanan"}
@@ -116,16 +123,18 @@ async def costum_api(c, text):
     else:
         return f"{res.text}"
 
-
 @ky.ubot("ai|ask")
 async def _(client: nlx, message, _):
     em = Emojik(client)
     em.initialize()
     a = client.get_text(message)
+    user_id = message.from_user.id
     await client.send_chat_action(message.chat.id, ChatAction.TYPING)
     prs = await message.reply_text(_("proses").format(em.proses))
+
     try:
-        x = await costum_api(client, a)
+        x = await costum_api(client, a, user_id)
+        chat_topics[user_id] = a
         await prs.delete()
         return await message.reply(
             "{} {}".format(em.sukses, x), reply_to_message_id=message.id
