@@ -64,7 +64,7 @@ async def _(c, m, _):
 
 
 @ky.ubot("cekos")
-async def _(client, message, _):
+async def _(client: nlx, message, _):
     em = Emojik(client)
     em.initialize()
     pros = await message.reply(_("proses").format(em.proses))
