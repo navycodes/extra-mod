@@ -2,6 +2,7 @@ import asyncio
 
 from Userbot import *
 from Userbot.plugins.vcs import get_group_call
+
 __MODULES__ = "Chats"
 
 
@@ -81,7 +82,7 @@ async def _(client, message, _):
             title = info.title if info.title else f"{chat_id}"
         except Exception:
             title = f"{chat_id}"
-        group_call = (await get_group_call(client, message, _, err_msg=", Error..."))
+        group_call = await get_group_call(client, message, _, err_msg=", Error...")
         if not group_call:
             return await pros.edit(
                 "{} <b>Voice chat group not found in {}</b>".format(em.gagal, title)
