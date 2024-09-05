@@ -65,8 +65,8 @@ async def _(c, m, _):
 
 @ky.ubot("cekos")
 async def _(client, message, _):
-    emo = Emojik(client)
-    emo.initialize()
+    em = Emojik(client)
+    em.initialize()
     pros = await message.reply(_("proses").format(em.proses))
 
     chat = message.command[1] if len(message.command) > 1 else message.chat.id
@@ -113,9 +113,9 @@ async def _(client, message, _):
                 ]
             )
             text = f"""
-{emo.sukses} <b>Voice Chat Listener:</b>
-{emo.alive} Chat: <code>{title}</code>.
-{emo.profil} Total: <code>{total_participants}</code> Listener.
+{em.sukses} <b>Voice Chat Listener:</b>
+{em.alive} Chat: <code>{title}</code>.
+{em.profil} Total: <code>{total_participants}</code> Listener.
 
 <b>People:</b>
 {mentions_text}
