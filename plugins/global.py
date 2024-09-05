@@ -17,9 +17,6 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
 from Userbot import *
 
-dbgb = GBan()
-dbgm = GMute()
-
 __MODULES__ = "Global"
 
 
@@ -51,8 +48,9 @@ async def _(c: nlx, m, _):
         return await m.reply_text(_("peer").format(em.gagal))
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
+    db_gban = dB.get_list_from_var(c.me.id, "GBANNED")
     for chat in chats:
-        if dbgb.check_gban(nyet):
+        if nyet in db_gban:
             await xx.edit(_("glbl_5").format(em.gagal))
             return
         try:
@@ -66,7 +64,8 @@ async def _(c: nlx, m, _):
             await c.ban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
-    dbgb.add_gban(nyet, alasan, c.me.id)
+    
+    dB.add_to_var(c.me.id, "GBANNED", nyet)
     await c.block_user(nyet)
     await c.invoke(
         DeleteHistory(peer=(await c.resolve_peer(nyet)), max_id=0, revoke=True)
@@ -98,8 +97,9 @@ async def _(c: nlx, m, _):
         return await m.reply_text(_("peer").format(em.gagal))
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
+    db_gban = dB.get_list_from_var(c.me.id, "GBANNED")
     for chat in chats:
-        if not dbgb.check_gban(nyet):
+        if nyet not in db_gban:
             await xx.edit(_("glbl_7").format(em.gagal))
             return
         try:
@@ -109,7 +109,7 @@ async def _(c: nlx, m, _):
         except Exception:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgb.remove_gban(nyet)
+    dB.remove_from_var(c.me.id, "GBANNED", nyet)
     await c.unblock_user(nyet)
     mmg = _("glbl_8").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await xx.delete()
@@ -140,8 +140,9 @@ async def _(c: nlx, m, _):
         return await m.reply_text(_("peer").format(em.gagal))
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
+    db_gmute = dB.get_list_from_var(c.me.id, "GMUTE")
     for chat in chats:
-        if dbgm.check_gmute(nyet):
+        if nyet in db_gmute:
             await xx.edit(_("glbl_10").format(em.gagal))
             return
         try:
@@ -151,7 +152,7 @@ async def _(c: nlx, m, _):
         except Exception:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgm.add_gmute(nyet, alasan, c.me.id)
+    dB.add_to_var(c.me.id, "GMUTE", nyet)
     mmg = _("glbl_11").format(
         em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention, em.block, alasan
     )
@@ -180,8 +181,9 @@ async def _(c: nlx, m, _):
         return await m.reply_text(_("peer").format(em.gagal))
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
+    db_gmute = dB.get_list_from_var(c.me.id, "GMUTE")
     for chat in chats:
-        if not dbgm.check_gmute(nyet):
+        if nyet not in db_gmute:
             await xx.edit(_("glbl_12").format(em.gagal))
             return
         try:
@@ -191,7 +193,7 @@ async def _(c: nlx, m, _):
         except Exception:
             gg += 1
             await asyncio.sleep(0.1)
-    dbgm.remove_gmute(nyet)
+    dB.remove_from_var(c.me.id, "GMUTE", nyet)
     mmg = _("glbl_13").format(em.warn, em.sukses, bs, em.gagal, gg, em.profil, mention)
     await xx.delete()
     return await m.reply(mmg)
@@ -201,18 +203,14 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
-    gbanu = dbgb.load_from_db()
+    db_gban = dB.get_list_from_var(c.me.id, "GBANNED")
     msg = await m.reply(_("proses").format(em.proses))
 
-    if not gbanu:
+    if db_gban is None:
         return await msg.edit(_("glbl_22").format(em.gagal))
     dftr = _("glbl_14").format(em.profil)
-    for ii in gbanu:
-        dftr += _("glbl_15").format(em.block, ii["_id"])
-        if ii["reason"]:
-            dftr += _("glbl_16").format(
-                em.warn, ii["reason"], em.sukses, dbgb.count_gbans()
-            )
+    for ii in db_gban:
+        dftr += _("glbl_15").format(em.block, ii)
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
@@ -226,18 +224,14 @@ async def _(c: nlx, m, _):
 async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
-    gmnu = dbgm.load_from_db()
+    gmnu = dB.get_list_from_var(c.me.id, "GMUTE")
     msg = await m.reply(_("proses").format(em.proses))
-    if not gmnu:
+    if gmnu is None:
         await msg.edit(_("glbl_2").format(em.gagal))
         return
     dftr = _("glbl_18").format(em.profil)
     for ii in gmnu:
-        dftr += _("glbl_19").format(em.warn, ii["_id"])
-        if ii["reason"]:
-            dftr += _("glbl_20").format(
-                em.warn, ii["reason"], em.sukses, dbgm.count_gmutes()
-            )
+        dftr += _("glbl_19").format(em.warn, ii)
     try:
         await m.reply_text(dftr)
     except MessageTooLong:
