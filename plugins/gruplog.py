@@ -33,7 +33,6 @@ async def _(c: nlx, m, _):
             except (PeerFlood, UserRestricted, UserBannedInChannel):
                 return await xx.edit(_("lim_er").format(em.gagal))
             babi = await c.export_chat_invite_link(int(pr))
-            c.set_logger(c.me.id, int(pr))
             dB.set_var(c.me.id, "TAG_LOG", int(pr))
             return await xx.edit(_("grplog_1").format(em.sukses, babi))
         else:
@@ -43,7 +42,6 @@ async def _(c: nlx, m, _):
             xx = dB.get_var(c.me.id, "TAG_LOG")
             try:
                 await c.delete_supergroup(int(xx))
-                c.set_logger(c.me.id, None)
                 dB.remove_var(c.me.id, "TAG_LOG")
                 return await xx.edit(_("grplog_3").format(em.gagal))
             except Exception as e:
