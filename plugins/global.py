@@ -64,7 +64,7 @@ async def _(c: nlx, m, _):
             await c.ban_chat_member(chat, nyet)
             bs += 1
             await asyncio.sleep(0.1)
-    
+
     dB.add_to_var(c.me.id, "GBANNED", nyet)
     await c.block_user(nyet)
     await c.invoke(
