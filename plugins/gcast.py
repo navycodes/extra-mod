@@ -179,12 +179,12 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
-    chat_id = m.chat.id
+    chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
-    return await pp.edit(_("gcs_6").format(em.sukses, m.chat.id))
+    return await pp.edit(_("gcs_5").format(em.sukses, m.chat.id))
 
 
 @ky.ubot("delbl")
@@ -194,15 +194,12 @@ async def _(c: nlx, m, _):
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
     try:
-        if not c.get_arg(m):
-            chat_id = m.chat.id
-        else:
-            chat_id = int(m.command[1])
+        chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
         blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
         if chat_id not in blacklist:
             return await pp.edit(_("gcs_7").format(em.gagal, m.chat.id, m.chat.title))
         dB.remove_from_var(c.me.id, "BLGCAST", chat_id)
-        return await pp.edit(_("gcs_9").format(em.gagal, chat_id))
+        return await pp.edit(_("gcs_8").format(em.gagal, chat_id))
 
     except Exception as error:
         return await pp.edit(str(error))
