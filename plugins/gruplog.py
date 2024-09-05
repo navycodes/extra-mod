@@ -34,6 +34,7 @@ async def _(c: nlx, m, _):
                 return await xx.edit(_("lim_er").format(em.gagal))
             babi = await c.export_chat_invite_link(int(pr))
             c.set_logger(c.me.id, int(pr))
+            dB.set_var(c.me.id, "TAG_LOG", int(pr))
             return await xx.edit(_("grplog_1").format(em.sukses, babi))
         else:
             return await xx.edit(_("grplog_2").format(em.sukses))
