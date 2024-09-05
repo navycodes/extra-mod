@@ -95,6 +95,8 @@ async def _(c: nlx, m, _):
 
 
 chat_topics = {}
+
+
 async def costum_api(c, text, user_id):
     if user_id in chat_topics:
         topik = chat_topics[user_id]
@@ -112,7 +114,7 @@ async def costum_api(c, text, user_id):
             "role": "assistant",
             "content": f"Lo adalah asisten telegram dari pengguna akun {gw} gunakan bahasa Indonesia toxic lo gw, anj, mmg, kntl, bacot serta gausah sok asik dan gausah menjelaskan apapun tugas lo hanya membalas pesan dengan singkat.",
         },
-        {"role": "user", "content": f"{topik}"}
+        {"role": "user", "content": f"{topik}"},
     ]
     url = "https://api.botcahx.eu.org/api/search/openai-custom"
     payload = {"message": bahan, "apikey": "gwkenapanan"}
@@ -122,6 +124,7 @@ async def costum_api(c, text, user_id):
         return data["result"]
     else:
         return f"{res.text}"
+
 
 @ky.ubot("ai|ask")
 async def _(client: nlx, message, _):
