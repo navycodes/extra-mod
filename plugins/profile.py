@@ -96,13 +96,11 @@ async def _(c: nlx, m, _):
     em.initialize()
     bacot = await m.reply(_("proses").format(em.proses))
     a_chats = []
-    me = await c.get_me()
-
     try:
         async for dialog in c.get_dialogs():
             try:
                 if dialog.chat.type == ChatType.SUPERGROUP:
-                    gua = await dialog.chat.get_member(int(me.id))
+                    gua = await dialog.chat.get_member(c.me.id)
                     if gua.status in (
                         ChatMemberStatus.OWNER,
                         ChatMemberStatus.ADMINISTRATOR,
