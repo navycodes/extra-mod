@@ -185,7 +185,6 @@ async def _(c: nlx, m, _):
         return await pp.edit(_("gcs_4").format(em.sukses))
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
     return await pp.edit(_("gcs_6").format(em.sukses, m.chat.id))
-        
 
 
 @ky.ubot("delbl")
@@ -204,7 +203,7 @@ async def _(c: nlx, m, _):
             return await pp.edit(_("gcs_7").format(em.gagal, m.chat.id, m.chat.title))
         dB.remove_from_var(c.me.id, "BLGCAST", chat_id)
         return await pp.edit(_("gcs_9").format(em.gagal, chat_id))
-        
+
     except Exception as error:
         return await pp.edit(str(error))
 
@@ -224,7 +223,6 @@ async def _(c: nlx, m, _):
             msg += _("gcs_12").format(x)
     await pp.delete()
     return await m.reply(msg)
-    
 
 
 @ky.ubot("rmall")
