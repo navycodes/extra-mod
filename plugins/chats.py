@@ -122,6 +122,6 @@ async def _(client, message, _):
 """
             return await pros.edit(f"<b>{text}</b>")
         except Exception as e:
-            return await pros.edit(_("err_1").format(em.gagal, str(e)))
+            return await pros.edit(_("err_1").format(em.gagal, e))
     except Exception as e:
-        return await pros.edit(_("err_1").format(em.gagal, str(e)))
+        return await pros.edit(_("err_1").format(em.gagal, e))
