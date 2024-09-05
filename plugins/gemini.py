@@ -167,5 +167,5 @@ async def _(c: nlx, m, _):
                 os.remove(f"{c.me.id}.jpg")
             return await pros.delete()
         except ImageProcessFailed as e:
-            await m.reply(_("err_1").format(em.gagal, str(e)))
+            await m.reply(_("err").format(em.gagal, str(e)))
             return await pros.delete()
