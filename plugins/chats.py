@@ -1,3 +1,4 @@
+
 import asyncio
 
 from Userbot import *
@@ -6,8 +7,9 @@ __MODULES__ = "Chats"
 
 
 def help_string(org):
-    return h_s(org, "help_cc")
-
+    return h_s(org, "help_chates")
+    
+    
 
 @ky.ubot("cekmember")
 async def _(c, m, _):
@@ -21,8 +23,8 @@ async def _(c, m, _):
         return await pros.edit("{} Total members group {}".format(em.sukses, o))
     except Exception as e:
         return await pros.edit(_("err_1").format(em.gagal, str(e)))
-
-
+        
+        
 @ky.ubot("cekonline")
 async def _(c, m, _):
     em = Emojik(c)
@@ -35,8 +37,8 @@ async def _(c, m, _):
         return await pros.edit("{} Total members online group {}".format(em.sukses, o))
     except Exception as e:
         return await pros.edit(_("err_1").format(em.gagal, str(e)))
-
-
+        
+        
 @ky.ubot("cekmsg")
 async def _(c, m, _):
     em = Emojik(c)
@@ -53,11 +55,7 @@ async def _(c, m, _):
     try:
         o = await c.search_messages_count(chat_id, from_user=user_id)
         await asyncio.sleep(1)
-        return await pros.edit(
-            "{} Total message from user {} is {} messages".format(
-                em.sukses, umention, o
-            )
-        )
+        return await pros.edit("{} Total message from user {} is {} messages".format(em.sukses, umention, o))
     except Exception as e:
         return await pros.edit(_("err_1").format(em.gagal, str(e)))
 
@@ -83,9 +81,7 @@ async def _(client, message, _):
             title = f"{chat_id}"
         group_call = await get_group_call(client, message, err_msg="Error")
         if not group_call:
-            return await pros.edit(
-                "{} <b>Voice chat group not found in {}</b>".format(em.gagal, title)
-            )
+            return await pros.edit("{} <b>Voice chat group not found in {}</b>".format(em.gagal, title))
         try:
             participants = await client.group_call.get_participants(chat_id)
             mentions = []
@@ -102,9 +98,7 @@ async def _(client, message, _):
 
             total_participants = len(participants)
             if total_participants == 0:
-                return await pros.edit(
-                    "{} <b>No someone in voice chat group!!</b>".format(em.gagal)
-                )
+                return await pros.edit("{} <b>No someone in voice chat group!!</b>".format(em.gagal))
             mentions_text = "\n".join(
                 [
                     (f"• {mention}" if i < total_participants - 1 else f"• {mention}")
