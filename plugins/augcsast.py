@@ -51,7 +51,7 @@ async def _(c, m, _):
             done = 0
             while c.me.id in AG:
                 delay = dB.get_var(c.me.id, "DELAY_GCAST") or 1
-                blacklist = dB.mmg(c.me.id)
+                blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
                 txt = random.choice(auto_text_vars)
 
                 group = 0
