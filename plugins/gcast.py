@@ -211,7 +211,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
-    msg = _("gcs_10").format(em.sukses, int(len(dB.mmg(c.me.id))))
+    msg = _("gcs_10").format(em.sukses, len(blacklist))
     for x in blacklist:
         try:
             get = await c.get_chat(x)
