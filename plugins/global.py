@@ -36,7 +36,7 @@ async def _(c: nlx, m, _):
     if nyet in DEVS:
         await xx.edit(_("glbl_3").format(em.gagal))
         return
-    alasan = "Gabut"
+    alasan = nt if nt else "Anak Dajjal 🗿"
     bs = 0
     gg = 0
     chats = await c.get_chats_dialog("gban")
@@ -128,7 +128,7 @@ async def _(c: nlx, m, _):
     if nyet in DEVS:
         await xx.edit(_("glbl_3").format(em.gagal))
         return
-    alasan = "GABUT"
+    alasan = nt if nt else "Anak Dajjal 🗿"
     bs = 0
     gg = 0
     chats = await c.get_chats_dialog("grup")
