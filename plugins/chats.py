@@ -88,7 +88,7 @@ async def _(client: nlx, message, _):
                 "{} <b>Voice chat group not found in {}</b>".format(em.gagal, title)
             )
         try:
-            participants = await client.group_call.get_participants(chat_id)
+            participants = await client.call_py.get_participants(chat_id)
             mentions = []
             for participant in participants:
                 user_id = participant.user_id
