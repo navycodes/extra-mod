@@ -121,14 +121,14 @@ async def _(client: nlx, message, _):
                 disable_web_page_preview=True,
             )
         except Exception as exc:
-            return await XD.edit(_("err_1").format(em.gagal, exc))
+            return await XD.edit(_("err_1").format(emo.gagal, exc))
     elif message.reply_to_message.text:
         page_title = f"{client.me.first_name} {client.me.last_name or ''}"
         page_text = message.reply_to_message.text.replace("\n", "<br>")
         try:
             response = telegraph.create_page_md(title=page_title, content=page_text)
         except Exception as exc:
-            return await XD.edit(_("err_1").format(em.gagal, exc))
+            return await XD.edit(_("err_1").format(emo.gagal, exc))
         return await XD.edit(
             _("grp_3").format(emo.sukses, response),
             disable_web_page_preview=True,
