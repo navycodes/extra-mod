@@ -60,7 +60,7 @@ async def _(c: nlx, m, _):
             "true",
         ]
     else:
-        return await m.reply(_("webs_1").format(em.gagal))
+        return await m.reply(_("webs_1").format(em.gagal, m.text.split()[0]))
     tit = await m.reply(_("proses").format(em.proses))
     try:
         photo = await ss(url, full)
