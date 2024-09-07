@@ -155,17 +155,18 @@ async def _(c: nlx, m, _):
     text = c.get_arg(m)
     if not text:
         return pros.edit(_("enc_5").format(em.gagal))
-    url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen"
-    payload = {"prompt": text}
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as resp:
-            image = io.BytesIO(await resp.read())
-        image.name = f"{c.me.id}.jpg"
-        try:
-            await m.reply_photo(image)
-            if os.path.exists(f"{c.me.id}.jpg"):
-                os.remove(f"{c.me.id}.jpg")
-            return await pros.delete()
-        except ImageProcessFailed as e:
-            await m.reply(_("err").format(em.gagal, str(e)))
-            return await pros.delete()
+    data = {"string": f"{text}"}
+    head = {"accept": "image/jpeg"}
+    url = f"https://widipe.com/v1/text2img?text={data}"
+    res = await fetch.get(url, headers=head)
+    image_data = res.read()
+    image = io.BytesIO(image_data)
+    image.name = f"{c.me.id}.jpg"
+    try:
+        await m.reply_photo(image)
+        if os.path.exists(f"{c.me.id}.jpg"):
+            os.remove(f"{c.me.id}.jpg")
+        return await pros.delete()
+    except ImageProcessFailed as e:
+        await m.reply(_("err").format(em.gagal, str(e)))
+        return await pros.delete()
