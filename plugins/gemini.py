@@ -1,7 +1,6 @@
 import io
 import os
 
-import aiohttp
 import google.generativeai as genai
 from pyrogram.enums import ChatAction
 from pyrogram.errors import *
