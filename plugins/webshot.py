@@ -46,7 +46,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     if len(m.command) < 2:
-        return await m.reply(_("webs_1").format(em.gagal, m.command))
+        return await m.reply(_("webs_1").format(em.gagal, m.text.split()[0]))
 
     if len(m.command) == 2:
         url = m.text.split(None, 1)[1]
