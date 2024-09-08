@@ -62,8 +62,8 @@ async def _(c: nlx, m, _):
 
     else:
         cmd = " ".join(m.text.split()[1:]).replace(" ", "+")
+        dB.set_var(c.me.id, "INLINE_SPOT", c.me.id)
         x = await c.get_inline_bot_results(bot_username, f"src_spot {cmd}")
         await pros.delete()
         # aoe = {"_id": c.me.id, "args": c.get_arg(m)}
-        dB.set_var(c.me.id, "INLINE_SPOT", c.me.id)
         return await m.reply_inline_bot_result(x.query_id, x.results[0].id)
