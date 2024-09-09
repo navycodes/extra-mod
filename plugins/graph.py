@@ -137,7 +137,7 @@ async def _(client: nlx, message, _):
 async def upload_media(m):
     media = m.reply_to_message.download()
     url = "https://itzpire.com/tools/upload"
-    #headers = {"accept": "*/*", "Content-Type": "multipart/form-data"}
+    # headers = {"accept": "*/*", "Content-Type": "multipart/form-data"}
     with open(media, "rb") as file:
         files = {"file": file}
         response = await fetch.post(url, files=files)
