@@ -134,9 +134,10 @@ async def _(client: nlx, message, _):
 """
 
 
-async def upload_media(media):
+async def upload_media(m):
+    media = m.reply_to_message.download()
     url = "https://itzpire.com/tools/upload"
-    headers = {"accept": "*/*", "Content-Type": "multipart/form-data"}
+    #headers = {"accept": "*/*", "Content-Type": "multipart/form-data"}
     with open(media, "rb") as file:
         files = {"file": file}
         response = await fetch.post(url, files=files)
@@ -157,8 +158,7 @@ async def _(client: nlx, message, _):
     if not rep:
         return await XD.edit(_("grp_1").format(emo.gagal))
     try:
-        media = await rep.download()
-        url = await upload_media(media)
+        url = await upload_media(message)
         return await XD.edit(
             f"{em.sukses} <b>File berhasil diunggah: <a href='{url}'>Klik Disini</a></b>"
         )
