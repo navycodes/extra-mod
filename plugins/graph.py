@@ -10,8 +10,12 @@
 import os
 from io import BytesIO
 
+import requests
 from PIL import Image
+from pyrogram.enums import MessageMediaType
 from Userbot import Emojik, h_s, ky, nlx
+from ytelegraph import TelegraphAPI
+from telegraph.aio import Telegraph
 
 __MODULES__ = "Telegraph"
 
@@ -65,7 +69,6 @@ async def dl_pic(client, media):
     get_media.name = os.path.basename(path)
 
     return get_media, mime_type
-
 
 """
 @ky.ubot("tg")
@@ -133,23 +136,18 @@ async def _(client: nlx, message, _):
         )
 """
 
-
-async def upload_media(m, media, em):
-    url = "https://itzpire.com/tools/upload"
-    headers = {"accept": "*/*", "Content-Type": "multipart/form-data"}
-    with open(media, "rb") as file:
-        files = {"file": file}
-        response = await fetch.post(url, files=files)
+async def upload_media(media):
+    url = 'https://itzpire.com/tools/upload'
+    headers = {'accept': '*/*', 'Content-Type': 'multipart/form-data'}
+    with open(media, 'rb') as file:
+      files = {'file': file}
+      response = await fetch.post(url, files=files)
     if response.status_code == 200:
         data = response.json()
-        url = data["fileInfo"]["url"]
-        return await m.reply(
-            f"{em.sukses} <b>File berhasil diunggah: <a href='{url}'>Klik Disini</a></b>"
-        )
+        link = data["fileInfo"]["url"]
+        return link
     else:
-        return await m.reply(
-            f"{em.gagal} <b>Gagal mengunggah file. Kode status: {response.status_code} </b>"
-        )
+      return f"{response.text}"
 
 
 @ky.ubot("upload|upl")
@@ -162,7 +160,8 @@ async def _(client: nlx, message, _):
         return await XD.edit(_("grp_1").format(emo.gagal))
     try:
         media = await rep.download()
-        await upload_media(message, media, emo)
-        return await XD.delete()
+        url = await upload_media(media)
+        return await XD.edit(f"{em.sukses} <b>File berhasil diunggah: <a href='{url}'>Klik Disini</a></b>")
     except Exception as exc:
         return await XD.edit(_("err").format(emo.gagal, exc))
+    
