@@ -4,6 +4,7 @@ from io import BytesIO
 import requests
 from telegraph import upload_file
 from Userbot import *
+from .graph import upload_media
 
 __MODULES__ = "Ocr"
 
@@ -33,10 +34,9 @@ async def read_cmd(client, message, _):
     msg = await message.reply(_("proses").format(em.proses))
     try:
         file_path = await dl_pic(client, reply)
-        response = upload_file(file_path)
-        url = f"https://telegra.ph{response[0]}"
-        req = requests.get(
-            f"https://script.google.com/macros/s/AKfycbwURISN0wjazeJTMHTPAtxkrZTWTpsWIef5kxqVGoXqnrzdLdIQIfLO7jsR5OQ5GO16/exec?url={url}"
+        response = upload_media(message, file_path, em)
+        req = await fetch.get(
+            f"https://script.google.com/macros/s/AKfycbwURISN0wjazeJTMHTPAtxkrZTWTpsWIef5kxqVGoXqnrzdLdIQIfLO7jsR5OQ5GO16/exec?url={response}"
         ).json()
         return await msg.edit(f"{em.sukses} <code>{req['text']}</code>")
     except Exception as e:
