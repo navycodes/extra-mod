@@ -160,7 +160,7 @@ async def _(client: nlx, message, _):
     try:
         url = await upload_media(message)
         return await XD.edit(
-            f"{em.sukses} <b>File berhasil diunggah: <a href='{url}'>Klik Disini</a></b>"
+            f"{emo.sukses} <b>File berhasil diunggah: <a href='{url}'>Klik Disini</a></b>"
         )
     except Exception as exc:
         return await XD.edit(_("err").format(emo.gagal, exc))
