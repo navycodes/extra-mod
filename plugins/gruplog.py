@@ -120,6 +120,8 @@ async def _(client, message, _):
             pass
         except ChannelPrivate:
             pass
+        except ChatWriteForbidden:
+            pass
         except FloodWait as e:
             await asyncio.sleep(e.value)
             await client.send_message(int(log), text, disable_web_page_preview=True)
