@@ -32,7 +32,7 @@ async def read_cmd(client, message, _):
         )
     msg = await message.reply(_("proses").format(em.proses))
     try:
-        #file_path = await dl_pic(client, reply)
+        # file_path = await dl_pic(client, reply)
         url = await upload_media(message)
         req = await fetch.get(
             f"https://script.google.com/macros/s/AKfycbwURISN0wjazeJTMHTPAtxkrZTWTpsWIef5kxqVGoXqnrzdLdIQIfLO7jsR5OQ5GO16/exec?url={url}"
