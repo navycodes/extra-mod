@@ -1,9 +1,8 @@
 import os
 from io import BytesIO
 
-import requests
-from telegraph import upload_file
 from Userbot import *
+
 from .graph import upload_media
 
 __MODULES__ = "Ocr"
