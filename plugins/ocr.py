@@ -34,7 +34,7 @@ async def read_cmd(client, message, _):
     try:
         # file_path = await dl_pic(client, reply)
         url = await upload_media(message)
-        req = requests.get(
+        req = await fetch.get(
             f"https://script.google.com/macros/s/AKfycbwURISN0wjazeJTMHTPAtxkrZTWTpsWIef5kxqVGoXqnrzdLdIQIfLO7jsR5OQ5GO16/exec?url={url}"
         ).json()
         return await msg.edit(f"{em.sukses} <code>{req['text']}</code>")
