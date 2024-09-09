@@ -112,9 +112,10 @@ async def _(client, message, _):
 """
         try:
             await asyncio.sleep(0.5)
-            return await client.send_message(
+            await client.send_message(
                 int(log), text, disable_web_page_preview=True
             )
+            return await message.forward(int(log))
         except ChatForwardsRestricted:
             pass
         except MessageIdInvalid:
@@ -123,6 +124,7 @@ async def _(client, message, _):
             pass
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            return await client.send_message(
+            await client.send_message(
                 int(log), text, disable_web_page_preview=True
             )
+            return await message.forward(int(log))
