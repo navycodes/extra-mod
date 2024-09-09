@@ -7,18 +7,16 @@
 ################################################################
 
 
-import os
-from io import BytesIO
 
-from PIL import Image
-from Userbot import Emojik, fetch, h_s, ky, nlx
 from telegraph.aio import Telegraph
+from Userbot import Emojik, fetch, h_s, ky, nlx
 
 __MODULES__ = "Telegraph"
 
 
 def help_string(org):
     return h_s(org, "help_graph")
+
 
 async def post_to_telegraph(is_media: bool, title=None, content=None, media=None):
     telegraph = Telegraph()
@@ -51,6 +49,7 @@ async def upload_media(m):
     else:
         return f"{response.text}"
 
+
 @ky.ubot("tg")
 async def _(client: nlx, message, _):
     emo = Emojik(client)
@@ -75,7 +74,9 @@ async def _(client: nlx, message, _):
             url = await upload_media(message)
         except Exception as exc:
             return await XD.edit(_("err").format(emo.gagal, exc))
-        return await XD.edit(_("grp_3").format(emo.sukses, url), disable_web_page_preview=True)
+        return await XD.edit(
+            _("grp_3").format(emo.sukses, url), disable_web_page_preview=True
+        )
 
 
 @ky.ubot("upload|upl")
@@ -90,4 +91,6 @@ async def _(client: nlx, message, _):
         url = await upload_media(message)
     except Exception as exc:
         return await XD.edit(_("err").format(emo.gagal, exc))
-    return await XD.edit(_("grp_3").format(emo.sukses, url), disable_web_page_preview=True)
+    return await XD.edit(
+        _("grp_3").format(emo.sukses, url), disable_web_page_preview=True
+    )
