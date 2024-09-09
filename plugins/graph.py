@@ -9,7 +9,7 @@
 
 
 from telegraph.aio import Telegraph
-from Userbot import Emojik, fetch, h_s, ky, nlx
+from Userbot import Emojik, fetch, h_s, ky, nlx, bot
 
 __MODULES__ = "Telegraph"
 
