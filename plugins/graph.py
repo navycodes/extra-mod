@@ -7,8 +7,9 @@
 ################################################################
 
 
+
 from telegraph.aio import Telegraph
-from Userbot import Emojik, bot, fetch, h_s, ky, nlx
+from Userbot import Emojik, fetch, h_s, ky, nlx, bot
 
 __MODULES__ = "Telegraph"
 
@@ -64,17 +65,14 @@ async def _(client: nlx, message, _):
             url = await post_to_telegraph(False, page_title, page_text)
         except Exception as exc:
             return await XD.edit(_("err").format(emo.gagal, exc))
-        return await XD.edit(
-            _("grp_3").format(emo.sukses, url),
-            disable_web_page_preview=True,
+        return await XD.edit("{} **Successfully Uploaded: <a href='{}'>Click Here</a>**".format(emo.sukses, url), disable_web_page_preview=True,
         )
     else:
         try:
             url = await upload_media(message)
         except Exception as exc:
             return await XD.edit(_("err").format(emo.gagal, exc))
-        return await XD.edit(
-            _("grp_3").format(emo.sukses, url), disable_web_page_preview=True
+        return await XD.edit("{} **Successfully Uploaded: <a href='{}'>Click Here</a>**".format(emo.sukses, url), disable_web_page_preview=True,
         )
 
 
@@ -90,6 +88,5 @@ async def _(client: nlx, message, _):
         url = await upload_media(message)
     except Exception as exc:
         return await XD.edit(_("err").format(emo.gagal, exc))
-    return await XD.edit(
-        _("grp_3").format(emo.sukses, url), disable_web_page_preview=True
-    )
+    return await XD.edit("{} **Successfully Uploaded: <a href='{}'>Click Here</a>**".format(emo.sukses, url), disable_web_page_preview=True,
+        )
