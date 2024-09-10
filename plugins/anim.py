@@ -9,8 +9,10 @@ __MODULES__ = "Animasi"
 
 
 def help_string(org):
-# top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code>\n      User: {}</b>"
-    return ("Animasi")
+    # top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code>\n      User: {}</b>"
+    return "Animasi"
+
+
 # return top_text
 # pass
 
