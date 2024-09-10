@@ -64,7 +64,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     acak = None
     messages = None
-    pros = await m.edit(_("proses").format(em.proses))
+    pros = await m.reply(_("proses").format(em.proses))
     is_reply = bool(m.command[0].endswith("r"))
     rep = m.reply_to_message
     if len(m.command) > 1:
