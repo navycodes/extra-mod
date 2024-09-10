@@ -8,11 +8,11 @@ from Userbot import *
 __MODULES__ = "Animasi"
 
 
-def help_string(org):
+#def help_string(org):
     # top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code>\n      User: {}</b>"
-    # return (org, "Animasi")
+    #return (org, "Animasi")
     # return top_text
-    pass
+    #pass
 
 
 @ky.ubot("love")
