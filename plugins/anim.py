@@ -9,7 +9,9 @@ __MODULES__ = "Animasi"
 
 
 def help_string(org):
-    return (org, "Animasi")
+    top_text = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code>\n      User: {}</b>"
+    #return (org, "Animasi")
+    return top_text
 
 
 @ky.ubot("love")
