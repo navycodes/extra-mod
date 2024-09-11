@@ -46,12 +46,13 @@ def get_name(message):
 
 
 async def gen_img(c, text):
-    url = "https://next-nolimit-api-app.vercel.app/api/flux-image-gen-beta/"
-    payload = {"model": "flux", "prompt": text}
-    async with aiohttp.ClientSession() as session:
-        async with session.post(url, json=payload) as resp:
-            image = io.BytesIO(await resp.read())
-        image.name = f"{c.me.id}.jpg"
+    data = {"string": f"{text}"}
+    head = {"accept": "image/jpeg"}
+    url = f"https://widipe.com/v1/text2img?text={data}"
+    res = await fetch.get(url, headers=head)
+    image_data = res.read()
+    image = io.BytesIO(image_data)
+    image.name = f"{c.me.id}.jpg"
     return image
 
 
