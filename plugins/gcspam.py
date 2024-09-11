@@ -135,7 +135,7 @@ async def _(client, message, _):
     em.initialize()
     r = await message.reply(_("proses").format(em.proses))
     count, msg = extract_type_and_msg(message)
-    if count.lower() == "none":
+    if count == "none":
         dB.set_var(client.me.id, "SPAM", 0)
         return await r.edit(
             "{} Spam delay berhasil diatur menjadi none".format(em.sukses)
