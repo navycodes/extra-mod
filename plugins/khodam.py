@@ -1,6 +1,7 @@
 import asyncio
 import io
 
+import aiohttp
 import google.generativeai as genai
 from pyrogram.errors import ImageProcessFailed
 from Userbot import *
@@ -51,7 +52,7 @@ async def gen_img(c, text):
     res = await fetch.get(url, headers=head)
     image_data = res.read()
     image = io.BytesIO(image_data)
-    image.name = f"{c.me.id}.jpg"
+    image.name = f"kdm_{c.me.id}.jpg"
     return image
 
 
@@ -76,7 +77,7 @@ async def ckdm_cmd(client: nlx, message, _):
             await pros.delete()
             return await client.send_photo(
                 message.chat.id,
-                photo=imeg,
+                photo=f"kdm_{c.me.id}.jpg",
                 caption=caption,
                 reply_to_message_id=message.id,
             )
