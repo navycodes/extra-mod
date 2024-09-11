@@ -1,7 +1,6 @@
 import asyncio
 import io
 
-import aiohttp
 import google.generativeai as genai
 from pyrogram.errors import ImageProcessFailed
 from Userbot import *
