@@ -75,7 +75,7 @@ async def _(c: nlx, m, _):
                 try:
                     await c.send_message(chat_id, mention_text)
                 except FloodWait as e:
-                    await asyncio.sleep(e.x)
+                    await asyncio.sleep(e.value)
                     await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(2.5)
                 mention_texts = []
