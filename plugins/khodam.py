@@ -1,7 +1,6 @@
 import asyncio
 import io
 
-import aiohttp
 import google.generativeai as genai
 from pyrogram.errors import ImageProcessFailed
 from Userbot import *
@@ -66,7 +65,7 @@ async def ckdm_cmd(client: nlx, message, _):
     pros = await message.reply(_("proses").format(emo.proses))
     try:
         deskripsi_khodam = gen_kdm(nama)
-        imeg = await gen_img(client, deskripsi_khodam)
+        await gen_img(client, deskripsi_khodam)
         caption = _("kdm_2").format(
             emo.sukses, nama, deskripsi_khodam, emo.profil, client.me.mention
         )
