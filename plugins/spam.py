@@ -43,12 +43,8 @@ async def _(c: nlx, m, _):
                 await asyncio.sleep(0.1)
         except FloodWait as e:
             await asyncio.sleep(e.value)
-            count_message = int(m.command[1])
-            for i in range(count_message):
-                if not berenti:
-                    break
-                await reply.copy(m.chat.id)
-                await asyncio.sleep(0.1)
+            await reply.copy(m.chat.id)
+            await asyncio.sleep(0.1)
         except Exception as error:
             return await m.reply(str(error))
     else:
@@ -66,14 +62,10 @@ async def _(c: nlx, m, _):
                     await asyncio.sleep(0.1)
             except FloodWait as e:
                 await asyncio.sleep(e.value)
-                count_message = int(m.command[1])
-                for i in range(count_message):
-                    if not berenti:
-                        break
-                    await m.reply(
-                        m.text.split(None, 2)[2],
-                    )
-                    await asyncio.sleep(0.1)
+                await m.reply(
+                    m.text.split(None, 2)[2],
+                )
+                await asyncio.sleep(0.1)
             except Exception as error:
                 return await m.reply(str(error))
     berenti = False
@@ -184,6 +176,12 @@ async def _(c: nlx, message, _):
                 await c.get_messages(chat_id, message_id)
                 await c.forward_messages(gc, chat_id, message_ids=message_id)
                 await asyncio.sleep(delay)
+            except FloodWait as e:
+                await asyncio.sleep(e.value)
+                await c.forward_messages(gc, chat_id, message_ids=message_id)
+                await asyncio.sleep(delay)
+            except SlowmodeWait:
+                continue
             except Exception as e:
                 if (
                     "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e)
@@ -319,6 +317,12 @@ async def _(c: nlx, message, _):
             await c.get_messages(chat_id, message_id)
             await c.forward_messages(message.chat.id, chat_id, message_ids=message_id)
             await asyncio.sleep(delay)
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
+            await c.forward_messages(gc, chat_id, message_ids=message_id)
+            await asyncio.sleep(delay)
+        except SlowmodeWait:
+            continue
         except Exception as e:
             if (
                 "CHAT_SEND_PHOTOS_FORBIDDEN" in str(e)
