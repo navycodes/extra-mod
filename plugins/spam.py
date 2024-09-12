@@ -41,6 +41,14 @@ async def _(c: nlx, m, _):
                     break
                 await reply.copy(m.chat.id)
                 await asyncio.sleep(0.1)
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
+            count_message = int(m.command[1])
+            for i in range(count_message):
+                if not berenti:
+                    break
+                await reply.copy(m.chat.id)
+                await asyncio.sleep(0.1)
         except Exception as error:
             return await m.reply(str(error))
     else:
@@ -48,6 +56,16 @@ async def _(c: nlx, m, _):
             return await m.reply(_("spm_1").format(em.gagal, m.text.split()[1]))
         else:
             try:
+                count_message = int(m.command[1])
+                for i in range(count_message):
+                    if not berenti:
+                        break
+                    await m.reply(
+                        m.text.split(None, 2)[2],
+                    )
+                    await asyncio.sleep(0.1)
+            except FloodWait as e:
+                await asyncio.sleep(e.value)
                 count_message = int(m.command[1])
                 for i in range(count_message):
                     if not berenti:
