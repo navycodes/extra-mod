@@ -335,10 +335,10 @@ async def _(c: nlx, m, _):
 @capture_err
 async def _(c, m, _):
     lisu = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
-    user = m.from_user.id if m.from_user.id else None
-    if user in lisu:
+    user = m.from_user if m.from_user else m.sender_chat
+    if user.id in lisu:
         try:
-            await c.delete_messages(m.chat.id, user)
+            await c.delete_messages(m.chat.id, user.id)
             return
         except Exception as e:
             return await m.reply(f"Error Gagu {str(e)}")
