@@ -247,7 +247,7 @@ async def _(c: nlx, m, _):
     em.initialize()
     nyet, nt = await c.extract_user_and_reason(m)
     xx = await m.reply(_("proses").format(em.proses))
-    if len(m.text.split()) == 1:
+    if not nyet:
         await xx.edit(_("glbl_2").format(em.gagal))
         return
     # if nyet in DEVS:
