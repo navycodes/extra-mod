@@ -250,9 +250,9 @@ async def _(c: nlx, m, _):
     if len(m.text.split()) == 1:
         await xx.edit(_("glbl_2").format(em.gagal))
         return
-    #if nyet in DEVS:
-        #await xx.edit(_("glbl_3").format(em.gagal))
-        #return
+    # if nyet in DEVS:
+    # await xx.edit(_("glbl_3").format(em.gagal))
+    # return
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
