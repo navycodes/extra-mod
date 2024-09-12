@@ -339,6 +339,6 @@ async def _(c, m, _):
     if m:
         if user.id in lisu:
             try:
-                return await m.delete()
+                return await c.delete_messages(m.chat.id, user.id)
             except Exception as e:
                 return await m.reply(f"Error Gagu {str(e)}")
