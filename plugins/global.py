@@ -334,10 +334,11 @@ async def _(c: nlx, m, _):
 @ky.nocmd("ANTIUSER", nlx)
 @capture_err
 async def _(c, m, _):
-    # lisu = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
-    # user = m.from_user if m.from_user else m.sender_chat
+    lisu = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
+    user = m.from_user if m.from_user else m.sender_chat
     if m:
-        try:
-            return await m.delete()
-        except Exception as e:
-            return await m.reply(f"Error Gagu {str(e)}")
+        if user.id in lisu:
+            try:
+                return await m.delete()
+            except Exception as e:
+                return await m.reply(f"Error Gagu {str(e)}")
