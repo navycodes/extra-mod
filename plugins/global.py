@@ -239,3 +239,101 @@ async def _(c: nlx, m, _):
             f.name = "gmutelist.txt"
             await m.reply_document(document=f, caption=_("glbl_21").format(em.profil))
     return await msg.delete()
+
+
+
+@ky.ubot("addgagu")
+async def _(c: nlx, m, _):
+    em = Emojik(c)
+    em.initialize()
+    nyet, nt = await c.extract_user_and_reason(m)
+    xx = await m.reply(_("proses").format(em.proses))
+    if len(m.text.split()) == 1:
+        await xx.edit(_("glbl_2").format(em.gagal))
+        return
+    if nyet in DEVS:
+        await xx.edit(_("glbl_3").format(em.gagal))
+        return
+    try:
+        mention = (await c.get_users(nyet)).mention
+    except IndexError:
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
+    db_gmute = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
+    if nyet in db_gmute:
+        return await xx.edit(_("glbl_10").format(em.gagal))
+    try:
+        dB.add_to_var(c.me.id, "ANTI_USER", nyet, "USERS")
+        mmg = "{} <b> Pengguna {}\n{} Berhasil ditambahkan ke database Gagu</b>".format(em.warn, mention, em.sukses)
+        await xx.delete()
+        return await m.reply(mmg)
+    except Exception as e:
+        await xx.delete()
+        return await m.reply(_("err").format(em.gagal, str(e)))
+
+
+@ky.ubot("delgagu")
+async def _(c: nlx, m, _):
+    em = Emojik(c)
+    em.initialize()
+    nyet, nt = await c.extract_user_and_reason(m)
+    xx = await m.reply(_("proses").format(em.proses))
+    await c.get_users(nyet)
+    if len(m.text.split()) == 1:
+        await xx.edit(_("glbl_2").format(em.gagal))
+        return
+    try:
+        mention = (await c.get_users(nyet)).mention
+    except IndexError:
+        mention = m.reply_to_message.sender_chat.title if m.reply_to_message else "Anon"
+    except PeerIdInvalid:
+        return await m.reply_text(_("peer").format(em.gagal))
+    except KeyError:
+        return await m.reply_text(_("peer").format(em.gagal))
+    db_gmute = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
+    
+    if nyet not in db_gmute:
+        await xx.edit(_("glbl_12").format(em.gagal))
+        return
+    try:
+        dB.remove_from_var(c.me.id, "ANTI_USER", nyet, "USERS")
+        mmg = "{} <b> Pengguna {}\n{} Berhasil dihapus dari database Gagu</b>".format(em.warn, mention, em.sukses)
+        await xx.delete()
+        return await m.reply(mmg)
+    except Exception:
+        await xx.delete()
+        return await m.reply(_("err").format(em.gagal, str(e)))
+        
+
+@ky.ubot("listgagu")
+async def _(c: nlx, m, _):
+    em = Emojik(c)
+    em.initialize()
+    gmnu = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
+    msg = await m.reply(_("proses").format(em.proses))
+    if gmnu is None:
+        await msg.edit(_("glbl_2").format(em.gagal))
+        return
+    dftr = "{} <b>Daftar Pengguna Gagu:\n</b>".format(em.profil)
+    for ii in gmnu:
+        dftr += "{} Makhluk -> {}".format(em.warn, ii)
+    try:
+        await m.reply_text(f"<b>{dftr}</b>")
+    except MessageTooLong:
+        with BytesIO(str.encode(await remove_markdown_and_html(dftr))) as f:
+            f.name = "gagulist.txt"
+            await m.reply_document(document=f, caption=_("glbl_21").format(em.profil))
+    return await msg.delete()
+
+
+@ky.nocmd("ANTIUSER", nlx)
+@capture_err
+async def _(c, m, _):
+    try:
+        return await m.delete()
+    except Exception as e:
+        return await m.reply(f"Error Gagu {str(e)}")
+    
