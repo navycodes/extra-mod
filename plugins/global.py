@@ -337,6 +337,7 @@ async def _(c, m, _):
     lisu = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
     if m.from_user.id in lisu:
         try:
-            return await c.delete_messages(m.chat.id, user.id)
+            await c.delete_messages(m.chat.id, user.id)
+            return
         except Exception as e:
             return await m.reply(f"Error Gagu {str(e)}")
