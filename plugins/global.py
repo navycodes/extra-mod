@@ -241,7 +241,6 @@ async def _(c: nlx, m, _):
     return await msg.delete()
 
 
-
 @ky.ubot("addgagu")
 async def _(c: nlx, m, _):
     em = Emojik(c)
@@ -267,7 +266,9 @@ async def _(c: nlx, m, _):
         return await xx.edit(_("glbl_10").format(em.gagal))
     try:
         dB.add_to_var(c.me.id, "ANTI_USER", nyet, "USERS")
-        mmg = "{} <b> Pengguna {}\n{} Berhasil ditambahkan ke database Gagu</b>".format(em.warn, mention, em.sukses)
+        mmg = "{} <b> Pengguna {}\n{} Berhasil ditambahkan ke database Gagu</b>".format(
+            em.warn, mention, em.sukses
+        )
         await xx.delete()
         return await m.reply(mmg)
     except Exception as e:
@@ -294,19 +295,21 @@ async def _(c: nlx, m, _):
     except KeyError:
         return await m.reply_text(_("peer").format(em.gagal))
     db_gmute = dB.get_list_from_var(c.me.id, "ANTI_USER", "USERS")
-    
+
     if nyet not in db_gmute:
         await xx.edit(_("glbl_12").format(em.gagal))
         return
     try:
         dB.remove_from_var(c.me.id, "ANTI_USER", nyet, "USERS")
-        mmg = "{} <b> Pengguna {}\n{} Berhasil dihapus dari database Gagu</b>".format(em.warn, mention, em.sukses)
+        mmg = "{} <b> Pengguna {}\n{} Berhasil dihapus dari database Gagu</b>".format(
+            em.warn, mention, em.sukses
+        )
         await xx.delete()
         return await m.reply(mmg)
     except Exception:
         await xx.delete()
         return await m.reply(_("err").format(em.gagal, str(e)))
-        
+
 
 @ky.ubot("listgagu")
 async def _(c: nlx, m, _):
@@ -336,4 +339,3 @@ async def _(c, m, _):
         return await m.delete()
     except Exception as e:
         return await m.reply(f"Error Gagu {str(e)}")
-    
