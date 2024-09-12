@@ -76,7 +76,7 @@ async def ckdm_cmd(client: nlx, message, _):
             await pros.delete()
             return await client.send_photo(
                 message.chat.id,
-                photo=f"kdm_{c.me.id}.jpg",
+                photo=f"kdm_{client.me.id}.jpg",
                 caption=caption,
                 reply_to_message_id=message.id,
             )
