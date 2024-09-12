@@ -20,6 +20,7 @@ __MODULES__ = "Restrict"
 def help_string(org):
     return h_s(org, "help_rest")
 
+
 async def admin_check(m, org):
     c = m._client
     status = (await c.get_chat_member(m.chat.id, org)).status
@@ -41,6 +42,7 @@ async def member_check(message, org) -> bool:
         add_adminperm = check_user.can_promote_members
         return bool(add_adminperm)
     return True
+
 
 @ky.ubot("purge")
 async def _(c: nlx, m, _):
