@@ -20,6 +20,27 @@ __MODULES__ = "Restrict"
 def help_string(org):
     return h_s(org, "help_rest")
 
+async def admin_check(m, org):
+    c = m._client
+    status = (await c.get_chat_member(m.chat.id, org)).status
+    adming = [enums.ChatMemberStatus.ADMINISTRATOR, enums.ChatMemberStatus.OWNER]
+    if status not in adming:
+        return False
+    return True
+
+
+async def member_check(message, org) -> bool:
+    client = message._client
+    check_user = (
+        await client.get_chat_member(message.chat.id, message.from_user.id)
+    ).privileges
+    user_type = check_user.status
+    if user_type == enums.ChatMemberStatus.MEMBER:
+        return False
+    if user_type == enums.ChatMemberStatus.ADMINISTRATORS:
+        add_adminperm = check_user.can_promote_members
+        return bool(add_adminperm)
+    return True
 
 @ky.ubot("purge")
 async def _(c: nlx, m, _):
