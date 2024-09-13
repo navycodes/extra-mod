@@ -180,10 +180,10 @@ async def _(c: nlx, m, _):
     pp = await m.reply(_("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
-    if chat_id in blacklist:
-        return await pp.edit(_("gcs_4").format(em.sukses))
     if not chat_id.startswith("-100") or not chat_id.isnumeric():
         return await pp.edit("{} <b>KONTOL KONTOL KALO PAKE NONE PREFIX JANGAN ASAL KETIK GOBLOK\n\n BOT GW YANG EROR ANJ!!!</b>".format(em.gagal))
+    if chat_id in blacklist:
+        return await pp.edit(_("gcs_4").format(em.sukses))
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
 
