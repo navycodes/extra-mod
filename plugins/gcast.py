@@ -200,7 +200,7 @@ async def _(c: nlx, m, _):
     em = Emojik(c)
     em.initialize()
     pp = await m.reply(_("proses").format(em.proses))
-    
+
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     try:
         chat_id = int(m.command[1]) if len(m.command) > 1 else m.chat.id
