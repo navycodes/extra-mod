@@ -194,7 +194,6 @@ async def _(c: nlx, m, _):
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
 
 
-
 @ky.ubot("delbl")
 @ky.deve("delbl")
 async def _(c: nlx, m, _):
