@@ -184,7 +184,11 @@ async def _(c: nlx, m, _):
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
     if not chat_id.startswith("-100") or not chat_id.isnumeric():
-        return await pp.edit("{} <b>KONTOL KONTOL KALO PAKE NONE PREFIX JANGAN ASAL KETIK GOBLOK\n\n BOT GW YANG EROR ANJ!!!</b>".format(em.gagal))
+        return await pp.edit(
+            "{} <b>KONTOL KONTOL KALO PAKE NONE PREFIX JANGAN ASAL KETIK GOBLOK\n\n BOT GW YANG EROR ANJ!!!</b>".format(
+                em.gagal
+            )
+        )
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
 
