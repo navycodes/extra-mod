@@ -180,16 +180,25 @@ async def _(c: nlx, m, _):
     pp = await m.reply(_("proses").format(em.proses))
     chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
-    if not chat_id.startswith("-100") or not chat_id.isnumeric():
+    try:
+        chat_id = int(chat_id)
+    except ValueError:
         return await pp.edit(
             "{} <b>KONTOL KONTOL KALO PAKE NONE PREFIX JANGAN ASAL KETIK GOBLOK\n\n BOT GW YANG EROR ANJ!!!</b>".format(
                 em.gagal
             )
         )
+
+    # Jika chat_id sudah ada di blacklist, beritahukan pengguna
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
+
+    # Menambahkan chat_id ke blacklist
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
+
+    # Mengedit pesan untuk memberi tahu bahwa chat_id telah ditambahkan ke blacklist
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
+
 
 
 @ky.ubot("delbl")
