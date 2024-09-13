@@ -203,7 +203,7 @@ async def _(c: nlx, m, _):
     
     blacklist = dB.get_list_from_var(c.me.id, "BLGCAST")
     try:
-        chat_id = m.command[1] if len(m.command) > 1 else m.chat.id
+        chat_id = int(m.command[1]) if len(m.command) > 1 else m.chat.id
         if chat_id not in blacklist:
             return await pp.edit(_("gcs_7").format(em.gagal, chat_id))
         dB.remove_from_var(c.me.id, "BLGCAST", chat_id)
