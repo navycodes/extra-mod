@@ -188,15 +188,9 @@ async def _(c: nlx, m, _):
                 em.gagal
             )
         )
-
-    # Jika chat_id sudah ada di blacklist, beritahukan pengguna
     if chat_id in blacklist:
         return await pp.edit(_("gcs_4").format(em.sukses))
-
-    # Menambahkan chat_id ke blacklist
     dB.add_to_var(c.me.id, "BLGCAST", chat_id)
-
-    # Mengedit pesan untuk memberi tahu bahwa chat_id telah ditambahkan ke blacklist
     return await pp.edit(_("gcs_5").format(em.sukses, chat_id))
 
 
